@@ -1,0 +1,12 @@
+﻿@page "/plantas/edit/{Id:guid}"
+
+<h3>Editar una planta</h3>
+
+@if (plantas is null)
+{
+    <Loading/>
+}
+else
+{
+    <PlantasForm @ref="plantasForm" Plantas="plantas" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}
