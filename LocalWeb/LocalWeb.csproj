@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Cultivo\TipoCultivo\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LocalShared\LocalShared.csproj" />
   </ItemGroup>
 

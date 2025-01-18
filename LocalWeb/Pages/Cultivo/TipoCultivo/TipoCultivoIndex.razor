@@ -1,0 +1,33 @@
+﻿@page "/TipoCultivo"
+
+
+<h3>Tipos De Cultivos </h3>
+
+<div class="md-3">
+    <a class="btn btn-primary" href="/plantas/create">Nueva forma de Cultivar</a>
+</div>
+
+<GenericList MyList="Tipo de Cultivos">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Formas de cultivo registradas </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tipoCultivo in clsMTipoCultivos!)
+                {
+                    <tr>
+                        <th>@tipoCultivo.TipCltNombre</th>
+                        <td>
+                            <a href="/TipoCultivo/edit/@tipoCultivo.TipCltId" class="btn btn-warning">Editar</a>
+                            <button @onclick=@(() => DeleteAsync(tipoCultivo)) class="btn btn-danger">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>

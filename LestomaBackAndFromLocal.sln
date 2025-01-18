@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalShared", "LocalShared\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalTest", "LocalTest\LocalTest.csproj", "{973E79C7-D8C8-41D4-BD28-B3F2EB8BEBCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalWeb", "LocalWeb\LocalWeb.csproj", "{CB6336F1-8889-4FA8-B301-0184E181AAEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalWeb", "LocalWeb\LocalWeb.csproj", "{CB6336F1-8889-4FA8-B301-0184E181AAEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
