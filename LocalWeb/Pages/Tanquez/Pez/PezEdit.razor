@@ -1,0 +1,12 @@
+﻿@page "/pez/edit/{Id:guid}"
+
+<h3>Editar Especie de pez</h3>
+
+@if (Pez is null)
+{
+    <Loading/>
+}
+else
+{
+    <PezForm @ref="pezForm" Pez="Pez" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}

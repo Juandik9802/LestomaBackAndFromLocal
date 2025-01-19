@@ -1,0 +1,16 @@
+﻿﻿
+<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="editContext" OnValidSubmit="OnValidSudmit">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label>Peces:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Pez.PezNombre" />
+            <ValidationMessage For="@(() => Pez.PezNombre)" />
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+    <button class="btn btn-success" @onclick="ReturnAction">Regresar</button>
+
+</EditForm>

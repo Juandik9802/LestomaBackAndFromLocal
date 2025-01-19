@@ -1,14 +1,15 @@
 ﻿using CurrieTechnologies.Razor.SweetAlert2;
-using LocalShared.Entities.Cultivo;
+using LocalShared.Entities.Tanques;
+using LocalWeb.Pages.Tanquez.Pez;
 using LocalWeb.Repositories;
 using Microsoft.AspNetCore.Components;
 
-namespace LocalWeb.Pages.Cultivo.TipoCultivo
+namespace LocalWeb.Pages.Tanquez.Pez
 {
-    public partial class TipoCultivoCreate
+    public partial class PezCreate
     {
-        private ClsMTipoCultivo TipoCultivo = new();
-        private TipoCultivoForm? TipoCultivoForm;
+        private ClsMPez Pez = new();
+        private PezForm? pezForm;
 
         [Inject] private IRepository repository { get; set; } = null!;
         [Inject] private SweetAlertService sweetAlertService { get; set; } = null!;
@@ -16,7 +17,7 @@ namespace LocalWeb.Pages.Cultivo.TipoCultivo
 
         private async Task CreateAsync()
         {
-            var responseHttp = await repository.PostAsync("api/TipoCultivo", TipoCultivo);
+            var responseHttp = await repository.PostAsync("api/Pez", Pez);
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
@@ -36,8 +37,8 @@ namespace LocalWeb.Pages.Cultivo.TipoCultivo
 
         private void Return()
         {
-            TipoCultivoForm!.FormPostedSuccessfully = true;
-            navigationManager.NavigateTo("/TipoCultivo");
+            pezForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("/Pez");
         }
     }
 }

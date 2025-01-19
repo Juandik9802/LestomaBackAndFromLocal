@@ -1,0 +1,33 @@
+﻿@page "/Pez"
+
+
+<h3>Pecez</h3>
+
+<div class="md-3">
+    <a class="btn btn-primary" href="/pez/create">Nueva Especie</a>
+</div>
+
+<GenericList MyList="Variedad de peces">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Catálogo de Especies</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var varidedad in Peces!)
+                {
+                    <tr>
+                        <th>@varidedad.PezNombre</th>
+                        <td>
+                            <a href="/pez/edit/@varidedad.PezId" class="btn btn-warning">Editar</a>
+                            <button @onclick=@(() => DeleteAsync(varidedad)) class="btn btn-danger">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>

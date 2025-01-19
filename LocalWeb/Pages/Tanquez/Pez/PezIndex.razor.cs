@@ -1,19 +1,20 @@
 ﻿using CurrieTechnologies.Razor.SweetAlert2;
 using LocalShared.Entities.Cultivo;
+using LocalShared.Entities.Tanques;
 using LocalWeb.Repositories;
 using Microsoft.AspNetCore.Components;
 using System.Net;
 
-namespace LocalWeb.Pages.Cultivo.TipoCultivo
+namespace LocalWeb.Pages.Tanquez.Pez
 {
-    public partial class TipoCultivoIndex
+    public partial class PezIndex
     {
         [Inject] private IRepository Repository { get; set; } = null!;
         [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
         [Inject] private NavigationManager NavigationManager { get; set; } = null!;
 
         // Inicializar la lista para evitar NullReferenceException
-        public List<ClsMTipoCultivo> clsMTipoCultivos { get; set; } = new();
+        public List<ClsMPez> Peces { get; set; } = new();
 
         protected override async Task OnInitializedAsync()
         {
@@ -22,22 +23,22 @@ namespace LocalWeb.Pages.Cultivo.TipoCultivo
 
         private async Task LoadAsync()
         {
-            var responseHttp = await Repository.GetAsync<List<ClsMTipoCultivo>>("api/TipoCultivo");
+            var responseHttp = await Repository.GetAsync<List<ClsMPez>>("api/Pez");
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
                 await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
-            clsMTipoCultivos = responseHttp.Responce ?? new List<ClsMTipoCultivo>();
+            Peces = responseHttp.Responce ?? new List<ClsMPez>();
         }
 
-        private async Task DeleteAsync(ClsMTipoCultivo clsMTipoCultivo)
+        private async Task DeleteAsync(ClsMPez Pez)
         {
             var result = await SweetAlertService.FireAsync(new SweetAlertOptions
             {
                 Title = "Confirmación",
-                Text = $"¿Esta seguro de quiere eliniar la forma de cultivo: {clsMTipoCultivo.TipCltNombre}?",
+                Text = $"¿Esta seguro de querer borrar eliminar la especie : {Pez.PezNombre}?",
                 Icon = SweetAlertIcon.Question,
                 ShowCancelButton = true,
             });
@@ -50,12 +51,12 @@ namespace LocalWeb.Pages.Cultivo.TipoCultivo
             }
 
             // Corregido el tipo genérico en DeleteAsync
-            var responseHttp = await Repository.DeleteAsync<ClsMTipoCultivo>($"api/TipoCultivo/{clsMTipoCultivo.TipCltId}");
+            var responseHttp = await Repository.DeleteAsync<ClsMPez>($"api/Pez/{Pez.PezId}");
             if (responseHttp.Error)
             {
                 if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
                 {
-                    NavigationManager.NavigateTo("/TipoCultivo");
+                    NavigationManager.NavigateTo("/Pez");
                 }
                 else
                 {
