@@ -1,0 +1,33 @@
+﻿﻿@page "/Auditoria"
+
+
+<h3>Acciones realizadas</h3>
+
+<div class="md-3">
+    <a class="btn btn-primary" href="/plantas/create">Nueva Planta</a>
+</div>
+
+<GenericList MyList="Acciones">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Acciones Registradas</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var plantas in Plantas!)
+                {
+                    <tr>
+                        <th>@plantas.PltNombre</th>
+                        <td>
+                            <a href="/plantas/edit/@plantas.PltId" class="btn btn-warning">Editar</a>
+                            <button @onclick=@(() => DeleteAsync(plantas)) class="btn btn-danger">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>
