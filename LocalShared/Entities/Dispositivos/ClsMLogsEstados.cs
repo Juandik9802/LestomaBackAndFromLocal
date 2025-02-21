@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LocalShared.Entities.Dispositivos
 {
@@ -11,7 +6,7 @@ namespace LocalShared.Entities.Dispositivos
     {
         [Key]
         [Display(Name = "Identificador unico")]
-        public Guid IdLogsEstados  { get; set; }
+        public Guid IdLogsEstados { get; set; }
         public Guid IdDispositivo { get; set; }
         public Guid IdEstadoDsipositivo { get; set; }
 

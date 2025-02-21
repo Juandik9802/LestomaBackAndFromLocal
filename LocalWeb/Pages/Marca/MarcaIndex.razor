@@ -1,0 +1,33 @@
+﻿@page "/Marca"
+
+
+<h3>Marca de dispositivos</h3>
+
+<div class="md-3">
+    <a class="btn btn-primary" href="/Marca/create">Registrar una nueva marca</a>
+</div>
+
+<GenericList MyList="Marcas">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Marcas Registradas</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var marca in Marcas!)
+                {
+                    <tr>
+                        <th>@marca.Nombre</th>
+                        <td>
+                            <a href="/Marca/edit/@marca.IdMarca" class="btn btn-warning">Editar</a>
+                            <button @onclick=@(() => DeleteAsync(marca)) class="btn btn-danger">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>

@@ -1,19 +1,20 @@
 ﻿using CurrieTechnologies.Razor.SweetAlert2;
 using LocalShared.Entities.Auditoria;
+using LocalShared.Entities.Dispositivos;
 using LocalWeb.Repositories;
 using Microsoft.AspNetCore.Components;
 using System.Net;
 
-namespace LocalWeb.Pages.Auditoria
+namespace LocalWeb.Pages.Marca
 {
-    public partial class AuditoriaIndex
+    public partial class MarcaIndex
     {
         [Inject] private IRepository Repository { get; set; } = null!;
         [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
         [Inject] private NavigationManager NavigationManager { get; set; } = null!;
 
         // Inicializar la lista para evitar NullReferenceException
-        public List<ClsMAuditoria> Auditorias { get; set; } = new();
+        public List<ClsMMarca> Marcas { get; set; } = new();
 
         protected override async Task OnInitializedAsync()
         {
@@ -22,22 +23,22 @@ namespace LocalWeb.Pages.Auditoria
 
         private async Task LoadAsync()
         {
-            var responseHttp = await Repository.GetAsync<List<ClsMAuditoria>>("/api/Auditoria");
+            var responseHttp = await Repository.GetAsync<List<ClsMMarca>>("/api/Marca");
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
                 await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
-            Auditorias = responseHttp.Responce ?? new List<ClsMAuditoria>();
+            Marcas = responseHttp.Responce ?? new List<ClsMMarca>();
         }
 
-        private async Task DeleteAsync(ClsMAuditoria auditoria)
+        private async Task DeleteAsync(ClsMMarca marca)
         {
             var result = await SweetAlertService.FireAsync(new SweetAlertOptions
             {
                 Title = "Confirmación",
-                Text = $"¿Esta seguro de querer borrar la planta: {auditoria.Accion}?",
+                Text = $"¿Esta seguro de querer borrar: {marca.Nombre}?",
                 Icon = SweetAlertIcon.Question,
                 ShowCancelButton = true,
             });
@@ -50,12 +51,12 @@ namespace LocalWeb.Pages.Auditoria
             }
 
             // Corregido el tipo genérico en DeleteAsync
-            var responseHttp = await Repository.DeleteAsync<ClsMAuditoria>($"/api/Auditoria/{auditoria.IdAuditoria}");
+            var responseHttp = await Repository.DeleteAsync<ClsMAuditoria>($"/api/Marca/{marca.IdMarca}");
             if (responseHttp.Error)
             {
                 if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
                 {
-                    NavigationManager.NavigateTo("/Plantas");
+                    NavigationManager.NavigateTo("/Marca");
                 }
                 else
                 {

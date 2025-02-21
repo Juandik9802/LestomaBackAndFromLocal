@@ -1,0 +1,12 @@
+﻿@page "/Auditoria/edit/{Id:guid}"
+
+<h3>Editar Especie de pez</h3>
+
+@if (Auditoria is null)
+{
+    <Loading/>
+}
+else
+{
+    <AuditoriaForm @ref="AuditoriaForm" Auditoria="Auditoria" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}
