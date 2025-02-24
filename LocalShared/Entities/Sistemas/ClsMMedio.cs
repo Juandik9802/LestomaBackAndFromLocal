@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace LocalShared.Entities.Sistemas
 {
-    public class ClsMMedioProduccion:IEntityWithName
+    public class ClsMMedio:IEntityWithName
     {
         [Key]
-        public Guid IdMedioProduccion { get; set; }
+        public Guid IdMedio { get; set; }
         
         [Required]
         public string?  Nombre { get; set; }

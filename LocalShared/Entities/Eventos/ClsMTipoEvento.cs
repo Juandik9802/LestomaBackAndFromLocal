@@ -10,7 +10,7 @@ namespace LocalShared.Entities.Eventos
 
         [Display(Name = "Tipo de dispositivo")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [MaxLength(10, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
+        [MaxLength(50, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string? Nombre { get; set; }
 
         public Guid IdImpacto { get; set; }

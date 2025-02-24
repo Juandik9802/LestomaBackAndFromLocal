@@ -6,9 +6,9 @@ namespace LocalBackend.Controllers.Sistema
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MedioProduccionController : GenericController<ClsMMedioProduccion>
+    public class MedioProduccionController : GenericController<ClsMMedio>
     {
-        public MedioProduccionController(IGenericUnitOfWork<ClsMMedioProduccion> unitOfWork) : base(unitOfWork)
+        public MedioProduccionController(IGenericUnitOfWork<ClsMMedio> unitOfWork) : base(unitOfWork)
         {
         }
     }

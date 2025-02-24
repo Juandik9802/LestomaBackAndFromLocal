@@ -39,7 +39,7 @@ namespace LocalBackend.Data
         //Sistema
         public DbSet<ClsMAsignacionMedios> AsignacionMedios { get; set; }
         public DbSet<ClsMAsignacionSistema> AsignacionSistema { get; set; }
-        public DbSet<ClsMMedioProduccion> MedioProduccion { get; set; }
+        public DbSet<ClsMMedio> Medio { get; set; }
         public DbSet<ClsMPropiedadesSistema> PropiedadesSistema { get; set; }
         public DbSet<ClsMSistema> Sistemas { get; set; }
 
@@ -64,7 +64,7 @@ namespace LocalBackend.Data
             modelBuilder.Entity<LocalShared.Entities.Medicion.ClsMUnidadMedida>().HasIndex(x => x.Nombre).IsUnique();
             //Sistema
             modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMSistema>().HasIndex(x => x.Nombre).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMMedioProduccion>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMMedio>().HasIndex(x => x.Nombre).IsUnique();
         }
     }
 }

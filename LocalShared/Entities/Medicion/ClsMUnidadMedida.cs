@@ -11,8 +11,12 @@ namespace LocalShared.Entities.Medicion
     {
         [Key]
         public Guid IdUnidadMedida { get; set; }
+
+        public Guid TipoMedicion { get; set; }
+
         [Required]
         public string? Nombre { get; set; }
-        public Guid TipoMedicio { get; set; }
+
+        public string? Simbolo { get; set; }
     }
 }
