@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocalShared.Entities.Dispositivos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,8 +12,11 @@ namespace LocalShared.Entities.Medicion
     {
         [Key]
         public Guid IdMedicion { get; set; }
-        public Guid IdDispositivos { get; set; }
-        public Guid IdUnidadMedida { get; set; }
+        public Guid DispositivosId { get; set; }
+        public ClsMDispositivos? Dispositivos { get; set; }
+        public Guid UnidadMedidaId { get; set; }
+        public ClsMUnidadMedida? UnidadMedida { get; set; }
+
         public float valor { get; set; }
         public DateTime Fecha { get; set; }
     }

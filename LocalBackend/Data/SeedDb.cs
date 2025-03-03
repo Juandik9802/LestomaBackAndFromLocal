@@ -1,4 +1,6 @@
-﻿namespace LocalBackend.Data
+﻿using LocalShared.Entities.Medicion;
+
+namespace LocalBackend.Data
 {
     public class SeedDb
     {
@@ -168,20 +170,144 @@
         {
             if (!_context.TipoMedicion.Any())
             {
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"), Nombre = "Longitud (Distancia)" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"), Nombre = "Masa/Peso" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"), Nombre = "Tiempo" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"), Nombre = "Volumen" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("24190b75-a047-4fd1-bdd7-896014eaaf69"), Nombre = "Temperatura" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("c4ef9155-d7e2-43aa-8a84-be1d59d41a3c"), Nombre = "Energía" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("9a709501-5adf-4a40-9b92-137954c60a4e"), Nombre = "Presión" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("be248e81-e673-4aa3-884c-40d40b40e6d3"), Nombre = "Velocidad" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("fc5feaee-1ec3-409c-b6da-a81bd8f6be81"), Nombre = "Fuerza" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("2d5cad83-0b6c-4824-92d9-9bf685166e09"), Nombre = "Electricidad" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("c7e71068-55b2-4b8e-be24-807f10d45f26"), Nombre = "Densidad" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("634e38b1-f710-4026-a4af-d137b57050fd"), Nombre = "Viscosidad" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("fc805963-f5e8-4130-8aa6-fbe7e3894270"), Nombre = "Frecuencia" });
-                _context.TipoMedicion.Add(new LocalShared.Entities.Medicion.ClsMTipoMedicion { IdTipoMedicion = Guid.Parse("a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d"), Nombre = "Magnetismo" });
+                _context.TipoMedicion.Add(new ClsMTipoMedicion
+                {
+                    IdTipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"),
+                    Nombre = "Longitud (Distancia)",
+                    UnidadMedida = new List<ClsMUnidadMedida>()
+                    {
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d"),
+                            Nombre = "Metro",
+                            Simbolo = "m",
+                        },
+
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("2b3c4d5e-6f7a-4b8c-9d0e-1f2a3b4c5d6e"),
+                            Nombre = "Kilómetro", Simbolo = "km"
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("3c4d5e6f-7a8b-4c9d-0e1f-2a3b4c5d6e7f"),
+                            Nombre = "Centímetro",
+                            Simbolo = "cm"
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("cfcf1f97-4bcb-429b-a986-8d808589fb3d"),
+                            Nombre = "Milímetro",
+                            Simbolo = "mm",
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("2d02c474-1b52-47fd-8426-dfc7752ba1c2"),
+                            Nombre = "Pulgada",
+                            Simbolo = "in"
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("b9004700-4a2c-4dce-99be-6582554572de"),
+                            Nombre = "Pie",
+                            Simbolo = "ft"
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("523b8f7b-edbc-483e-8996-1acebf5582a8"),
+                            Nombre = "Milla",
+                            Simbolo = "mi"
+                        }
+                    }
+                });
+                _context.TipoMedicion.Add(new ClsMTipoMedicion
+                {
+                    IdTipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"),
+                    Nombre = "Masa/Peso",
+                    UnidadMedida = new List<ClsMUnidadMedida>()
+                        {
+                            new ClsMUnidadMedida()
+                            {
+                                IdUnidadMedida = Guid.Parse("ac7f7f28-3664-4e19-b319-85f466a9d8c1"),
+                                Nombre = "Kilogramo",
+                                Simbolo = "kg"
+                            },
+                            new ClsMUnidadMedida()
+                            {
+                                IdUnidadMedida = Guid.Parse("0255c15d-bf74-43ce-bb06-ae1b5518f38b"),
+                                Nombre = "Gramo",
+                                Simbolo = "g"
+                            },
+                            new ClsMUnidadMedida()
+                            {
+                                IdUnidadMedida = Guid.Parse("50364912-17aa-43fe-8ba3-022dae61e903"),
+                                Nombre = "Miligramo",
+                                Simbolo = "mg"
+                            },
+                            new ClsMUnidadMedida()
+                            {
+                                IdUnidadMedida = Guid.Parse("0892f4a0-a9e0-40cd-b1f9-35473cc1173b"),
+                                Nombre = "Tonelada",
+                                Simbolo = "t"
+                            },
+                            new ClsMUnidadMedida()
+                            {
+                                IdUnidadMedida = Guid.Parse("5056f514-449c-4b05-a6ce-b01a33a42f81"),
+                                Nombre = "Libra",
+                                Simbolo = "lb"
+                            },
+                            new ClsMUnidadMedida()
+                            {
+                                IdUnidadMedida = Guid.Parse("dc0531f0-af8f-4cf4-aebd-b512a8a307be"),
+                                Nombre = "Onza",
+                                Simbolo = "oz"
+                            }
+                        }
+                });
+                _context.TipoMedicion.Add(new ClsMTipoMedicion
+                {
+                    IdTipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"),
+                    Nombre = "Tiempo",
+                    UnidadMedida = new List<ClsMUnidadMedida>()
+                    {
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("538efe2c-a200-4234-bcf8-43647e78c723"), 
+                            Nombre = "Segundo", 
+                            Simbolo = "s"
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("d7318c08-fbaa-4cd0-8848-29812e8b3224"), 
+                            Nombre = "Minuto", 
+                            Simbolo = "min"
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("b07fd9f0-4020-45ac-b8b5-f04fd4a3961e"), 
+                            Nombre = "Hora", 
+                            Simbolo = "h"
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("71c08da4-d1e5-4ea5-8577-444f89714bbe"),
+                            Nombre = "Día", 
+                            Simbolo = ""
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("d9c6af88-7619-435d-9a14-8439328ea1ac"), 
+                            Nombre = "Semana",
+                            Simbolo = ""
+                        },
+                        new ClsMUnidadMedida()
+                        {
+                            IdUnidadMedida = Guid.Parse("3f57aa9f-7c44-4fbe-9520-5936a3a190d5"),
+                            Nombre = "Año", 
+                            Simbolo = ""
+                        }
+                    }
+                });
                 await _context.SaveChangesAsync();
             }
         }
@@ -189,85 +315,6 @@
         {
             if (!_context.UnidadMedida.Any())
             {
-                // Longitud (Distancia) - UUID: e6e6a11f-f6b7-4d78-818b-6979681bd083
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d"), TipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"), Nombre = "Metro", Simbolo = "m" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("2b3c4d5e-6f7a-4b8c-9d0e-1f2a3b4c5d6e"), TipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"), Nombre = "Kilómetro", Simbolo = "km" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("3c4d5e6f-7a8b-4c9d-0e1f-2a3b4c5d6e7f"), TipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"), Nombre = "Centímetro", Simbolo = "cm" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("cfcf1f97-4bcb-429b-a986-8d808589fb3d"), TipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"), Nombre = "Milímetro", Simbolo = "mm" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("2d02c474-1b52-47fd-8426-dfc7752ba1c2"), TipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"), Nombre = "Pulgada", Simbolo = "in" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("b9004700-4a2c-4dce-99be-6582554572de"), TipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"), Nombre = "Pie", Simbolo = "ft" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("523b8f7b-edbc-483e-8996-1acebf5582a8"), TipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"), Nombre = "Milla", Simbolo = "mi" });
-
-                // Masa/Peso - UUID: a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("ac7f7f28-3664-4e19-b319-85f466a9d8c1"), TipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"), Nombre = "Kilogramo", Simbolo = "kg" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("0255c15d-bf74-43ce-bb06-ae1b5518f38b"), TipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"), Nombre = "Gramo", Simbolo = "g" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("50364912-17aa-43fe-8ba3-022dae61e903"), TipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"), Nombre = "Miligramo", Simbolo = "mg" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("0892f4a0-a9e0-40cd-b1f9-35473cc1173b"), TipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"), Nombre = "Tonelada", Simbolo = "t" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("5056f514-449c-4b05-a6ce-b01a33a42f81"), TipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"), Nombre = "Libra", Simbolo = "lb" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("dc0531f0-af8f-4cf4-aebd-b512a8a307be"), TipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"), Nombre = "Onza", Simbolo = "oz" });
-
-                // Tiempo - UUID: b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("538efe2c-a200-4234-bcf8-43647e78c723"), TipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"), Nombre = "Segundo", Simbolo = "s" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("d7318c08-fbaa-4cd0-8848-29812e8b3224"), TipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"), Nombre = "Minuto", Simbolo = "min" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("b07fd9f0-4020-45ac-b8b5-f04fd4a3961e"), TipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"), Nombre = "Hora", Simbolo = "h" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("71c08da4-d1e5-4ea5-8577-444f89714bbe"), TipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"), Nombre = "Día", Simbolo = "" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("d9c6af88-7619-435d-9a14-8439328ea1ac"), TipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"), Nombre = "Semana", Simbolo = "" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("3f57aa9f-7c44-4fbe-9520-5936a3a190d5"), TipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"), Nombre = "Año", Simbolo = "" });
-
-                // Volumen - UUID: c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("4c54a55d-3f44-496a-9f13-79a724a4192f"), TipoMedicion = Guid.Parse("c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"), Nombre = "Litro", Simbolo = "L" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("f421c860-d57d-401e-bdbb-627b9eebaa9d"), TipoMedicion = Guid.Parse("c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"), Nombre = "Mililitro", Simbolo = "mL" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("9c31339b-5857-428b-b2ce-2fe9daf80260"), TipoMedicion = Guid.Parse("c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"), Nombre = "Metro cúbico", Simbolo = "m³" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("89280a2f-a730-47cb-98cd-f376c1745e63"), TipoMedicion = Guid.Parse("c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"), Nombre = "Centímetro cúbico", Simbolo = "cm³" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("ff1181ad-12c1-4e53-b02c-5eaf5aba6793"), TipoMedicion = Guid.Parse("c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"), Nombre = "Galón", Simbolo = "gal" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("8e2a3925-74bb-4b99-b1aa-5a945ef45134"), TipoMedicion = Guid.Parse("c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f"), Nombre = "Pinta", Simbolo = "pt" });
-
-                // Temperatura - UUID: 24190b75-a047-4fd1-bdd7-896014eaaf69
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("f898ee60-ef7f-4e50-ac61-a332940f8cce"), TipoMedicion = Guid.Parse("24190b75-a047-4fd1-bdd7-896014eaaf69"), Nombre = "Grado Celsius", Simbolo = "°C" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("1224b932-7101-4990-977a-99c9133930cc"), TipoMedicion = Guid.Parse("24190b75-a047-4fd1-bdd7-896014eaaf69"), Nombre = "Grado Fahrenheit", Simbolo = "°F" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("c99a1b0d-754e-4657-878d-ec6780c210f1"), TipoMedicion = Guid.Parse("24190b75-a047-4fd1-bdd7-896014eaaf69"), Nombre = "Kelvin", Simbolo = "K" });
-
-                // Energía - UUID: c4ef9155-d7e2-43aa-8a84-be1d59d41a3c
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("e4549cba-2c1c-4122-94b4-c5bf9e0a0946"), TipoMedicion = Guid.Parse("c4ef9155-d7e2-43aa-8a84-be1d59d41a3c"), Nombre = "Julio", Simbolo = "J" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("749d6021-3a96-4f15-bde6-b03744356d37"), TipoMedicion = Guid.Parse("c4ef9155-d7e2-43aa-8a84-be1d59d41a3c"), Nombre = "Caloría", Simbolo = "cal" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("17425eeb-044e-4594-8c16-c0eb48495c2f"), TipoMedicion = Guid.Parse("c4ef9155-d7e2-43aa-8a84-be1d59d41a3c"), Nombre = "Kilovatio-hora", Simbolo = "kWh" });
-
-                // Presión - UUID: 9a709501-5adf-4a40-9b92-137954c60a4e
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("b4bc8951-2612-4e68-bd00-08e49c3d1a66"), TipoMedicion = Guid.Parse("9a709501-5adf-4a40-9b92-137954c60a4e"), Nombre = "Pascal", Simbolo = "Pa" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("b6a8e8f9-fa8f-414b-9101-dce76ae0402a"), TipoMedicion = Guid.Parse("9a709501-5adf-4a40-9b92-137954c60a4e"), Nombre = "Bar", Simbolo = "bar" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("744594e6-19ae-48a0-942a-78e724b1c67f"), TipoMedicion = Guid.Parse("9a709501-5adf-4a40-9b92-137954c60a4e"), Nombre = "Atmósfera", Simbolo = "atm" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("ef03c5df-8d43-465d-ba4b-0e83f35d28bb"), TipoMedicion = Guid.Parse("9a709501-5adf-4a40-9b92-137954c60a4e"), Nombre = "Milímetro de mercurio", Simbolo = "mmHg" });
-
-                // Velocidad - UUID: be248e81-e673-4aa3-884c-40d40b40e6d3
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("c5a4dd66-16f3-46c4-b77f-88b330b2becd"), TipoMedicion = Guid.Parse("be248e81-e673-4aa3-884c-40d40b40e6d3"), Nombre = "Metros por segundo", Simbolo = "m/s" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("f745a996-bb17-43a7-8c79-8ec917be7870"), TipoMedicion = Guid.Parse("be248e81-e673-4aa3-884c-40d40b40e6d3"), Nombre = "Kilómetros por hora", Simbolo = "km/h" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("c7ba1d63-6f16-49d3-99c8-fa7b35907eb6"), TipoMedicion = Guid.Parse("be248e81-e673-4aa3-884c-40d40b40e6d3"), Nombre = "Millas por hora", Simbolo = "mph" });
-
-                // Fuerza - UUID: fc5feaee-1ec3-409c-b6da-a81bd8f6be81
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("5ac9739d-f0c2-40e9-a9d0-9da45893e7e9"), TipoMedicion = Guid.Parse("fc5feaee-1ec3-409c-b6da-a81bd8f6be81"), Nombre = "Newton", Simbolo = "N" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("422a4aa6-4046-4810-b4c6-f77514aadb39"), TipoMedicion = Guid.Parse("fc5feaee-1ec3-409c-b6da-a81bd8f6be81"), Nombre = "Kilopondio", Simbolo = "kp" });
-
-                // Electricidad - UUID: 2d5cad83-0b6c-4824-92d9-9bf685166e09
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("758cb331-596f-40ea-bd4b-4c9aff0fb934"), TipoMedicion = Guid.Parse("2d5cad83-0b6c-4824-92d9-9bf685166e09"), Nombre = "Voltio", Simbolo = "V" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("eec4664a-c8a4-4780-be7d-8b88d20f9b10"), TipoMedicion = Guid.Parse("2d5cad83-0b6c-4824-92d9-9bf685166e09"), Nombre = "Amperio", Simbolo = "A" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("1eb8a661-4f53-4765-8d8a-e645855d920c"), TipoMedicion = Guid.Parse("2d5cad83-0b6c-4824-92d9-9bf685166e09"), Nombre = "Ohmio", Simbolo = "Ω" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("ec030056-bbad-4867-955c-ec300b702410"), TipoMedicion = Guid.Parse("2d5cad83-0b6c-4824-92d9-9bf685166e09"), Nombre = "Vatio", Simbolo = "W" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("5dc6a8f9-9b7b-403b-957b-24092cc52c62"), TipoMedicion = Guid.Parse("2d5cad83-0b6c-4824-92d9-9bf685166e09"), Nombre = "Culombio", Simbolo = "C" });
-
-                // Densidad - UUID: c7e71068-55b2-4b8e-be24-807f10d45f26
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("c0bda81f-8c0a-406e-92d4-9a8f7f1df690"), TipoMedicion = Guid.Parse("c7e71068-55b2-4b8e-be24-807f10d45f26"), Nombre = "Kilogramos por metro cúbico", Simbolo = "kg/m³" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("70a29338-08c4-4af3-9e00-9c63ec456b19"), TipoMedicion = Guid.Parse("c7e71068-55b2-4b8e-be24-807f10d45f26"), Nombre = "Gramos por centímetro cúbico", Simbolo = "g/cm³" });
-
-                // Viscosidad - UUID: 634e38b1-f710-4026-a4af-d137b57050fd
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("1abf75b0-4ec5-4008-b243-c15d3581e56d"), TipoMedicion = Guid.Parse("634e38b1-f710-4026-a4af-d137b57050fd"), Nombre = "Poise", Simbolo = "P" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("eb049704-5797-4e9a-9503-368a454e8e12"), TipoMedicion = Guid.Parse("634e38b1-f710-4026-a4af-d137b57050fd"), Nombre = "Centipoise", Simbolo = "cP" });
-
-                // Frecuencia - UUID: fc805963-f5e8-4130-8aa6-fbe7e3894270
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("ac6fc310-d1f0-4e58-893d-45c5ce3d31b8"), TipoMedicion = Guid.Parse("fc805963-f5e8-4130-8aa6-fbe7e3894270"), Nombre = "Hertz", Simbolo = "Hz" });
-
-                // Magnetismo - UUID: a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("53d6b47a-1a03-4d18-a18b-e23e12d0dc94"), TipoMedicion = Guid.Parse("a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d"), Nombre = "Tesla", Simbolo = "T" });
-                _context.UnidadMedida.Add(new LocalShared.Entities.Medicion.ClsMUnidadMedida { IdUnidadMedida = Guid.Parse("b2c7ca68-40e0-4a1f-9356-21e834e3ca2f"), TipoMedicion = Guid.Parse("a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d"), Nombre = "Gauss", Simbolo = "G" });
                 await _context.SaveChangesAsync();
             }
         }

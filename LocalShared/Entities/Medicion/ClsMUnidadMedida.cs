@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LocalShared.Entities.Medicion
 {
@@ -12,11 +7,14 @@ namespace LocalShared.Entities.Medicion
         [Key]
         public Guid IdUnidadMedida { get; set; }
 
-        public Guid TipoMedicion { get; set; }
+        public Guid TipoMedicionId { get; set; }
+        public ClsMTipoMedicion? TipoMedicion { get; set; }
 
         [Required]
         public string? Nombre { get; set; }
 
         public string? Simbolo { get; set; }
+
+        public ICollection<ClsMMedicion> Mediciones { get; set; }
     }
 }

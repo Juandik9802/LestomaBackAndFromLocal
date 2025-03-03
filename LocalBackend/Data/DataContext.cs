@@ -5,6 +5,7 @@ using LocalShared.Entities.Eventos;
 using LocalShared.Entities.Medicion;
 using LocalShared.Entities.Sistemas;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace LocalBackend.Data
 {
@@ -65,6 +66,16 @@ namespace LocalBackend.Data
             //Sistema
             modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMSistema>().HasIndex(x => x.Nombre).IsUnique();
             modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMMedio>().HasIndex(x => x.Nombre).IsUnique();
+            DisableCascadingDelete(modelBuilder);
+        }
+
+        private void DisableCascadingDelete(ModelBuilder modelBuilder)
+        {
+            var relationships = modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys());
+            foreach (var relationship in relationships)
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
     }
 }

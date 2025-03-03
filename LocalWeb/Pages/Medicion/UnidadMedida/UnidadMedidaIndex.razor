@@ -1,0 +1,33 @@
+﻿@page "/UnidadMedida"
+
+
+<h3>Unidades de Medida</h3>
+
+<div class="md-3">
+    <a class="btn btn-primary" href="/UnidadMedida/create">Registrar una unidad de medida </a>
+</div>
+
+<GenericList MyList="Unidades de Medida">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Unidades registradas</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var unidadMedida in unidadMedidas!)
+                {
+                    <tr>
+                        <th>@unidadMedida.Nombre</th>
+                        <td>
+                            <a href="/Marca/edit/@unidadMedida.IdUnidadMedida" class="btn btn-warning">Editar</a>
+                            <button @onclick=@(() => DeleteAsync(unidadMedida)) class="btn btn-danger">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>

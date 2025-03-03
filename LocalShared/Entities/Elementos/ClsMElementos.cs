@@ -6,8 +6,10 @@ namespace LocalShared.Entities.Elementos
     {
         [Key]
         [Display(Name ="Identificador del elemento")]
-        public Guid IdElemento { get; set; }
+        public Guid IdElemento { get; set; }        
+
         public Guid IdTipoElemento { get; set; }
+        public ClsMTipoElementos TipoElementos { get; set; }
 
         [Display(Name = "Nombre del elemento")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]

@@ -16,7 +16,7 @@ namespace LocalBackend.Repositories.implementation
             _entity = _context.Set<T>();
         }
 
-        public async Task<ActionResponse<T>> AddAsync(T entity)
+        public virtual async Task<ActionResponse<T>> AddAsync(T entity)
         {
             _context.Add(entity);
             try
@@ -38,7 +38,7 @@ namespace LocalBackend.Repositories.implementation
             }
         }
 
-        public async Task<ActionResponse<T>> DeleteAsync(Guid id)
+        public virtual async Task<ActionResponse<T>> DeleteAsync(Guid id)
         {
             var row = await _entity.FindAsync(id);
             if (row == null)
@@ -68,7 +68,7 @@ namespace LocalBackend.Repositories.implementation
             }
         }
 
-        public async Task<ActionResponse<T>> GetAsync(Guid id)
+        public virtual async Task<ActionResponse<T>> GetAsync(Guid id)
         {
             var row = await _entity.FindAsync(id);
             if (row == null)
@@ -86,7 +86,7 @@ namespace LocalBackend.Repositories.implementation
             };
         }
 
-        public async Task<ActionResponse<IEnumerable<T>>> GetAsync()
+        public virtual async Task<ActionResponse<IEnumerable<T>>> GetAsync()
         {
             return new ActionResponse<IEnumerable<T>>
             {
@@ -95,7 +95,7 @@ namespace LocalBackend.Repositories.implementation
             };
         }
 
-        public async Task<ActionResponse<T>> UpdateAsync(T entity)
+        public virtual async Task<ActionResponse<T>> UpdateAsync(T entity)
         {
             _context.Update(entity);
             try

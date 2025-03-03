@@ -1,0 +1,35 @@
+﻿@page "/TipoMedicion"
+
+
+<h3>Tipo Medicion</h3>
+
+<div class="md-3">
+    <a class="btn btn-primary" href="/TipoMedicion/create">Registrar una unidad de medida </a>
+</div>
+
+<GenericList MyList="Tipos de Medicion">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tipos Registrados </th>
+                    <th>Cantidad de Unidades</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tipoMedicion in tipoMedicion!)
+                {
+                    <tr>
+                        <th>@tipoMedicion.Nombre</th>
+                        <th>@tipoMedicion.UnidadMedidaNumber</th>
+                        <td>
+                            <a href="/Marca/edit/@tipoMedicion.IdTipoMedicion" class="btn btn-sm btn-warning">Editar</a>
+                            <a class="btn btn-info btn-sm" href="/TipoMedicion/details/@tipoMedicion.IdTipoMedicion">Detalles</a>
+                            <button @onclick=@(() => DeleteAsync(tipoMedicion)) class="btn btn-sm btn-danger">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>

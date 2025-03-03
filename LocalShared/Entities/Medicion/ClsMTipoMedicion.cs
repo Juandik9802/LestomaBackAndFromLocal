@@ -1,17 +1,16 @@
 ﻿using LocalShared.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocalShared.Entities.Medicion
 {
-    public class ClsMTipoMedicion:IEntityWithName
+    public class ClsMTipoMedicion : IEntityWithName
     {
         [Key]
         public Guid IdTipoMedicion { get; set; }
         public string? Nombre { get; set; }
+
+        public ICollection<ClsMUnidadMedida> UnidadMedida { get; set; }
+
+        public int UnidadMedidaNumber => UnidadMedida == null || UnidadMedida.Count == 0 ? 0 : UnidadMedida.Count;
     }
 }

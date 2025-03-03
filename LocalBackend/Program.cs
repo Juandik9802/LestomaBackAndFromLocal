@@ -4,18 +4,25 @@ using LocalBackend.Repositories.Interfaces;
 using LocalBackend.Repositories.UnitsOfWork.implementation;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=SQLSERVER"));
 builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+builder.Services.AddScoped<ITipoMedicionRepository, TipoMedicionRepository>();
+builder.Services.AddScoped<ITipoMedicionUnitOfWork, TipoMedicionUnitOfWork>();
+builder.Services.AddScoped<IUnidadMedidaRepository, UnidadMedidaRepository>();
+builder.Services.AddScoped<IUnidadMedidaUnitOfWork, UnidadMedidaUnitOfWork>();
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy",
