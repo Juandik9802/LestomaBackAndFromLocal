@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LocalShared.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace LocalShared.Entities.Medicion
 {
-    public class ClsMUnidadMedida
+    public class ClsMUnidadMedida : IEntityWithName
     {
+
+
         [Key]
         public Guid IdUnidadMedida { get; set; }
 
@@ -15,6 +18,10 @@ namespace LocalShared.Entities.Medicion
 
         public string? Simbolo { get; set; }
 
-        public ICollection<ClsMMedicion> Mediciones { get; set; }
+        public ICollection<ClsMMedicion>? MMediciones { get; set; }
+
+        [Display(Name = "Mediciones")]
+        public int CitiesNumber => MMediciones == null || MMediciones.Count == 0 ? 0 : MMediciones.Count;
+
     }
 }

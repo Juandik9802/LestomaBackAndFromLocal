@@ -1,5 +1,12 @@
-﻿<h3>TipoMedicionEdit</h3>
+﻿@page "/TipoMedicion/edit/{Id:guid}"
 
-@code {
+<h3>Editar nombre de la Marca</h3>
 
+@if (TipoMedicion is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="TipoMedicionForm" Label="Tipo de Medicion:" Model="TipoMedicion" OnValidSudmit="EditAsync" ReturnAction="Return" />
 }

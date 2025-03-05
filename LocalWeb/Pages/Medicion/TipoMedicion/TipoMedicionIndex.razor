@@ -4,7 +4,7 @@
 <h3>Tipo Medicion</h3>
 
 <div class="md-3">
-    <a class="btn btn-primary" href="/TipoMedicion/create">Registrar una unidad de medida </a>
+    <a class="btn btn-primary" href="/TipoMedicion/create">Registrar Nuevo Grupo de Mediciones </a>
 </div>
 
 <GenericList MyList="Tipos de Medicion">
@@ -23,7 +23,7 @@
                         <th>@tipoMedicion.Nombre</th>
                         <th>@tipoMedicion.UnidadMedidaNumber</th>
                         <td>
-                            <a href="/Marca/edit/@tipoMedicion.IdTipoMedicion" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="/TipoMedicion/edit/@tipoMedicion.IdTipoMedicion" class="btn btn-sm btn-warning">Editar</a>
                             <a class="btn btn-info btn-sm" href="/TipoMedicion/details/@tipoMedicion.IdTipoMedicion">Detalles</a>
                             <button @onclick=@(() => DeleteAsync(tipoMedicion)) class="btn btn-sm btn-danger">Borrar</button>
                         </td>

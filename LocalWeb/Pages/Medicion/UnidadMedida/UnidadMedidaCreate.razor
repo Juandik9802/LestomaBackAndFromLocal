@@ -1,5 +1,5 @@
-﻿<h3>UnidadMedidaCreate</h3>
+﻿@page "/UnidadMedida/create/{TipoMedidaId:guid}"
 
-@code {
+<h3>Registrar Tipo de Medicion </h3>
 
-}
+<FormWithName @ref="UnidadMedidaForm" Label="Tipo de Medicion:" Model="unidadMedida" OnValidSudmit="CreateAsync" ReturnAction="Return" />

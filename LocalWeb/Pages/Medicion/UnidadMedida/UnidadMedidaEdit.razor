@@ -1,5 +1,12 @@
-﻿<h3>UnidadMedidaEdit</h3>
+﻿@page "/UnidadMedida/edit/{Id:guid}"
 
-@code {
+<h3>Editar nombre de la unidad de medida</h3>
 
+@if (unidadMedida is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="UnidadMedidaForm" Label="Unidad de Medida:" Model="unidadMedida" OnValidSudmit="EditAsync" ReturnAction="Return" />
 }

@@ -1,0 +1,47 @@
+﻿@page "/TipoMedicion/details/{TipoMedidaId:guid}"
+
+@if (tipoMedicion is null)
+{
+    <Loading />
+}
+else
+{
+    <h3>@tipoMedicion.Nombre</h3>
+    <div class="mb-2">
+        <a class="btn btn-primary" href="/UnidadMedida/create/@tipoMedicion.IdTipoMedicion">Nueva Unidad de Medida</a>
+        <a class="btn btn-success" href="/TipoMedicion">Regresar</a>
+    </div>
+
+    <h4>Unidades de Medida</h4>
+    <GenericList MyList="tipoMedicion.UnidadMedida!.ToList()">
+        <Body>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Unidades de medida</th>
+                        <th>Mediciones</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var UnidadMedida in tipoMedicion.UnidadMedida!)
+                    {
+                        <tr>
+                            <td>
+                                @UnidadMedida.Nombre
+                            </td>
+                            <td>
+                                @UnidadMedida.MMediciones
+                            </td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" href="/UnidadMedida/edit/@UnidadMedida.IdUnidadMedida">Editar</a>
+                                <a class="btn btn-info btn-sm" href="/UnidadMedida/details/@UnidadMedida.IdUnidadMedida">Detalles</a>
+                                <button class="btn btn-danger btn-sm" @onclick=@(() => DeleteAsync(UnidadMedida))>Borrar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </Body>
+    </GenericList>
+}
