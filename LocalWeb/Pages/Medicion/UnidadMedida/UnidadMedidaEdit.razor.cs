@@ -3,6 +3,7 @@ using LocalShared.Entities.Medicion;
 using LocalWeb.Repositories;
 using LocalWeb.Shared;
 using Microsoft.AspNetCore.Components;
+using System.Net;
 
 namespace LocalWeb.Pages.Medicion.UnidadMedida
 {
@@ -18,42 +19,29 @@ namespace LocalWeb.Pages.Medicion.UnidadMedida
         [EditorRequired, Parameter]
         public Guid Id { get; set; }
 
-        protected async override Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
-            await base.OnInitializedAsync();
-            try
+            var responseHttp = await Repository.GetAsync<ClsMUnidadMedida>($"/api/UnidadMedida/{Id}");
+            if (responseHttp.Error)
             {
-                var responseHttp = await Repository.GetAsync<ClsMUnidadMedida>($"/api/UnidadMedida/{Id}");
-                if (!responseHttp.Error)
+                if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
                 {
-                    unidadMedida = responseHttp.Responce;
+                    Return();
                 }
-                else
-                {
-                    if (responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
-                    {
-                        NavigationManager.NavigateTo("/UnidadMedida");
-                    }
-                    else
-                    {
-                        var message = await responseHttp.GetErrorMessageAsync();
-                        await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
-                    }
-                }
+                var message = await responseHttp.GetErrorMessageAsync();
+                await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
+                return;
             }
-            catch (Exception ex)
-            {
-                await SweetAlertService.FireAsync("Error", $"Excepción: {ex.Message}", SweetAlertIcon.Error);
-            }
+            unidadMedida = responseHttp.Responce;
         }
 
-        private async Task EditAsync()
+        private async Task SaveAsync()
         {
-            var responseHttp = await Repository.PutAsync("api/UnidadMedida", unidadMedida);
+            var responseHttp = await Repository.PutAsync($"/api/UnidadMedida", unidadMedida);
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
-                await SweetAlertService.FireAsync("Error", message);
+                await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
             Return();
@@ -64,13 +52,13 @@ namespace LocalWeb.Pages.Medicion.UnidadMedida
                 ShowConfirmButton = true,
                 Timer = 3000
             });
-            await toast.FireAsync(icon: SweetAlertIcon.Success, message: "Cambios guardados con éxito");
+            await toast.FireAsync(icon: SweetAlertIcon.Success, message: "Cambios guardados con exito");
         }
 
         private void Return()
         {
             UnidadMedidaForm!.FormPostedSuccessfully = true;
-            NavigationManager.NavigateTo("/UnidadMedida");
+            NavigationManager.NavigateTo($"/TipoMedicion/details/{unidadMedida!.TipoMedicionId}");
         }
     }
 }
