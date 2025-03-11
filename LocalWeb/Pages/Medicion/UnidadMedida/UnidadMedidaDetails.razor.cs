@@ -4,17 +4,17 @@ using LocalWeb.Repositories;
 using Microsoft.AspNetCore.Components;
 using System.Net;
 
-namespace LocalWeb.Pages.Medicion.TipoMedicion
+namespace LocalWeb.Pages.Medicion.UnidadMedida
 {
-    public partial class TipoMedicionDetails
+    public partial class UnidadMedidaDetails
     {
-        public ClsMTipoMedicion? tipoMedicion;
+        public ClsMUnidadMedida? UnidadMedida;
 
         [Inject] private IRepository Repository { get; set; } = null!;
         [Inject] private SweetAlertService sweetAlertService { get; set; } = null!;
         [Inject] private NavigationManager navigationManager { get; set; } = null!;
 
-        [Parameter, EditorRequired] public Guid TipoMedidaId { get; set; }
+        [Parameter, EditorRequired] public Guid UnidadMedidaId { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -23,12 +23,12 @@ namespace LocalWeb.Pages.Medicion.TipoMedicion
 
         private async Task LoadAsync()
         {
-            var responceHttp = await Repository.GetAsync<ClsMTipoMedicion>($"/api/TipoMedicion/{TipoMedidaId}");
+            var responceHttp = await Repository.GetAsync<ClsMUnidadMedida>($"/api/Mediciones/{UnidadMedidaId}");
             if (responceHttp.Error)
             {
-                if(responceHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
+                if (responceHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
                 {
-                    navigationManager.NavigateTo("/TipoMedida");
+                    navigationManager.NavigateTo("/UnidadMedida");
                     return;
                 }
 
@@ -36,15 +36,15 @@ namespace LocalWeb.Pages.Medicion.TipoMedicion
                 await sweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
-            tipoMedicion = responceHttp.Responce;
+            UnidadMedida = responceHttp.Responce;
         }
 
-        private async Task DeleteAsync(ClsMUnidadMedida clsMUnidadMedida)
+        private async Task DeleteAsync(ClsMMedicion clsMMedicion)
         {
             var result = await sweetAlertService.FireAsync(new SweetAlertOptions
             {
                 Title = "Confirmacion",
-                Text = $"¿Realmente desea eliminar el Tipo de medida {clsMUnidadMedida.Nombre}",
+                Text = $"¿Realmente desea eliminar la medicion de valor: {clsMMedicion.valor}",
                 Icon = SweetAlertIcon.Question,
                 ShowCancelButton = true,
                 CancelButtonText = "No",
@@ -55,10 +55,10 @@ namespace LocalWeb.Pages.Medicion.TipoMedicion
             {
                 return;
             }
-            var responseHttp = await Repository.DeleteAsync<ClsMTipoMedicion>($"/api/UnidadMedida/{clsMUnidadMedida.IdUnidadMedida}");
+            var responseHttp = await Repository.DeleteAsync<ClsMMedicion>($"/api/Medicion/{clsMMedicion.IdMedicion}");
             if (responseHttp.Error)
             {
-                if(responseHttp.HttpResponseMessage.StatusCode != HttpStatusCode.NotFound)
+                if (responseHttp.HttpResponseMessage.StatusCode != HttpStatusCode.NotFound)
                 {
                     var message = await responseHttp.GetErrorMessageAsync();
                     await sweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);

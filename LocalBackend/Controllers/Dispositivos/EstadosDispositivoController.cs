@@ -6,9 +6,9 @@ namespace LocalBackend.Controllers.Dispositivos
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DispositivosController : GenericController<ClsMDispositivos>
-    {
-        public DispositivosController(IGenericUnitOfWork<ClsMDispositivos> unitOfWork) : base(unitOfWork)
+    public class EstadosDispositivoController : GenericController<ClsMEstadosDispositivo>
+    {        
+        public EstadosDispositivoController(IGenericUnitOfWork<ClsMEstadosDispositivo> unitOfWork) : base(unitOfWork)
         {
         }
     }

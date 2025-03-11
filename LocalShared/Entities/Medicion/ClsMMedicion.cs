@@ -1,10 +1,5 @@
 ﻿using LocalShared.Entities.Dispositivos;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocalShared.Entities.Medicion
 {
@@ -12,8 +7,12 @@ namespace LocalShared.Entities.Medicion
     {
         [Key]
         public Guid IdMedicion { get; set; }
-        public Guid DispositivosId { get; set; }
-        public ClsMDispositivos? Dispositivos { get; set; }
+
+        // Cambia DispositivosId a DispositivoId
+        public Guid DispositivoId { get; set; }
+        public ClsMDispositivo? Dispositivo { get; set; }
+
+        // Cambia UnidadMedidaId a UnidadMedidaId (ya está correcto)
         public Guid UnidadMedidaId { get; set; }
         public ClsMUnidadMedida? UnidadMedida { get; set; }
 

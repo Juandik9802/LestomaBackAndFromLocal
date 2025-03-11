@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocalShared.Entities.Sistemas
 {
-    public class ClsMAsignacionMedios
+    public class ClsMAsignacionMedio
     {
         [Key]
         [Display(Name ="Identificador de la asignacion del medio")]

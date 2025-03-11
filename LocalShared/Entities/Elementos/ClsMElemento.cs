@@ -2,14 +2,14 @@
 
 namespace LocalShared.Entities.Elementos
 {
-    public class ClsMElementos
+    public class ClsMElemento
     {
         [Key]
         [Display(Name ="Identificador del elemento")]
         public Guid IdElemento { get; set; }        
 
         public Guid IdTipoElemento { get; set; }
-        public ClsMTipoElementos TipoElementos { get; set; }
+        public ClsMTipoElemento TipoElementos { get; set; }
 
         [Display(Name = "Nombre del elemento")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]

@@ -6,9 +6,9 @@ namespace LocalBackend.Controllers.Elementos
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CantidadElementosController : GenericController<ClsMCantidadElementos>
+    public class ElementoController : GenericController<ClsMElemento>
     {
-        public CantidadElementosController(IGenericUnitOfWork<ClsMCantidadElementos> unitOfWork) : base(unitOfWork)
+        public ElementoController(IGenericUnitOfWork<ClsMElemento> unitOfWork) : base(unitOfWork)
         {
         }
     }

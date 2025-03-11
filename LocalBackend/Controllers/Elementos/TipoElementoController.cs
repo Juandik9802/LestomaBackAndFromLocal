@@ -6,9 +6,9 @@ namespace LocalBackend.Controllers.Elementos
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TipoElementosController : GenericController<ClsMTipoElementos>
+    public class TipoElementoController : GenericController<ClsMTipoElemento>
     {
-        public TipoElementosController(IGenericUnitOfWork<ClsMTipoElementos> unitOfWork) : base(unitOfWork)
+        public TipoElementoController(IGenericUnitOfWork<ClsMTipoElemento> unitOfWork) : base(unitOfWork)
         {
         }
     }

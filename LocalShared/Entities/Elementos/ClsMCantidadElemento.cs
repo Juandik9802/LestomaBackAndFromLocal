@@ -2,7 +2,7 @@
 
 namespace LocalShared.Entities.Elementos
 {
-    public class ClsMCantidadElementos
+    public class ClsMCantidadElemento
     {
         [Key]
         [Display (Name ="Identificador unico de cantidad por elemento")]

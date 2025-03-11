@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LocalShared.Entities.Dispositivos
 {
-    public class ClsMEstadosDispositivos
+    public class ClsMEstadosDispositivo
     {
         [Key]
         [Display(Name = "Identificador unico")]

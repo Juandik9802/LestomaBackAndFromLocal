@@ -19,30 +19,30 @@ namespace LocalBackend.Data
         //Auditoria
         public DbSet<ClsMAuditoria> Auditoria { get; set; }
         //Dispositivo
-        public DbSet<ClsMDispositivos> Dispositivos { get; set; }
-        public DbSet<ClsMEstadosDispositivos> EstadosDispositivos { get; set; }
-        public DbSet<ClsMLogsEstados> LogsEstados { get; set; }
+        public DbSet<ClsMDispositivo> Dispositivo { get; set; }
+        public DbSet<ClsMEstadosDispositivo> EstadosDispositivo { get; set; }
+        public DbSet<ClsMLogsEstado> LogsEstado { get; set; }
         public DbSet<ClsMMarca> Marca { get; set; }
         public DbSet<ClsMPuntoOptimo> PuntoOptimo { get; set; }
-        public DbSet<ClsMTipoDispositivo> TipoDispositivos{ get; set; }
+        public DbSet<ClsMTipoDispositivo> TipoDispositivo { get; set; }
         //Elemento
-        public DbSet<ClsMCantidadElementos> CantidadElementos { get; set; }
-        public DbSet<ClsMElementos> Elementos { get; set; }
-        public DbSet<ClsMTipoElementos> TipoElementos { get; set; }
+        public DbSet<ClsMCantidadElemento> CantidadElemento { get; set; }
+        public DbSet<ClsMElemento> Elemento { get; set; }
+        public DbSet<ClsMTipoElemento> TipoElemento { get; set; }
         //Eventos
-        public DbSet<ClsMEvento> Eventos { get; set; }
-        public DbSet<ClsMImpacto> Impactos { get; set; }
-        public DbSet<ClsMTipoEvento> TipoEventos { get; set; }
+        public DbSet<ClsMEvento> Evento { get; set; }
+        public DbSet<ClsMImpacto> Impacto { get; set; }
+        public DbSet<ClsMTipoEvento> TipoEvento { get; set; }
         //Medicion
-        public DbSet<ClsMMedicion> Mediciones { get; set; }
+        public DbSet<ClsMMedicion> Medicion { get; set; }
         public DbSet<ClsMTipoMedicion> TipoMedicion { get; set; }
         public DbSet<ClsMUnidadMedida> UnidadMedida { get; set; }
         //Sistema
-        public DbSet<ClsMAsignacionMedios> AsignacionMedios { get; set; }
+        public DbSet<ClsMAsignacionMedio> AsignacionMedio { get; set; }
         public DbSet<ClsMAsignacionSistema> AsignacionSistema { get; set; }
         public DbSet<ClsMMedio> Medio { get; set; }
         public DbSet<ClsMPropiedadesSistema> PropiedadesSistema { get; set; }
-        public DbSet<ClsMSistema> Sistemas { get; set; }
+        public DbSet<ClsMSistema> Sistema { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,13 +50,13 @@ namespace LocalBackend.Data
             //Auditoria
             modelBuilder.Entity<LocalShared.Entities.Auditoria.ClsMAuditoria>().HasIndex(x => x.Fecha).IsUnique();    
             //Dispositivo
-            modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMDispositivos>().HasIndex(x => x.SN).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMEstadosDispositivos>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMDispositivo>().HasIndex(x => x.SN).IsUnique();
+            modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMEstadosDispositivo>().HasIndex(x => x.Nombre).IsUnique();
             modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMMarca>().HasIndex(x => x.Nombre).IsUnique();
             modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMTipoDispositivo>().HasIndex(x => x.Nombre).IsUnique();
             //Elemento
-            modelBuilder.Entity<LocalShared.Entities.Elementos.ClsMElementos>().HasIndex(x => x.Nombre).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Elementos.ClsMTipoElementos>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<LocalShared.Entities.Elementos.ClsMElemento>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<LocalShared.Entities.Elementos.ClsMTipoElemento>().HasIndex(x => x.Nombre).IsUnique();
             //Eventos
             modelBuilder.Entity<LocalShared.Entities.Eventos.ClsMImpacto>().HasIndex(x => x.Nombre).IsUnique();
             modelBuilder.Entity<LocalShared.Entities.Eventos.ClsMTipoEvento>().HasIndex(x => x.Nombre).IsUnique();

@@ -1,0 +1,55 @@
+﻿@page "/UnidadMedida/details/{UnidadMedidaId:guid}"
+
+@if (UnidadMedida is null)
+{
+    <Loading />
+}
+else
+{
+    <h3>@UnidadMedida.Nombre</h3>
+    <div class="mb-2">
+        @* <a class="btn btn-primary" href="/UnidadMedida/create/@UnidadMedida.IdUnidadMedida">Nueva Unidad de Medida</a> *@
+        <a class="btn btn-success" href="/TipoMedicion">Regresar</a>
+    </div>
+
+    <h4>Mediciones</h4>
+
+    @if (UnidadMedida.MMediciones == null || !UnidadMedida.MMediciones.Any())
+    {
+        <p>No hay mediciones registradas.</p>
+    }
+    else
+    {
+        <GenericList MyList="UnidadMedida.MMediciones.ToList()">
+            <Body>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mediciones</th>
+                            <th>Fecha</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Mediciones in UnidadMedida.MMediciones)
+                        {
+                            <tr>
+                                <td>
+                                    @Mediciones.valor
+                                </td>
+                                <td>
+                                    @Mediciones.Fecha
+                                </td>
+                                <td>
+                                    @* <a class="btn btn-warning btn-sm" href="/UnidadMedida/edit/@Mediciones.IdMedicion}">Editar</a>
+                                    <a class="btn btn-info btn-sm" href="/UnidadMedida/details/@Mediciones.IdUnidadMedida">Detalles</a> *@
+                                    <button class="btn btn-danger btn-sm" @onclick="() => DeleteAsync(Mediciones)">Borrar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </Body>
+        </GenericList>
+    }
+}

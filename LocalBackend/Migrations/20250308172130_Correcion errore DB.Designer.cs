@@ -4,6 +4,7 @@ using LocalBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250308172130_Correcion errore DB")]
+    partial class CorrecionerroreDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,7 +85,7 @@ namespace LocalBackend.Migrations
                         .IsUnique()
                         .HasFilter("[SN] IS NOT NULL");
 
-                    b.ToTable("Dispositivo");
+                    b.ToTable("Dispositivos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMEstadosDispositivo", b =>
@@ -104,7 +107,7 @@ namespace LocalBackend.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("EstadosDispositivo");
+                    b.ToTable("EstadosDispositivos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMLogsEstado", b =>
@@ -124,7 +127,7 @@ namespace LocalBackend.Migrations
 
                     b.HasKey("IdLogsEstados");
 
-                    b.ToTable("LogsEstado");
+                    b.ToTable("LogsEstados");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMMarca", b =>
@@ -184,7 +187,7 @@ namespace LocalBackend.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("TipoDispositivo");
+                    b.ToTable("TipoDispositivos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMCantidadElemento", b =>
@@ -207,7 +210,7 @@ namespace LocalBackend.Migrations
 
                     b.HasKey("IdCatidadElemento");
 
-                    b.ToTable("CantidadElemento");
+                    b.ToTable("CantidadElementos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMElemento", b =>
@@ -237,7 +240,7 @@ namespace LocalBackend.Migrations
 
                     b.HasIndex("TipoElementosIdTipoElemento");
 
-                    b.ToTable("Elemento");
+                    b.ToTable("Elementos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMTipoElemento", b =>
@@ -256,7 +259,7 @@ namespace LocalBackend.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("TipoElemento");
+                    b.ToTable("TipoElementos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMEvento", b =>
@@ -288,7 +291,7 @@ namespace LocalBackend.Migrations
 
                     b.HasKey("IdEvento");
 
-                    b.ToTable("Evento");
+                    b.ToTable("Eventos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMImpacto", b =>
@@ -307,7 +310,7 @@ namespace LocalBackend.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("Impacto");
+                    b.ToTable("Impactos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMTipoEvento", b =>
@@ -329,7 +332,7 @@ namespace LocalBackend.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.ToTable("TipoEvento");
+                    b.ToTable("TipoEventos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Medicion.ClsMMedicion", b =>
@@ -356,7 +359,7 @@ namespace LocalBackend.Migrations
 
                     b.HasIndex("UnidadMedidaId");
 
-                    b.ToTable("Medicion");
+                    b.ToTable("Mediciones");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Medicion.ClsMTipoMedicion", b =>
@@ -417,7 +420,7 @@ namespace LocalBackend.Migrations
 
                     b.HasKey("IdAsignacionMedio");
 
-                    b.ToTable("AsignacionMedio");
+                    b.ToTable("AsignacionMedios");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Sistemas.ClsMAsignacionSistema", b =>
@@ -507,7 +510,7 @@ namespace LocalBackend.Migrations
                         .IsUnique()
                         .HasFilter("[Nombre] IS NOT NULL");
 
-                    b.ToTable("Sistema");
+                    b.ToTable("Sistemas");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMElemento", b =>

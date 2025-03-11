@@ -2,7 +2,7 @@
 
 namespace LocalShared.Entities.Dispositivos
 {
-    public class ClsMDispositivos
+    public class ClsMDispositivo
     {
         [Key]
         [Display(Name = "Identificador unico")]
