@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LocalShared.Entities.Sistemas;
+using System.ComponentModel.DataAnnotations;
 
 namespace LocalShared.Entities.Dispositivos
 {
@@ -12,9 +13,14 @@ namespace LocalShared.Entities.Dispositivos
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string? Nombre { get; set; }
-        public Guid IdAsignacionSistema { get; set; }
-        public Guid IdTipoDispositivo { get; set; }
-        public Guid IdMarca { get; set; }
+        public Guid AsignacionSistemaId { get; set; }
+        public ClsMAsignacionMedio AsignacionMedio { get; set; }
+        public Guid TipoDispositivoId { get; set; }
+        public ClsMTipoDispositivo? TipoDispositivo { get; set; }
+
+        [Required]
+        public Guid MarcaId { get; set; }
+        public ClsMMarca? marca { get; set; }
         public string? SN { get; set; }
         public string? Descripcion { get; set; }
     }

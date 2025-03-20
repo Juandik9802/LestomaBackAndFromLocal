@@ -1,10 +1,10 @@
 ﻿using LocalBackend.Data;
-using LocalBackend.Repositories.Interfaces;
+using LocalBackend.Repositories.Interfaces.Mediciones;
 using LocalShare.Responses;
 using LocalShared.Entities.Medicion;
 using Microsoft.EntityFrameworkCore;
 
-namespace LocalBackend.Repositories.implementation
+namespace LocalBackend.Repositories.implementation.Medicion
 {
     public class TipoMedicionRepository : GenericRepository<ClsMTipoMedicion>, ITipoMedicionRepository
     {
@@ -18,7 +18,7 @@ namespace LocalBackend.Repositories.implementation
         public override async Task<ActionResponse<ClsMTipoMedicion>> GetAsync(Guid Id)
         {
             var TipoMedida = await _context.TipoMedicion
-                .Include(c => c.UnidadMedida)
+                .Include(c => c.unidadMedidas)
                 .FirstOrDefaultAsync(c => c.IdTipoMedicion == Id);
             if (TipoMedida == null)
             {
@@ -39,7 +39,7 @@ namespace LocalBackend.Repositories.implementation
         public override async Task<ActionResponse<IEnumerable<ClsMTipoMedicion>>> GetAsync()
         {
             var TipoMedida = await _context.TipoMedicion
-                .Include(c => c.UnidadMedida)
+                .Include(c => c.unidadMedidas)
                 .ToListAsync();
             return new ActionResponse<IEnumerable<ClsMTipoMedicion>>
             {

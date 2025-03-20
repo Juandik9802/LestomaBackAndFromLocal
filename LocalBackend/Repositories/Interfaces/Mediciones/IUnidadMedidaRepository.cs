@@ -1,11 +1,12 @@
 ﻿using LocalShare.Responses;
 using LocalShared.Entities.Medicion;
 
-namespace LocalBackend.Repositories.UnitsOfWork.Interfaces
+namespace LocalBackend.Repositories.Interfaces.Mediciones
 {
-    public interface IUnidadMedidaUnitOfWork
+    public interface IUnidadMedidaRepository
     {
         Task<ActionResponse<ClsMUnidadMedida>> GetAsync(Guid Id);
+
         Task<ActionResponse<IEnumerable<ClsMUnidadMedida>>> GetAsync();
     }
 }

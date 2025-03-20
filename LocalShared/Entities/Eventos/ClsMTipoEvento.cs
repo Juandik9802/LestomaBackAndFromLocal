@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LocalShared.Entities.Medicion;
+using System.ComponentModel.DataAnnotations;
 
 namespace LocalShared.Entities.Eventos
 {
@@ -13,7 +14,12 @@ namespace LocalShared.Entities.Eventos
         [MaxLength(50, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string? Nombre { get; set; }
 
-        public Guid IdImpacto { get; set; }
+        public Guid ImpactoId { get; set; }
+        public ClsMImpacto? Impacto { get; set; }
 
+        public ICollection<ClsMEvento>? eventos { get; set; } // Propiedad de navegación
+
+        [Display(Name = "Mediciones")]
+        public int eventosNumber => eventos == null || eventos.Count == 0 ? 0 : eventos.Count;
     }
 }

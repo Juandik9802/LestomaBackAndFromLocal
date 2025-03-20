@@ -5,7 +5,6 @@ using LocalShared.Entities.Eventos;
 using LocalShared.Entities.Medicion;
 using LocalShared.Entities.Sistemas;
 using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
 
 namespace LocalBackend.Data
 {
@@ -48,7 +47,7 @@ namespace LocalBackend.Data
         {
             base.OnModelCreating(modelBuilder);
             //Auditoria
-            modelBuilder.Entity<LocalShared.Entities.Auditoria.ClsMAuditoria>().HasIndex(x => x.Fecha).IsUnique();    
+            modelBuilder.Entity<LocalShared.Entities.Auditoria.ClsMAuditoria>().HasIndex(x => x.Fecha).IsUnique();
             //Dispositivo
             modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMDispositivo>().HasIndex(x => x.SN).IsUnique();
             modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMEstadosDispositivo>().HasIndex(x => x.Nombre).IsUnique();
@@ -67,6 +66,11 @@ namespace LocalBackend.Data
             modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMSistema>().HasIndex(x => x.Nombre).IsUnique();
             modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMMedio>().HasIndex(x => x.Nombre).IsUnique();
             DisableCascadingDelete(modelBuilder);
+            modelBuilder.Entity<ClsMUnidadMedida>()
+                .HasMany(u => u.MMediciones)
+                .WithOne(m => m.UnidadMedida)
+                .HasForeignKey(m => m.UnidadMedidaId);
+
         }
 
         private void DisableCascadingDelete(ModelBuilder modelBuilder)

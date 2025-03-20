@@ -1,4 +1,5 @@
-﻿using LocalShared.Entities.Medicion;
+﻿using LocalShared.Entities.Eventos;
+using LocalShared.Entities.Medicion;
 
 namespace LocalBackend.Data
 {
@@ -21,135 +22,132 @@ namespace LocalBackend.Data
             await CheckSistemaAsync();
             await CheckAsigacionMedio();
             await CheckImpacto();
-            await CheckTipoEvento();
         }
 
-        private async Task CheckTipoEvento()
-        {
-            if (!_context.TipoEvento.Any())
-            {
-                // Tipos de Eventos con Impacto
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"),
-                    IdImpacto = Guid.Parse("eac06e63-7a9d-4fad-9bc0-b33425351ae1"), // Positivo
-                    Nombre = "Siembra"
-                });
 
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("3cbec115-f508-44ce-986b-bbeccfd3af8e"),
-                    IdImpacto = Guid.Parse("eac06e63-7a9d-4fad-9bc0-b33425351ae1"), // Positivo
-                    Nombre = "Ingreso de peces"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("e14a82c7-7ad6-48ad-8ce0-587197611d12"),
-                    IdImpacto = Guid.Parse("eac06e63-7a9d-4fad-9bc0-b33425351ae1"), // Positivo
-                    Nombre = "Ingreso de excretas"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("6f950c76-e433-4f02-8af1-99edc5d6f87c"),
-                    IdImpacto = Guid.Parse("f6915a14-11da-43c1-944b-d2b05ff3c40c"), // Negativo
-                    Nombre = "Cosecha"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("d8fdf5b8-3de4-4959-96d7-d191aa1d5709"),
-                    IdImpacto = Guid.Parse("f6915a14-11da-43c1-944b-d2b05ff3c40c"), // Negativo
-                    Nombre = "Cosecha de peces"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("2476bbd2-12a3-4add-bcaa-aabbb8794ed0"),
-                    IdImpacto = Guid.Parse("f6915a14-11da-43c1-944b-d2b05ff3c40c"), // Negativo
-                    Nombre = "Extracción de biol"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("229e7683-c75e-404c-a599-c148e187da25"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Fumigación"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("6382ba7c-5020-48a3-b923-42202cf6ae1a"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Poda"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("fcb16401-ce39-4bce-b57b-91aafc2f091b"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Monitoreo de calidad del agua"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("be1e33e6-eb7e-49ee-bdcf-8049416d0ced"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Limpieza de tanques"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("acfee72d-7aea-49f4-a59a-8fb631d76121"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Mantenimiento del biodigestor"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("09e65988-c789-4b77-89c7-5f466a5f00af"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Volteo del compost"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("979df9f4-5989-4ea4-abf4-4ac54e360a13"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Monitoreo de temperatura"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("a0d456be-a681-4f6b-9ac9-74db4117c616"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Inspección del sistema"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("b4866bc3-22bb-436b-bdcb-4ee082e06509"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Registro de datos"
-                });
-
-                _context.TipoEvento.Add(new LocalShared.Entities.Eventos.ClsMTipoEvento
-                {
-                    IdTipoEvento = Guid.Parse("0ae2805d-8836-4bb8-88c5-7b914780b7bb"),
-                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), // Sin Impacto
-                    Nombre = "Capacitación"
-                });
-                await _context.SaveChangesAsync();
-            }
-        }
         private async Task CheckImpacto()
         {
             if (!_context.Impacto.Any())
             {
-                _context.Impacto.Add(new LocalShared.Entities.Eventos.ClsMImpacto { IdImpacto = Guid.Parse("eac06e63-7a9d-4fad-9bc0-b33425351ae1"), Nombre = "Positivo" });
-                _context.Impacto.Add(new LocalShared.Entities.Eventos.ClsMImpacto { IdImpacto = Guid.Parse("f6915a14-11da-43c1-944b-d2b05ff3c40c"), Nombre = "Negativo" });
-                _context.Impacto.Add(new LocalShared.Entities.Eventos.ClsMImpacto { IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"), Nombre = "Sin Impacto" });
+                _context.Impacto.Add(new ClsMImpacto
+                {
+                    IdImpacto = Guid.Parse("eac06e63-7a9d-4fad-9bc0-b33425351ae1"),
+                    Nombre = "Positivo",
+                    tipoEventos =
+                    [
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"),
+                            Nombre = "Siembra"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("3cbec115-f508-44ce-986b-bbeccfd3af8e"),
+                            Nombre = "Ingreso de peces"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("e14a82c7-7ad6-48ad-8ce0-587197611d12"),
+                            Nombre = "Ingreso de excretas"
+                        },
+
+                    ]
+                });
+                _context.Impacto.Add(new ClsMImpacto
+                {
+                    IdImpacto = Guid.Parse("f6915a14-11da-43c1-944b-d2b05ff3c40c"),
+                    Nombre = "Negativo",
+                    tipoEventos =
+                    [
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("6f950c76-e433-4f02-8af1-99edc5d6f87c"),
+                            Nombre = "Cosecha"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("d8fdf5b8-3de4-4959-96d7-d191aa1d5709"),
+                            Nombre = "Cosecha de peces"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("2476bbd2-12a3-4add-bcaa-aabbb8794ed0"),
+                            Nombre = "Extracción de biol"
+                        }
+                    ]
+                });
+                _context.Impacto.Add(new ClsMImpacto
+                {
+                    IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"),
+                    Nombre = "Sin Impacto",
+                    tipoEventos =
+                    [
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("229e7683-c75e-404c-a599-c148e187da25"),
+                            Nombre = "Fumigación",
+                            eventos =
+                            [
+                                new ClsMEvento()
+                                {
+                                    IdEvento= Guid.NewGuid(),
+                                    FechaEvento= DateTime.UtcNow
+                                },
+                                new ClsMEvento()
+                                {
+                                    IdEvento= Guid.NewGuid(),
+                                    FechaEvento= DateTime.UtcNow
+                                }
+                            ]
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("6382ba7c-5020-48a3-b923-42202cf6ae1a"),
+                            Nombre = "Poda"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("fcb16401-ce39-4bce-b57b-91aafc2f091b"),
+                            Nombre = "Monitoreo de calidad del agua"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("be1e33e6-eb7e-49ee-bdcf-8049416d0ced"),
+                            Nombre = "Limpieza de tanques"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("acfee72d-7aea-49f4-a59a-8fb631d76121"),
+                            Nombre = "Mantenimiento del biodigestor"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("09e65988-c789-4b77-89c7-5f466a5f00af"),
+                            Nombre = "Volteo del compost"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("979df9f4-5989-4ea4-abf4-4ac54e360a13"),
+                            Nombre = "Monitoreo de temperatura"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("a0d456be-a681-4f6b-9ac9-74db4117c616"),
+                            Nombre = "Inspección del sistema"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("b4866bc3-22bb-436b-bdcb-4ee082e06509"),
+                            Nombre = "Registro de datos"
+                        },
+                        new ClsMTipoEvento()
+                        {
+                            IdTipoEvento = Guid.Parse("0ae2805d-8836-4bb8-88c5-7b914780b7bb"),
+                            Nombre = "Capacitación"
+                        }
+
+                    ]
+                });
                 await _context.SaveChangesAsync();
             }
         }
@@ -173,7 +171,7 @@ namespace LocalBackend.Data
                 {
                     IdTipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"),
                     Nombre = "Longitud (Distancia)",
-                    UnidadMedida = new List<ClsMUnidadMedida>()
+                    unidadMedidas = new List<ClsMUnidadMedida>()
                     {
                         new ClsMUnidadMedida()
                         {
@@ -223,7 +221,7 @@ namespace LocalBackend.Data
                 {
                     IdTipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"),
                     Nombre = "Masa/Peso",
-                    UnidadMedida = new List<ClsMUnidadMedida>()
+                    unidadMedidas = new List<ClsMUnidadMedida>()
                         {
                             new ClsMUnidadMedida()
                             {
@@ -267,42 +265,42 @@ namespace LocalBackend.Data
                 {
                     IdTipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"),
                     Nombre = "Tiempo",
-                    UnidadMedida = new List<ClsMUnidadMedida>()
+                    unidadMedidas = new List<ClsMUnidadMedida>()
                     {
                         new ClsMUnidadMedida()
                         {
-                            IdUnidadMedida = Guid.Parse("538efe2c-a200-4234-bcf8-43647e78c723"), 
-                            Nombre = "Segundo", 
+                            IdUnidadMedida = Guid.Parse("538efe2c-a200-4234-bcf8-43647e78c723"),
+                            Nombre = "Segundo",
                             Simbolo = "s"
                         },
                         new ClsMUnidadMedida()
                         {
-                            IdUnidadMedida = Guid.Parse("d7318c08-fbaa-4cd0-8848-29812e8b3224"), 
-                            Nombre = "Minuto", 
+                            IdUnidadMedida = Guid.Parse("d7318c08-fbaa-4cd0-8848-29812e8b3224"),
+                            Nombre = "Minuto",
                             Simbolo = "min"
                         },
                         new ClsMUnidadMedida()
                         {
-                            IdUnidadMedida = Guid.Parse("b07fd9f0-4020-45ac-b8b5-f04fd4a3961e"), 
-                            Nombre = "Hora", 
+                            IdUnidadMedida = Guid.Parse("b07fd9f0-4020-45ac-b8b5-f04fd4a3961e"),
+                            Nombre = "Hora",
                             Simbolo = "h"
                         },
                         new ClsMUnidadMedida()
                         {
                             IdUnidadMedida = Guid.Parse("71c08da4-d1e5-4ea5-8577-444f89714bbe"),
-                            Nombre = "Día", 
+                            Nombre = "Día",
                             Simbolo = ""
                         },
                         new ClsMUnidadMedida()
                         {
-                            IdUnidadMedida = Guid.Parse("d9c6af88-7619-435d-9a14-8439328ea1ac"), 
+                            IdUnidadMedida = Guid.Parse("d9c6af88-7619-435d-9a14-8439328ea1ac"),
                             Nombre = "Semana",
                             Simbolo = ""
                         },
                         new ClsMUnidadMedida()
                         {
                             IdUnidadMedida = Guid.Parse("3f57aa9f-7c44-4fbe-9520-5936a3a190d5"),
-                            Nombre = "Año", 
+                            Nombre = "Año",
                             Simbolo = ""
                         }
                     }
@@ -310,7 +308,7 @@ namespace LocalBackend.Data
                 await _context.SaveChangesAsync();
             }
         }
-        
+
         private async Task CheckTipoDispositivoAsync()
         {
             if (!_context.TipoDispositivo.Any())

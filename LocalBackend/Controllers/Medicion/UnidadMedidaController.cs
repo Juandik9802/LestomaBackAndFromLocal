@@ -1,5 +1,5 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.implementation;
-using LocalBackend.Repositories.UnitsOfWork.Interfaces;
+﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Mediciones;
 using LocalShared.Entities.Medicion;
 using Microsoft.AspNetCore.Mvc;
 

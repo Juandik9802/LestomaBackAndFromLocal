@@ -23,7 +23,7 @@ namespace LocalWeb.Pages.Medicion.UnidadMedida
 
         private async Task LoadAsync()
         {
-            var responceHttp = await Repository.GetAsync<ClsMUnidadMedida>($"/api/Mediciones/{UnidadMedidaId}");
+            var responceHttp = await Repository.GetAsync<ClsMUnidadMedida>($"/api/UnidadMedida/{UnidadMedidaId}");
             if (responceHttp.Error)
             {
                 if (responceHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)

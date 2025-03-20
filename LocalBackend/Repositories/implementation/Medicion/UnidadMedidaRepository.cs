@@ -1,10 +1,10 @@
 ﻿using LocalBackend.Data;
-using LocalBackend.Repositories.Interfaces;
+using LocalBackend.Repositories.Interfaces.Mediciones;
 using LocalShare.Responses;
 using LocalShared.Entities.Medicion;
 using Microsoft.EntityFrameworkCore;
 
-namespace LocalBackend.Repositories.implementation
+namespace LocalBackend.Repositories.implementation.Medicion
 {
     public class UnidadMedidaRepository : GenericRepository<ClsMUnidadMedida>, IUnidadMedidaRepository
     {
@@ -19,7 +19,7 @@ namespace LocalBackend.Repositories.implementation
         {
             var unidadMedida = await _context.UnidadMedida
                 .Include(s => s.MMediciones)
-                .FirstOrDefaultAsync(s => s.IdUnidadMedida == Id);
+                .FirstOrDefaultAsync(s => s.IdUnidadMedida == Id); // Usa FirstOrDefaultAsync, no ToListAsync
             if (unidadMedida == null)
             {
                 return new ActionResponse<ClsMUnidadMedida>
@@ -30,15 +30,15 @@ namespace LocalBackend.Repositories.implementation
             }
             return new ActionResponse<ClsMUnidadMedida>
             {
-                WasSuccess= true,
-                Result= unidadMedida
+                WasSuccess = true,
+                Result = unidadMedida
             };
         }
 
         public override async Task<ActionResponse<IEnumerable<ClsMUnidadMedida>>> GetAsync()
         {
             var unidadMedida = await _context.UnidadMedida
-                .Include(s => s.MMediciones)
+                .Include(s => s.MMediciones) // Corregido: Usar MMediciones en lugar de Medicion
                 .ToListAsync();
             return new ActionResponse<IEnumerable<ClsMUnidadMedida>>
             {

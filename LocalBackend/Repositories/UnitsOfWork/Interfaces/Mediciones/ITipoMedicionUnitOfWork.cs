@@ -1,7 +1,7 @@
 ﻿using LocalShare.Responses;
 using LocalShared.Entities.Medicion;
 
-namespace LocalBackend.Repositories.UnitsOfWork.Interfaces
+namespace LocalBackend.Repositories.UnitsOfWork.Interfaces.Mediciones
 {
     public interface ITipoMedicionUnitOfWork
     {

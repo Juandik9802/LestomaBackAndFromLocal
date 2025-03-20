@@ -1,4 +1,4 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces;
+﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using LocalShared.Entities.Sistemas;
 using Microsoft.AspNetCore.Mvc;
 

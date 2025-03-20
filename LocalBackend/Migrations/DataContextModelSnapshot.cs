@@ -56,16 +56,16 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AsignacionMedioIdAsignacionMedio")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AsignacionSistemaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("IdAsignacionSistema")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IdMarca")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IdTipoDispositivo")
+                    b.Property<Guid>("MarcaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nombre")
@@ -76,11 +76,20 @@ namespace LocalBackend.Migrations
                     b.Property<string>("SN")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<Guid>("TipoDispositivoId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("IdDispisitivo");
+
+                    b.HasIndex("AsignacionMedioIdAsignacionMedio");
+
+                    b.HasIndex("MarcaId");
 
                     b.HasIndex("SN")
                         .IsUnique()
                         .HasFilter("[SN] IS NOT NULL");
+
+                    b.HasIndex("TipoDispositivoId");
 
                     b.ToTable("Dispositivo");
                 });
@@ -268,6 +277,9 @@ namespace LocalBackend.Migrations
                     b.Property<float>("Cantidad")
                         .HasColumnType("real");
 
+                    b.Property<Guid?>("ClsMTipoEventoIdTipoEvento")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("FechaEvento")
                         .HasColumnType("datetime2");
 
@@ -280,13 +292,20 @@ namespace LocalBackend.Migrations
                     b.Property<Guid>("IdElemento")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdTipoEvento")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("IdUnidadMedida")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("TipoElementoIdTipoElemento")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TipoEventoId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("IdEvento");
+
+                    b.HasIndex("ClsMTipoEventoIdTipoEvento");
+
+                    b.HasIndex("TipoElementoIdTipoElemento");
 
                     b.ToTable("Evento");
                 });
@@ -316,7 +335,7 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IdImpacto")
+                    b.Property<Guid>("ImpactoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nombre")
@@ -325,6 +344,8 @@ namespace LocalBackend.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("IdTipoEvento");
+
+                    b.HasIndex("ImpactoId");
 
                     b.HasIndex("Nombre")
                         .IsUnique();
@@ -366,13 +387,14 @@ namespace LocalBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(450)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("IdTipoMedicion");
 
                     b.HasIndex("Nombre")
-                        .IsUnique()
-                        .HasFilter("[Nombre] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("TipoMedicion");
                 });
@@ -384,7 +406,6 @@ namespace LocalBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Simbolo")
@@ -396,7 +417,8 @@ namespace LocalBackend.Migrations
                     b.HasKey("IdUnidadMedida");
 
                     b.HasIndex("Nombre")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[Nombre] IS NOT NULL");
 
                     b.HasIndex("TipoMedicionId");
 
@@ -510,6 +532,33 @@ namespace LocalBackend.Migrations
                     b.ToTable("Sistema");
                 });
 
+            modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMDispositivo", b =>
+                {
+                    b.HasOne("LocalShared.Entities.Sistemas.ClsMAsignacionMedio", "AsignacionMedio")
+                        .WithMany()
+                        .HasForeignKey("AsignacionMedioIdAsignacionMedio")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LocalShared.Entities.Dispositivos.ClsMMarca", "marca")
+                        .WithMany()
+                        .HasForeignKey("MarcaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LocalShared.Entities.Dispositivos.ClsMTipoDispositivo", "TipoDispositivo")
+                        .WithMany("mDispositivos")
+                        .HasForeignKey("TipoDispositivoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AsignacionMedio");
+
+                    b.Navigation("TipoDispositivo");
+
+                    b.Navigation("marca");
+                });
+
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMElemento", b =>
                 {
                     b.HasOne("LocalShared.Entities.Elementos.ClsMTipoElemento", "TipoElementos")
@@ -519,6 +568,32 @@ namespace LocalBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("TipoElementos");
+                });
+
+            modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMEvento", b =>
+                {
+                    b.HasOne("LocalShared.Entities.Eventos.ClsMTipoEvento", null)
+                        .WithMany("eventos")
+                        .HasForeignKey("ClsMTipoEventoIdTipoEvento")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("LocalShared.Entities.Elementos.ClsMTipoElemento", "TipoElemento")
+                        .WithMany()
+                        .HasForeignKey("TipoElementoIdTipoElemento")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("TipoElemento");
+                });
+
+            modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMTipoEvento", b =>
+                {
+                    b.HasOne("LocalShared.Entities.Eventos.ClsMImpacto", "Impacto")
+                        .WithMany("tipoEventos")
+                        .HasForeignKey("ImpactoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Impacto");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Medicion.ClsMMedicion", b =>
@@ -543,7 +618,7 @@ namespace LocalBackend.Migrations
             modelBuilder.Entity("LocalShared.Entities.Medicion.ClsMUnidadMedida", b =>
                 {
                     b.HasOne("LocalShared.Entities.Medicion.ClsMTipoMedicion", "TipoMedicion")
-                        .WithMany("UnidadMedida")
+                        .WithMany("unidadMedidas")
                         .HasForeignKey("TipoMedicionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -551,14 +626,29 @@ namespace LocalBackend.Migrations
                     b.Navigation("TipoMedicion");
                 });
 
+            modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMTipoDispositivo", b =>
+                {
+                    b.Navigation("mDispositivos");
+                });
+
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMTipoElemento", b =>
                 {
                     b.Navigation("Elementos");
                 });
 
+            modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMImpacto", b =>
+                {
+                    b.Navigation("tipoEventos");
+                });
+
+            modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMTipoEvento", b =>
+                {
+                    b.Navigation("eventos");
+                });
+
             modelBuilder.Entity("LocalShared.Entities.Medicion.ClsMTipoMedicion", b =>
                 {
-                    b.Navigation("UnidadMedida");
+                    b.Navigation("unidadMedidas");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Medicion.ClsMUnidadMedida", b =>

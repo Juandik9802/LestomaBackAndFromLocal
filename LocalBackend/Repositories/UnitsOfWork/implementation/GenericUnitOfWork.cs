@@ -1,8 +1,8 @@
 ﻿using LocalBackend.Repositories.Interfaces;
-using LocalBackend.Repositories.UnitsOfWork.Interfaces;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using LocalShare.Responses;
 
-namespace LocalBackend.Repositories.UnitsOfWork.implementation
+namespace LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones
 {
     public class GenericUnitOfWork<T> : IGenericUnitOfWork<T> where T : class
     {

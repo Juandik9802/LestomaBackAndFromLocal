@@ -1,9 +1,10 @@
 ﻿using LocalBackend.Repositories.Interfaces;
-using LocalBackend.Repositories.UnitsOfWork.Interfaces;
+using LocalBackend.Repositories.Interfaces.Mediciones;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Mediciones;
 using LocalShare.Responses;
 using LocalShared.Entities.Medicion;
 
-namespace LocalBackend.Repositories.UnitsOfWork.implementation
+namespace LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones
 {
     public class TipoMedicionUnitOfWork : GenericUnitOfWork<ClsMTipoMedicion>, ITipoMedicionUnitOfWork
     {

@@ -1,9 +1,9 @@
 ﻿using LocalBackend.Repositories.Interfaces;
-using LocalBackend.Repositories.UnitsOfWork.Interfaces;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Mediciones;
 using LocalShare.Responses;
 using LocalShared.Entities.Medicion;
 
-namespace LocalBackend.Repositories.UnitsOfWork.implementation
+namespace LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones
 {
     public class UnidadMedidaUnitOfWork : GenericUnitOfWork<ClsMUnidadMedida>, IUnidadMedidaUnitOfWork
     {

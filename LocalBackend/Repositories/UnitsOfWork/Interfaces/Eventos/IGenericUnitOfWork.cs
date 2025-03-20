@@ -1,6 +1,6 @@
 ﻿using LocalShare.Responses;
 
-namespace LocalBackend.Repositories.UnitsOfWork.Interfaces
+namespace LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos
 {
     public interface IGenericUnitOfWork<T> where T : class
     {

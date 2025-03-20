@@ -2,7 +2,7 @@
 using LocalShared.Entities.Medicion;
 using System.Threading.Tasks;
 
-namespace LocalBackend.Repositories.Interfaces
+namespace LocalBackend.Repositories.Interfaces.Mediciones
 {
     public interface ITipoMedicionRepository
     {
