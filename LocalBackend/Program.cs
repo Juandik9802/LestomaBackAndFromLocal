@@ -43,6 +43,9 @@ builder.Services.AddScoped<ITipoEventoUnitOfWork, TipoEventoUnitOfWork>();
 builder.Services.AddScoped<ITipoDispositivoRepository, TipoDispositivoRepository>();
 builder.Services.AddScoped<ITipoDispositivoUnitOfWork, TipoDispositivoUnitOfWork>();
 
+builder.Services.AddScoped<IDispositivoRepository, DispositivoRepository>();
+builder.Services.AddScoped<IDispositivoUnitOfWork, DispositivoUnitOfWork>();
+
 
 builder.Services.AddCors(options =>
 {

@@ -20,14 +20,14 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
         {
             var Impacto = await _context.TipoDispositivo
                 .Include(c => c.mDispositivos!)
-                .ThenInclude(s => s.marca)
+                .ThenInclude(s => s.AsignacionSistemaId)
                 .FirstOrDefaultAsync(c => c.IdTipoDispositivo == id);
             if (Impacto == null)
             {
                 return new ActionResponse<ClsMTipoDispositivo>
                 {
                     WasSuccess = false,
-                    Message = "Impacto no existe"
+                    Message = "Tipo de dispositivo no existe"
                 };
             }
 

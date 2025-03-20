@@ -7,16 +7,12 @@ namespace LocalShared.Entities.Medicion
     {
         [Key]
         public Guid IdMedicion { get; set; }
-
-        // Cambia DispositivosId a DispositivoId
-        public Guid DispositivoId { get; set; }
+        public Guid? DispositivoId { get; set; }
         public ClsMDispositivo? Dispositivo { get; set; }
-
-        // Cambia UnidadMedidaId a UnidadMedidaId (ya está correcto)
-        public Guid UnidadMedidaId { get; set; }
+        public Guid? UnidadMedidaId { get; set; }
         public ClsMUnidadMedida? UnidadMedida { get; set; }
-
         public float valor { get; set; }
-        public DateTime Fecha { get; set; }
+        public DateTime Fecha { get; set; }        
+
     }
 }
