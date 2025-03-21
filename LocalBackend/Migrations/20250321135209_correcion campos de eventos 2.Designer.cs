@@ -4,6 +4,7 @@ using LocalBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250321135209_correcion campos de eventos 2")]
+    partial class correcioncamposdeeventos2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,20 +122,21 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("DispositivoId")
+                    b.Property<Guid?>("ClsMDispositivoIdDispisitivo")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("EstadoDipositivoId")
+                    b.Property<Guid>("IdDispositivo")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Fecha")
+                    b.Property<Guid>("IdEstadoDsipositivo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("MyProperty")
                         .HasColumnType("datetime2");
 
                     b.HasKey("IdLogsEstados");
 
-                    b.HasIndex("DispositivoId");
-
-                    b.HasIndex("EstadoDipositivoId");
+                    b.HasIndex("ClsMDispositivoIdDispisitivo");
 
                     b.ToTable("LogsEstado");
                 });
@@ -161,7 +165,7 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("DispositivoId")
+                    b.Property<Guid>("IdDispositivo")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<float>("ValorMaximo")
@@ -174,8 +178,6 @@ namespace LocalBackend.Migrations
                         .HasColumnType("real");
 
                     b.HasKey("IdPuntoOPtimo");
-
-                    b.HasIndex("DispositivoId");
 
                     b.ToTable("PuntoOptimo");
                 });
@@ -205,25 +207,19 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AsignacionSistemaId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<float>("Cantidad")
                         .HasColumnType("real");
 
-                    b.Property<Guid?>("ElementoId")
+                    b.Property<Guid>("IdAsignacionSistema")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("UnidadMedidaId")
+                    b.Property<Guid>("IdElemento")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUnidadMedida")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdCatidadElemento");
-
-                    b.HasIndex("AsignacionSistemaId");
-
-                    b.HasIndex("ElementoId");
-
-                    b.HasIndex("UnidadMedidaId");
 
                     b.ToTable("CantidadElemento");
                 });
@@ -237,12 +233,15 @@ namespace LocalBackend.Migrations
                     b.Property<bool>("Estado")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("IdTipoElemento")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid?>("TipoElementoId")
+                    b.Property<Guid>("TipoElementosIdTipoElemento")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdElemento");
@@ -250,7 +249,7 @@ namespace LocalBackend.Migrations
                     b.HasIndex("Nombre")
                         .IsUnique();
 
-                    b.HasIndex("TipoElementoId");
+                    b.HasIndex("TipoElementosIdTipoElemento");
 
                     b.ToTable("Elemento");
                 });
@@ -437,17 +436,13 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("MedioId")
+                    b.Property<Guid>("IdMedio")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TipoElementoId")
+                    b.Property<Guid>("IdTipoElemento")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdAsignacionMedio");
-
-                    b.HasIndex("MedioId");
-
-                    b.HasIndex("TipoElementoId");
 
                     b.ToTable("AsignacionMedio");
                 });
@@ -464,15 +459,13 @@ namespace LocalBackend.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("IdUpa")
+                    b.Property<Guid>("IdSistema")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("SistemaId")
+                    b.Property<Guid>("IdUpa")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdAsignacionSistema");
-
-                    b.HasIndex("SistemaId");
 
                     b.ToTable("AsignacionSistema");
                 });
@@ -501,28 +494,27 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AsignacionSistemaId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("CantidadAtributo")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("IdAsignacionSistema")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdTipoAtributo")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUnidadMedida")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<Guid>("UnidadMedidaId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<float>("Valor")
                         .HasColumnType("real");
 
                     b.HasKey("IdPropiedadSistema");
-
-                    b.HasIndex("AsignacionSistemaId");
-
-                    b.HasIndex("UnidadMedidaId");
 
                     b.ToTable("PropiedadesSistema");
                 });
@@ -534,13 +526,13 @@ namespace LocalBackend.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("IdSistema");
 
                     b.HasIndex("Nombre")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[Nombre] IS NOT NULL");
 
                     b.ToTable("Sistema");
                 });
@@ -572,64 +564,21 @@ namespace LocalBackend.Migrations
 
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMLogsEstado", b =>
                 {
-                    b.HasOne("LocalShared.Entities.Dispositivos.ClsMDispositivo", "Dispositivo")
+                    b.HasOne("LocalShared.Entities.Dispositivos.ClsMDispositivo", null)
                         .WithMany("LogsEstados")
-                        .HasForeignKey("DispositivoId")
+                        .HasForeignKey("ClsMDispositivoIdDispisitivo")
                         .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("LocalShared.Entities.Dispositivos.ClsMEstadosDispositivo", "EstadoDipositivo")
-                        .WithMany("LogsEstados")
-                        .HasForeignKey("EstadoDipositivoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Dispositivo");
-
-                    b.Navigation("EstadoDipositivo");
-                });
-
-            modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMPuntoOptimo", b =>
-                {
-                    b.HasOne("LocalShared.Entities.Dispositivos.ClsMDispositivo", "Dispositivo")
-                        .WithMany()
-                        .HasForeignKey("DispositivoId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Dispositivo");
-                });
-
-            modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMCantidadElemento", b =>
-                {
-                    b.HasOne("LocalShared.Entities.Sistemas.ClsMAsignacionSistema", "AsignacionSistema")
-                        .WithMany()
-                        .HasForeignKey("AsignacionSistemaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("LocalShared.Entities.Elementos.ClsMElemento", "Elemento")
-                        .WithMany()
-                        .HasForeignKey("ElementoId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("LocalShared.Entities.Medicion.ClsMUnidadMedida", "UnidadMedida")
-                        .WithMany()
-                        .HasForeignKey("UnidadMedidaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("AsignacionSistema");
-
-                    b.Navigation("Elemento");
-
-                    b.Navigation("UnidadMedida");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMElemento", b =>
                 {
-                    b.HasOne("LocalShared.Entities.Elementos.ClsMTipoElemento", "TipoElemento")
+                    b.HasOne("LocalShared.Entities.Elementos.ClsMTipoElemento", "TipoElementos")
                         .WithMany("Elementos")
-                        .HasForeignKey("TipoElementoId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("TipoElementosIdTipoElemento")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.Navigation("TipoElemento");
+                    b.Navigation("TipoElementos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMEvento", b =>
@@ -709,58 +658,7 @@ namespace LocalBackend.Migrations
                     b.Navigation("TipoMedicion");
                 });
 
-            modelBuilder.Entity("LocalShared.Entities.Sistemas.ClsMAsignacionMedio", b =>
-                {
-                    b.HasOne("LocalShared.Entities.Sistemas.ClsMMedio", "Medio")
-                        .WithMany("AsignacionMedios")
-                        .HasForeignKey("MedioId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("LocalShared.Entities.Elementos.ClsMTipoElemento", "TipoElemento")
-                        .WithMany()
-                        .HasForeignKey("TipoElementoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Medio");
-
-                    b.Navigation("TipoElemento");
-                });
-
-            modelBuilder.Entity("LocalShared.Entities.Sistemas.ClsMAsignacionSistema", b =>
-                {
-                    b.HasOne("LocalShared.Entities.Sistemas.ClsMSistema", "Sistema")
-                        .WithMany("AsignacionSistemas")
-                        .HasForeignKey("SistemaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Sistema");
-                });
-
-            modelBuilder.Entity("LocalShared.Entities.Sistemas.ClsMPropiedadesSistema", b =>
-                {
-                    b.HasOne("LocalShared.Entities.Sistemas.ClsMAsignacionSistema", "AsignacionSistema")
-                        .WithMany()
-                        .HasForeignKey("AsignacionSistemaId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("LocalShared.Entities.Medicion.ClsMUnidadMedida", "UnidadMedida")
-                        .WithMany()
-                        .HasForeignKey("UnidadMedidaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("AsignacionSistema");
-
-                    b.Navigation("UnidadMedida");
-                });
-
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMDispositivo", b =>
-                {
-                    b.Navigation("LogsEstados");
-                });
-
-            modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMEstadosDispositivo", b =>
                 {
                     b.Navigation("LogsEstados");
                 });
@@ -798,16 +696,6 @@ namespace LocalBackend.Migrations
             modelBuilder.Entity("LocalShared.Entities.Medicion.ClsMUnidadMedida", b =>
                 {
                     b.Navigation("MMediciones");
-                });
-
-            modelBuilder.Entity("LocalShared.Entities.Sistemas.ClsMMedio", b =>
-                {
-                    b.Navigation("AsignacionMedios");
-                });
-
-            modelBuilder.Entity("LocalShared.Entities.Sistemas.ClsMSistema", b =>
-                {
-                    b.Navigation("AsignacionSistemas");
                 });
 #pragma warning restore 612, 618
         }

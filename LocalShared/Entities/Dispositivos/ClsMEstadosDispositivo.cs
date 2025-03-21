@@ -19,5 +19,10 @@ namespace LocalShared.Entities.Dispositivos
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string? Nombre { get; set; }
+
+        public ICollection<ClsMLogsEstado>? LogsEstados { get; set; }
+
+        [Display(Name = "Registro de estados")]
+        public int LogsEstadosNumber => LogsEstados == null || LogsEstados.Count == 0 ? 0 : LogsEstados.Count;
     }
 }

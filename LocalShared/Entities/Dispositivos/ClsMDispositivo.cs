@@ -26,7 +26,7 @@ namespace LocalShared.Entities.Dispositivos
 
         public ICollection<ClsMLogsEstado>? LogsEstados { get; set; }
 
-        [Display(Name = "Unidades de medida")]
+        [Display(Name = "Registro de estados")]
         public int LogsEstadosNumber => LogsEstados == null || LogsEstados.Count == 0 ? 0 : LogsEstados.Count;
     }
 }

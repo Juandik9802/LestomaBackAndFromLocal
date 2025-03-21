@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocalShared.Entities.Elementos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,10 +12,13 @@ namespace LocalShared.Entities.Sistemas
     {
         [Key]
         [Display(Name ="Identificador de la asignacion del medio")]
-        public Guid IdAsignacionMedio { get; set; }
+        public Guid? IdAsignacionMedio { get; set; }
         [Display(Name ="Identificador del Medio de produccion")]
-        public Guid IdMedio { get; set; }
+        public Guid? MedioId { get; set; }
+        public ClsMMedio? Medio { get; set; }
+
         [Display(Name ="Identificador de tipo de elemento")]
-        public Guid IdTipoElemento { get; set; }
+        public Guid? TipoElementoId { get; set; }
+        public ClsMTipoElemento TipoElemento { get; set; }
     }
 }

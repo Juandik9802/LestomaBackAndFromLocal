@@ -13,8 +13,8 @@ namespace LocalShared.Entities.Dispositivos
         public Guid IdPuntoOPtimo { get; set; }
 
         [Display(Name = "Identificador del Dispositivo")]
-        public Guid IdDispositivo { get; set; }
-
+        public Guid? DispositivoId { get; set; }
+        public ClsMDispositivo? Dispositivo { get; set; }
         public float ValorOptimo { get; set; }
         public float ValorMaximo { get; set; }
         public float ValorMinimo { get; set; }

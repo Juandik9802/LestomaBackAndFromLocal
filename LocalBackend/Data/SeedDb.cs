@@ -388,150 +388,150 @@ namespace LocalBackend.Data
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("151ce505-5f73-40f3-871d-c7e23a47eb28"),
-                    IdMedio = Guid.Parse("692dcfd7-e88f-4ffe-b79c-db2c38177466"), // NFT (Nutrient Film Technique)
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("692dcfd7-e88f-4ffe-b79c-db2c38177466"), // NFT (Nutrient Film Technique)
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("2eb8d663-8a31-4921-94e1-49853d3df10b"),
-                    IdMedio = Guid.Parse("dbc0cb09-aca0-4f44-9aa6-234cd1ee3e60"), // Cama de Grava
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("dbc0cb09-aca0-4f44-9aa6-234cd1ee3e60"), // Cama de Grava
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("c2543edb-c938-4b68-bd55-ace347f35260"),
-                    IdMedio = Guid.Parse("95bfac3f-db7c-44b9-88c9-9d411976d4c7"), // Sustrato de Coco
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("95bfac3f-db7c-44b9-88c9-9d411976d4c7"), // Sustrato de Coco
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("882ea516-29f6-46e3-9f79-1dc2913a2242"),
-                    IdMedio = Guid.Parse("43a88401-9ff1-446a-adbe-665358197e7f"), // Sustrato de Perlita
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("43a88401-9ff1-446a-adbe-665358197e7f"), // Sustrato de Perlita
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("8e99aade-0f1d-4ce2-8db3-29b2bba03c83"),
-                    IdMedio = Guid.Parse("0ad5d595-372d-498c-8d30-23cf5e318626"), // Sustrato de Vermiculita
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("0ad5d595-372d-498c-8d30-23cf5e318626"), // Sustrato de Vermiculita
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("165d3113-a1b6-4f46-9d27-16292f6134bc"),
-                    IdMedio = Guid.Parse("a9231d7c-b657-45df-8500-590ddba4c41a"), // Suelo Tradicional
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("a9231d7c-b657-45df-8500-590ddba4c41a"), // Suelo Tradicional
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("759fa6b5-0c78-4c2e-a76d-6df5c2eb4193"),
-                    IdMedio = Guid.Parse("a3d6c232-782f-4b5c-9d28-ba700ac44db1"), // Aeroponía
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("a3d6c232-782f-4b5c-9d28-ba700ac44db1"), // Aeroponía
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("1b993f65-b711-4e04-8c85-3354242ccb75"),
-                    IdMedio = Guid.Parse("8ab20412-a335-4f4c-b02e-eb6aae006f5d"), // Cultivo en Agua Profunda (DWC)
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("8ab20412-a335-4f4c-b02e-eb6aae006f5d"), // Cultivo en Agua Profunda (DWC)
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("42e2f4a3-fd17-4b02-b29e-bc7183f04d4a"),
-                    IdMedio = Guid.Parse("aa86816e-e3d6-4cda-be59-e327166a8438"), // Sustrato de Lana de Roca
-                    IdTipoElemento = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
+                    MedioId = Guid.Parse("aa86816e-e3d6-4cda-be59-e327166a8438"), // Sustrato de Lana de Roca
+                    TipoElementoId = Guid.Parse("33b77003-e06c-4a4a-b134-b36eec5a478d") // Plantas
                 });
 
                 // Asignación de Peces a medios de acuicultura
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("5b9233dd-1dc0-4538-bc37-b26936d55440"),
-                    IdMedio = Guid.Parse("3b71b063-d010-478b-ba0f-94363b57ea15"), // Estanques de Tierra
-                    IdTipoElemento = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
+                    MedioId = Guid.Parse("3b71b063-d010-478b-ba0f-94363b57ea15"), // Estanques de Tierra
+                    TipoElementoId = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("70a466d6-d0c8-44b3-a1fc-91e0dc6c0143"),
-                    IdMedio = Guid.Parse("81bed0b3-5f19-4872-8373-57807abcc261"), // Tanques de Fibra de Vidrio
-                    IdTipoElemento = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
+                    MedioId = Guid.Parse("81bed0b3-5f19-4872-8373-57807abcc261"), // Tanques de Fibra de Vidrio
+                    TipoElementoId = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("e40c7c5b-86bc-4092-be2f-d6301a50f4ce"),
-                    IdMedio = Guid.Parse("fc551b51-75a1-44c3-9d1e-1c26af5ed768"), // Jaulas Flotantes
-                    IdTipoElemento = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
+                    MedioId = Guid.Parse("fc551b51-75a1-44c3-9d1e-1c26af5ed768"), // Jaulas Flotantes
+                    TipoElementoId = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("23b163d0-a060-4efd-8c33-392fc6b2d4a7"),
-                    IdMedio = Guid.Parse("28b205c9-e56d-43ab-a58d-341aa883cae8"), // Sistema de Recirculación de Agua (RAS)
-                    IdTipoElemento = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
+                    MedioId = Guid.Parse("28b205c9-e56d-43ab-a58d-341aa883cae8"), // Sistema de Recirculación de Agua (RAS)
+                    TipoElementoId = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("8e77beb8-1f77-4687-80ce-f19ca657d420"),
-                    IdMedio = Guid.Parse("c4ea2c62-eb88-4eb6-bd10-3e5ce4edf3a1"), // Raceways
-                    IdTipoElemento = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
+                    MedioId = Guid.Parse("c4ea2c62-eb88-4eb6-bd10-3e5ce4edf3a1"), // Raceways
+                    TipoElementoId = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("3ff6df2c-6b0c-44fa-b1ee-9571746d64e4"),
-                    IdMedio = Guid.Parse("6d36b693-5ff1-430a-b53e-221d2450aca9"), // Estanques de Concreto
-                    IdTipoElemento = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
+                    MedioId = Guid.Parse("6d36b693-5ff1-430a-b53e-221d2450aca9"), // Estanques de Concreto
+                    TipoElementoId = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("36c53a72-ef92-42ec-aff5-59e9d465cac0"),
-                    IdMedio = Guid.Parse("5047d219-026a-4bd1-9a1b-7175cec4af1e"), // Biofloc
-                    IdTipoElemento = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
+                    MedioId = Guid.Parse("5047d219-026a-4bd1-9a1b-7175cec4af1e"), // Biofloc
+                    TipoElementoId = Guid.Parse("bf625888-549d-4b9b-84a0-720ce2831c00") // Peces
                 });
 
                 // Asignación de Excretas a biodigestores y composteras
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("57d472a8-4d64-400e-858d-73ccfde302c2"),
-                    IdMedio = Guid.Parse("e6913d40-09eb-4280-a238-adb6dc81a7c4"), // Biodigestor de Flujo Continuo
-                    IdTipoElemento = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
+                    MedioId = Guid.Parse("e6913d40-09eb-4280-a238-adb6dc81a7c4"), // Biodigestor de Flujo Continuo
+                    TipoElementoId = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("f1e9c2b8-789e-40df-a632-8cd80cbbbe9a"),
-                    IdMedio = Guid.Parse("68719868-a636-40bf-8d17-305c6bda0354"), // Biodigestor de Cúpula Fija
-                    IdTipoElemento = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
+                    MedioId = Guid.Parse("68719868-a636-40bf-8d17-305c6bda0354"), // Biodigestor de Cúpula Fija
+                    TipoElementoId = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("5a5f59b1-b651-462a-b971-b00458c5c576"),
-                    IdMedio = Guid.Parse("c18a7815-a246-460e-a36d-99a0c0d40531"), // Biodigestor de Batch
-                    IdTipoElemento = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
+                    MedioId = Guid.Parse("c18a7815-a246-460e-a36d-99a0c0d40531"), // Biodigestor de Batch
+                    TipoElementoId = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("5e1e7b9d-e293-42ae-b72c-355f7a834042"),
-                    IdMedio = Guid.Parse("09b25658-be94-4171-b252-bb634d52a294"), // Biodigestor de Tubo
-                    IdTipoElemento = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
+                    MedioId = Guid.Parse("09b25658-be94-4171-b252-bb634d52a294"), // Biodigestor de Tubo
+                    TipoElementoId = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
                 });
 
                 _context.AsignacionMedio.Add(new LocalShared.Entities.Sistemas.ClsMAsignacionMedio
                 {
                     IdAsignacionMedio = Guid.Parse("ddbb1b63-58c5-4910-9dfb-65f0713c7abc"),
-                    IdMedio = Guid.Parse("29500a8d-8814-457a-bb13-4a759a3971c0"), // Biodigestor de Cúpula Flotante
-                    IdTipoElemento = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
+                    MedioId = Guid.Parse("29500a8d-8814-457a-bb13-4a759a3971c0"), // Biodigestor de Cúpula Flotante
+                    TipoElementoId = Guid.Parse("be7aeff5-dc61-429c-b804-a4b133292d49") // Excretas
                 });
 
                 await _context.SaveChangesAsync();

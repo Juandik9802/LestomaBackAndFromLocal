@@ -10,7 +10,7 @@ namespace LocalShared.Entities.Auditoria
 
         [Display(Name = "Identificador del usuario")]
         [Required]
-        public Guid IdUsuario { get; set; }
+        public Guid? IdUsuario { get; set; }
 
         [Display(Name = "Accion realizada")]
         [Required]

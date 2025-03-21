@@ -12,8 +12,12 @@ namespace LocalShared.Entities.Sistemas
         [Key]
         [Display (Name ="Identificador de asignacion")]
         public Guid IdAsignacionSistema { get; set; }
-        public Guid IdUpa { get; set; }
-        public Guid IdSistema { get; set; }
+        
+        //pendiente relacion
+        public Guid? IdUpa { get; set; }
+        public Guid? SistemaId { get; set; }
+        public ClsMSistema Sistema { get; set; }
+
         public DateTime Fecha { get; set; }
         public bool Estado { get; set; }    
     }
