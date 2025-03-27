@@ -1,0 +1,12 @@
+﻿@page "/Dispositivo/create/{DispositivoId:guid}"
+
+<h3>Registrar dispositivo</h3>
+
+@if (dispositivo is null)
+{
+    <Loading/>
+}
+else
+{    
+    <FormWithName @ref="DispositivoForm" Label="Dispositivo" Model="dispositivo" OnValidSudmit="CreateAsync" ReturnAction="Return"/>
+}

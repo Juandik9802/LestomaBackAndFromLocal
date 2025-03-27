@@ -6,7 +6,7 @@ namespace LocalShared.Entities.Dispositivos
     {
         [Key]
         [Display(Name = "Identificador unico")]
-        public Guid IdLogsEstados { get; set; }
+        public Guid IdLogsEstado { get; set; }
         public Guid? DispositivoId { get; set; }
         public ClsMDispositivo? Dispositivo { get; set; }
         public Guid EstadoDipositivoId { get; set; }

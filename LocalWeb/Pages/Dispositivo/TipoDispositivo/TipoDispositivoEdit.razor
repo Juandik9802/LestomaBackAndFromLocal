@@ -1,0 +1,12 @@
+﻿@page "/TipoDispositivo/edit/{Id:guid}"
+
+<h3></h3>
+
+@if (TipoDispositivo is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="MarcaForm" Label="Tipo de Dispositivo" Model="TipoDispositivo" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}

@@ -20,7 +20,7 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
         {
             var Impacto = await _context.TipoDispositivo
                 .Include(c => c.mDispositivos!)
-                .ThenInclude(s => s.AsignacionSistemaId)
+                .ThenInclude(s => s.AsignacionSistema)
                 .FirstOrDefaultAsync(c => c.IdTipoDispositivo == id);
             if (Impacto == null)
             {

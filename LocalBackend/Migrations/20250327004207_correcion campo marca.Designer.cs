@@ -4,6 +4,7 @@ using LocalBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250327004207_correcion campo marca")]
+    partial class correcioncampomarca
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,7 +115,7 @@ namespace LocalBackend.Migrations
 
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMLogsEstado", b =>
                 {
-                    b.Property<Guid>("IdLogsEstado")
+                    b.Property<Guid>("IdLogsEstados")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -125,7 +128,7 @@ namespace LocalBackend.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("IdLogsEstado");
+                    b.HasKey("IdLogsEstados");
 
                     b.HasIndex("DispositivoId");
 
@@ -587,7 +590,7 @@ namespace LocalBackend.Migrations
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMPuntoOptimo", b =>
                 {
                     b.HasOne("LocalShared.Entities.Dispositivos.ClsMDispositivo", "Dispositivo")
-                        .WithMany("puntoOptimos")
+                        .WithMany()
                         .HasForeignKey("DispositivoId")
                         .OnDelete(DeleteBehavior.Restrict);
 
@@ -754,8 +757,6 @@ namespace LocalBackend.Migrations
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMDispositivo", b =>
                 {
                     b.Navigation("LogsEstados");
-
-                    b.Navigation("puntoOptimos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMEstadosDispositivo", b =>

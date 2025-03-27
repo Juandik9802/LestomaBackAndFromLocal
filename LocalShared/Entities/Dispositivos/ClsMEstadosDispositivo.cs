@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace LocalShared.Entities.Dispositivos
 {
-    public class ClsMEstadosDispositivo
+    public class ClsMEstadosDispositivo:IEntityWithName
     {
         [Key]
         [Display(Name = "Identificador unico")]
         public Guid IdEstadoDispositivo { get; set; }
-        public Guid IdTipoDispositivo { get; set; }
 
-        [Display(Name = "")]
+        [Display(Name = "Estado del dipositivo")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string? Nombre { get; set; }

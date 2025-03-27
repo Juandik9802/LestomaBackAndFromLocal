@@ -1,0 +1,33 @@
+﻿@page "/EstadosDispositivo"
+
+
+<h3>Estados de los dipositivos</h3>
+
+<div class="md-3">
+    <a class="btn btn-primary" href="/EstadosDispositivo/create">Registrar un estado de dipositivo</a>
+</div>
+
+<GenericList MyList="EstadosDispositivos">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Estados</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var estadosDispositivo in EstadosDispositivos!)
+                {
+                    <tr>
+                        <th>@estadosDispositivo.Nombre</th>
+                        <td>
+                            <a href="/EstadosDipositivo/edit/@estadosDispositivo.IdEstadoDispositivo" class="btn btn-warning">Editar</a>
+                            <button @onclick=@(() => DeleteAsync(estadosDispositivo)) class="btn btn-danger">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>

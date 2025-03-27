@@ -1,4 +1,5 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using LocalShared.Entities.Dispositivos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,8 +9,33 @@ namespace LocalBackend.Controllers.Dispositivos
     [Route("api/[controller]")]
     public class TipoDispositivoController : GenericController<ClsMTipoDispositivo>
     {
-        public TipoDispositivoController(IGenericUnitOfWork<ClsMTipoDispositivo> unitOfWork) : base(unitOfWork)
+        private readonly ITipoDispositivoUnitOfWork _dispositivoUnitOfWork;
+
+        public TipoDispositivoController(IGenericUnitOfWork<ClsMTipoDispositivo> unitOfWork, ITipoDispositivoUnitOfWork dispositivoUnitOfWork) : base(unitOfWork)
         {
+            _dispositivoUnitOfWork = dispositivoUnitOfWork;
+        }
+
+        [HttpGet]
+        public override async Task<IActionResult> GetAsync()
+        {
+            var responce = await _dispositivoUnitOfWork.GetAsync();
+            if (responce.WasSuccess)
+            {
+                return Ok(responce.Result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("{id}")]
+        public override async Task<IActionResult> GetAsync(Guid Id)
+        {
+            var responce = await _dispositivoUnitOfWork.GetAsync(Id);
+            if (responce.WasSuccess)
+            {
+                return Ok(responce.Result);
+            }
+            return NotFound(responce.Message);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace LocalShared.Entities.Sistemas
         //pendiente relacion
         public Guid? IdUpa { get; set; }
         public Guid? SistemaId { get; set; }
-        public ClsMSistema Sistema { get; set; }
+        public ClsMSistema? Sistema { get; set; }
 
         public DateTime Fecha { get; set; }
         public bool Estado { get; set; }    

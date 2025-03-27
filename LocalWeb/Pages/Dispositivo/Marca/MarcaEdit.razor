@@ -1,0 +1,12 @@
+﻿@page "/Marca/edit/{Id:guid}"
+
+<h3>Editar nombre de la Marca</h3>
+
+@if (Marca is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="MarcaForm" Label="Marca" Model="Marca" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}

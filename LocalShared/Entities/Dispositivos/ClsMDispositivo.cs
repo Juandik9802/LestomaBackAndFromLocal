@@ -1,13 +1,14 @@
 ﻿using LocalShared.Entities.Sistemas;
+using LocalShared.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace LocalShared.Entities.Dispositivos
 {
-    public class ClsMDispositivo
+    public class ClsMDispositivo : IEntityWithName
     {
         [Key]
         [Display(Name = "Identificador unico")]
-        public Guid IdDispisitivo { get; set; }
+        public Guid IdDispositivo { get; set; }
 
         [Display(Name = "Nombre del dispositivo")]
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
@@ -18,7 +19,7 @@ namespace LocalShared.Entities.Dispositivos
         public Guid? TipoDispositivoId { get; set; }
         public ClsMTipoDispositivo? TipoDispositivo { get; set; }
 
-        [Required]
+        //[Required]
         public Guid? MarcaId { get; set; }
         public ClsMMarca? Marca { get; set; }
         public string? SN { get; set; }
@@ -28,5 +29,10 @@ namespace LocalShared.Entities.Dispositivos
 
         [Display(Name = "Registro de estados")]
         public int LogsEstadosNumber => LogsEstados == null || LogsEstados.Count == 0 ? 0 : LogsEstados.Count;
+
+        public ICollection<ClsMPuntoOptimo>?  puntoOptimos { get; set; }
+
+        [Display(Name = "Registro de estados")]
+        public int PuntosOptimosNumber => puntoOptimos == null || puntoOptimos.Count == 0 ? 0 : puntoOptimos.Count;
     }
 }

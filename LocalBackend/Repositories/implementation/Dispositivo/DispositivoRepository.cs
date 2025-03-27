@@ -20,7 +20,8 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
         {
             var dispositivo = await _context.Dispositivo
                 .Include(c => c.LogsEstados!)
-                .FirstOrDefaultAsync(c => c.IdDispisitivo == id);
+                .ThenInclude(s => s.EstadoDipositivo)
+                .FirstOrDefaultAsync(c => c.IdDispositivo == id);
             if (dispositivo == null)
             {
                 return new ActionResponse<ClsMDispositivo>

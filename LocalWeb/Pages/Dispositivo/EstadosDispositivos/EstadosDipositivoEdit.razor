@@ -1,0 +1,12 @@
+﻿@page "/EstadosDipositivo/edit/{Id:guid}"
+
+<h3>Editar estado</h3>
+
+@if (EstadosDispositivo is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="EstadosDispositivoForm" Label="Estados" Model="EstadosDispositivo" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}

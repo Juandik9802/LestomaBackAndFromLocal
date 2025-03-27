@@ -1,0 +1,34 @@
+﻿@page "/TipoDispositivo"
+
+
+<h3>Dispositivo</h3>
+
+<div class="md-3">
+    <a class="btn btn-primary" href="/TipoDispositivo/create">Registrar un tipo de dispositivo</a>
+</div>
+
+<GenericList MyList="TipoDispositivos">
+    <Body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tipos Registrados</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tipoDispositivo in TipoDispositivos!)
+                {
+                    <tr>
+                        <th>@tipoDispositivo.Nombre</th>
+                        <td>
+                            <a href="/TipoDispositivo/edit/@tipoDispositivo.IdTipoDispositivo" class="btn btn-warning btn-sm">Editar</a>
+                            <a class="btn btn-info btn-sm" href="/TipoDipositivo/details/@tipoDispositivo.IdTipoDispositivo">Detalles</a>
+                            <button @onclick=@(() => DeleteAsync(tipoDispositivo)) class="btn btn-danger btn-sm">Borrar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Body>
+</GenericList>

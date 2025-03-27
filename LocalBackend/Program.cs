@@ -46,6 +46,11 @@ builder.Services.AddScoped<ITipoDispositivoUnitOfWork, TipoDispositivoUnitOfWork
 builder.Services.AddScoped<IDispositivoRepository, DispositivoRepository>();
 builder.Services.AddScoped<IDispositivoUnitOfWork, DispositivoUnitOfWork>();
 
+builder.Services.AddScoped<IMarcaRepository, MarcaRepository>();
+builder.Services.AddScoped<IMarcaUnitOfWork, MarcaUnitOfWork>();
+
+builder.Services.AddScoped<IEstadosDispositivoRepository, EstadosDispositivoRepository>();
+builder.Services.AddScoped<IEstadosDispositivoUnitOfWork, EstadosDispositivosUnitOfWork>();
 
 builder.Services.AddCors(options =>
 {

@@ -1,0 +1,45 @@
+﻿@page "/Dipositivo/details/{DispositivoId:guid}"
+
+@if (dispositivo is null)
+{
+    <Loading />
+}
+else
+{
+    <h3>@dispositivo.Nombre</h3>
+    <div class="mb-2">
+        <a class="btn btn-primary" href="/Dispositivo/create/@dispositivo.IdDispositivo">Nuevo</a>
+        <a class="btn btn-success" href="/TipoDispositivo">Regresar</a>
+    </div>
+
+    <h4>Lista de @dispositivo</h4>
+    <GenericList MyList="tipoDispositivo.mDispositivos!.ToList()">
+        <Body>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Dispositivos</th>
+                        <th>Marca</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var mDispositivo in dispositivo.LogsEstados!)
+                    {
+                        <tr>
+                            <td>
+                                @mDispositivo.Fecha
+                            </td>
+                            <td>
+                                @mDispositivo.EstadoDipositivo
+                            </td>
+                            <td>                                
+                                <button class="btn btn-danger btn-sm" @onclick=@(() => DeleteAsync(mDispositivo))>Borrar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </Body>
+    </GenericList>
+}
