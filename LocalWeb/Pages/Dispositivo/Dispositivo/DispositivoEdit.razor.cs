@@ -4,12 +4,12 @@ using LocalWeb.Repositories;
 using LocalWeb.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
+namespace LocalWeb.Pages.Dispositivo.Dispositivo
 {
-    public partial class TipoDispositivoEdit
+    public partial class DispositivoEdit
     {
-        private ClsMTipoDispositivo? TipoDispositivo;
-        private FormWithName<ClsMTipoDispositivo>? TipoDispositivoForm;
+        private ClsMDispositivo? Dispositivo;
+        private FormWithName<ClsMDispositivo>? DispositivoForm;
 
         [Inject] private IRepository Repository { get; set; } = null!;
         [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
@@ -23,16 +23,16 @@ namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
             await base.OnInitializedAsync();
             try
             {
-                var responseHttp = await Repository.GetAsync<ClsMTipoDispositivo>($"/api/TipoDispositivo/{Id}");
+                var responseHttp = await Repository.GetAsync<ClsMDispositivo>($"/api/Dispositivo/{Id}");
                 if (!responseHttp.Error)
                 {
-                    TipoDispositivo = responseHttp.Responce;
+                    Dispositivo = responseHttp.Responce;
                 }
                 else
                 {
                     if (responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
                     {
-                        NavigationManager.NavigateTo("/TipoDispositivo");
+                        NavigationManager.NavigateTo($"/TipoDispositivo/details/{Dispositivo.TipoDispositivoId}");
                     }
                     else
                     {
@@ -49,7 +49,7 @@ namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
 
         private async Task EditAsync()
         {
-            var responseHttp = await Repository.PutAsync("api/TipoDispositivo", TipoDispositivo);
+            var responseHttp = await Repository.PutAsync("api/TipoDispositivo", Dispositivo);
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
@@ -69,8 +69,8 @@ namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
 
         private void Return()
         {
-            TipoDispositivoForm!.FormPostedSuccessfully = true;
-            NavigationManager.NavigateTo("/TipoDispositivo");
+            DispositivoForm!.FormPostedSuccessfully = true;
+            NavigationManager.NavigateTo($"/TipoDipositivo/details/{Dispositivo.TipoDispositivoId}");
         }
     }
-}    
+}

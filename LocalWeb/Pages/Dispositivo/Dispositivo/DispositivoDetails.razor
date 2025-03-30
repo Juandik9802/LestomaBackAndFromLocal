@@ -1,4 +1,4 @@
-﻿@page "/Dipositivo/details/{DispositivoId:guid}"
+﻿@page "/Dispositivo/details/{DispositivoId:guid}"
 
 @if (dispositivo is null)
 {
@@ -12,7 +12,7 @@ else
         <a class="btn btn-success" href="/TipoDispositivo">Regresar</a>
     </div>
 
-    <h4>Lista de @dispositivo</h4>
+    <h4>Lista de registros</h4>
     <GenericList MyList="tipoDispositivo.mDispositivos!.ToList()">
         <Body>
             <table class="table table-striped">

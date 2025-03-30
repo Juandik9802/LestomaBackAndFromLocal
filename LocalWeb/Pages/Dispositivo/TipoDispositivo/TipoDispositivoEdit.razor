@@ -1,6 +1,6 @@
 ﻿@page "/TipoDispositivo/edit/{Id:guid}"
 
-<h3></h3>
+<h3>Edicion</h3>
 
 @if (TipoDispositivo is null)
 {
@@ -8,5 +8,5 @@
 }
 else
 {
-    <FormWithName @ref="MarcaForm" Label="Tipo de Dispositivo" Model="TipoDispositivo" OnValidSudmit="EditAsync" ReturnAction="Return" />
+    <FormWithName @ref="TipoDispositivoForm" Label="Tipo de Dispositivo" Model="TipoDispositivo" OnValidSudmit="EditAsync" ReturnAction="Return" />
 }

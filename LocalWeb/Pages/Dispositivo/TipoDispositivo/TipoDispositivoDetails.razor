@@ -34,8 +34,8 @@ else
                                 @mDispositivo.Marca
                             </td>
                             <td>
-                                <a class="btn btn-warning btn-sm" href="/edit/@mDispositivo.IdDispositivo">Editar</a>
-                                <a class="btn btn-info btn-sm" href="/UnidadMedida/details/@mDispositivo.IdDispositivo">Detalles</a>
+                                <a class="btn btn-warning btn-sm" href="/Dispositivo/edit/@mDispositivo.IdDispositivo">Editar</a>
+                                <a class="btn btn-info btn-sm" href="/Dispositivo/details/@mDispositivo.IdDispositivo">Detalles</a>
                                 <button class="btn btn-danger btn-sm" @onclick=@(() => DeleteAsync(mDispositivo))>Borrar</button>
                             </td>
                         </tr>

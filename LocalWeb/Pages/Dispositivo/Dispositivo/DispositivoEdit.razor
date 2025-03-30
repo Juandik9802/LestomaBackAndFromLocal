@@ -1,0 +1,12 @@
+﻿@page "/Dispositivo/edit/{Id:guid}"
+
+<h3>Editar dispositivo</h3>
+
+@if (Dispositivo is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="DispositivoForm" Label="Dipositivo" Model="Dispositivo" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}
