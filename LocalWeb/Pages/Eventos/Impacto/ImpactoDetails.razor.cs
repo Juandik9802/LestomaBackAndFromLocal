@@ -1,20 +1,20 @@
 ﻿using CurrieTechnologies.Razor.SweetAlert2;
-using LocalShared.Entities.Dispositivos;
+using LocalShared.Entities.Eventos;
 using LocalWeb.Repositories;
 using Microsoft.AspNetCore.Components;
 using System.Net;
 
-namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
+namespace LocalWeb.Pages.Eventos.Impacto
 {
-    public partial class TipoDispositivoDetails
+    public partial class ImpactoDetails
     {
-        public ClsMTipoDispositivo? tipoDispositivo;
+        public ClsMImpacto? Impacto;
 
         [Inject] private IRepository Repository { get; set; } = null!;
         [Inject] private SweetAlertService sweetAlertService { get; set; } = null!;
         [Inject] private NavigationManager navigationManager { get; set; } = null!;
 
-        [Parameter, EditorRequired] public Guid TipoDispositivoId { get; set; }
+        [Parameter, EditorRequired] public Guid Id { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -23,12 +23,12 @@ namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
 
         private async Task LoadAsync()
         {
-            var responceHttp = await Repository.GetAsync<ClsMTipoDispositivo>($"/api/TipoDispositivo/{TipoDispositivoId}");
+            var responceHttp = await Repository.GetAsync<ClsMImpacto>($"/api/Impacto/{Id}");
             if (responceHttp.Error)
             {
                 if (responceHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
                 {
-                    navigationManager.NavigateTo("/TipoDispositivo");
+                    navigationManager.NavigateTo("/Evento");
                     return;
                 }
 
@@ -36,15 +36,15 @@ namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
                 await sweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
-            tipoDispositivo = responceHttp.Responce;
+            Impacto = responceHttp.Responce;
         }
 
-        private async Task DeleteAsync(ClsMDispositivo clsMDispositivo)
+        private async Task DeleteAsync(ClsMTipoEvento mTipoEvento)
         {
             var result = await sweetAlertService.FireAsync(new SweetAlertOptions
             {
                 Title = "Confirmacion",
-                Text = $"¿Realmente desea eliminar el Tipo de medida {clsMDispositivo.Nombre}",
+                Text = $"¿Realmente desea eliminar el tipo de evento {mTipoEvento.Nombre}",
                 Icon = SweetAlertIcon.Question,
                 ShowCancelButton = true,
                 CancelButtonText = "No",
@@ -55,7 +55,7 @@ namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
             {
                 return;
             }
-            var responseHttp = await Repository.DeleteAsync<ClsMDispositivo>($"/api/Dispositivo/{clsMDispositivo.IdDispositivo}");
+            var responseHttp = await Repository.DeleteAsync<ClsMImpacto>($"/api/Impacto/{mTipoEvento.IdTipoEvento}");
             if (responseHttp.Error)
             {
                 if (responseHttp.HttpResponseMessage.StatusCode != HttpStatusCode.NotFound)
@@ -78,4 +78,3 @@ namespace LocalWeb.Pages.Dispositivo.TipoDispositivo
         }
     }
 }
-
