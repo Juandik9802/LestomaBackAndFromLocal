@@ -1,5 +1,5 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
-using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
 using LocalShared.Entities.Dispositivos;
 using Microsoft.AspNetCore.Mvc;
 

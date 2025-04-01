@@ -10,6 +10,7 @@ using LocalBackend.Repositories.Interfaces.Mediciones;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Dispositivo;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Eventos;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Mediciones;

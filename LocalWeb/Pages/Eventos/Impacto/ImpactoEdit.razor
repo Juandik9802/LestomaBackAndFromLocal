@@ -1,0 +1,12 @@
+﻿@page "/Evento/edit/{Id:guid}"
+
+<h3>Editar tipos de ventos</h3>
+
+@if (Impacto is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="ImpactoForm" Label="Dipositivo" Model="Impacto" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}

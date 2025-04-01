@@ -13,6 +13,9 @@
             <thead>
                 <tr>
                     <th>Tipos Registrados</th>
+                    <th>
+                        Cantidad
+                    </th>
                     <th></th>
                 </tr>
             </thead>
@@ -21,8 +24,9 @@
                 {
                     <tr>
                         <th>@impacto.Nombre</th>
+                        <th>@impacto.TipoEventosNumber</th>
                         <td>
-                            <a href="/TipoDispositivo/edit/@impacto.IdImpacto" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="/Evento/edit/@impacto.IdImpacto" class="btn btn-warning btn-sm">Editar</a>
                             <a class="btn btn-info btn-sm" href="/Evento/details/@impacto.IdImpacto">Detalles</a>
                             <button @onclick=@(() => DeleteAsync(impacto)) class="btn btn-danger btn-sm">Borrar</button>
                         </td>

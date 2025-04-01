@@ -1,5 +1,5 @@
 ﻿using LocalBackend.Repositories.Interfaces;
-using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using LocalShare.Responses;
 
 namespace LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones

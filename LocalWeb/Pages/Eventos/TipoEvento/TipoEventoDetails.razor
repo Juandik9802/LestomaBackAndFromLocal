@@ -1,41 +1,39 @@
-﻿@page "/Evento/details/{Id:guid}"
+﻿@page "/TipoEvento/details/{Id:guid}"
 
-@if (Impacto is null)
+@if (TipoEvento is null)
 {
     <Loading />
 }
 else
 {
-    <h3>@Impacto.Nombre</h3>
+    <h3>@TipoEvento.Nombre</h3>
     <div class="mb-2">
-        <a class="btn btn-primary" href="/TipoEvento/create/@Impacto.IdImpacto">Nuevo</a>
+        <a class="btn btn-primary" href="/TipoEvento/create/@TipoEvento.IdTipoEvento">Nuevo</a>
         <a class="btn btn-success" href="/Evento">Regresar</a>
     </div>
 
-    <h4>Lista de @Impacto.Nombre</h4>
+    <h4>Lista de @TipoEvento.Nombre</h4>
     <GenericList MyList="Impacto.tipoEventos!.ToList()">
         <Body>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Tipo de eventos</th>
-                        <th>Numero de eventos</th>
+                        <th>Evento</th>
+                        <th>Fecha y hora</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var evento in Impacto.tipoEventos!)
+                    @foreach (var evento in TipoEvento.eventos!)
                     {
                         <tr>
                             <td>
-                                @evento.Nombre
+                                @TipoEvento.Nombre
                             </td>
                             <td>
-                                @evento.eventosNumber
+                                @evento.FechaEvento
                             </td>
                             <td>
-                                <a class="btn btn-warning btn-sm" href="/TipoEvento/edit/@evento.IdTipoEvento">Editar</a>
-                                <a class="btn btn-info btn-sm" href="/TipoEvento/details/@evento.IdTipoEvento">Detalles</a>
                                 <button class="btn btn-danger btn-sm" @onclick=@(() => DeleteAsync(evento))>Borrar</button>
                             </td>
                         </tr>

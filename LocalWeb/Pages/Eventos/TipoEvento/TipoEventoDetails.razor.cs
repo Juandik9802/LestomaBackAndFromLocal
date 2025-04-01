@@ -4,11 +4,11 @@ using LocalWeb.Repositories;
 using Microsoft.AspNetCore.Components;
 using System.Net;
 
-namespace LocalWeb.Pages.Eventos.Impacto
+namespace LocalWeb.Pages.Eventos.TipoEvento
 {
-    public partial class ImpactoDetails
+    public partial class TipoEventoDetails
     {
-        public ClsMImpacto? Impacto;
+        public ClsMTipoEvento? TipoEvento;
 
         [Inject] private IRepository Repository { get; set; } = null!;
         [Inject] private SweetAlertService sweetAlertService { get; set; } = null!;
@@ -23,7 +23,7 @@ namespace LocalWeb.Pages.Eventos.Impacto
 
         private async Task LoadAsync()
         {
-            var responceHttp = await Repository.GetAsync<ClsMImpacto>($"/api/Impacto/{Id}");
+            var responceHttp = await Repository.GetAsync<ClsMTipoEvento>($"/api/TipoEvento/{Id}");
             if (responceHttp.Error)
             {
                 if (responceHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
@@ -36,15 +36,15 @@ namespace LocalWeb.Pages.Eventos.Impacto
                 await sweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
-            Impacto = responceHttp.Responce;
+            TipoEvento = responceHttp.Responce;
         }
 
-        private async Task DeleteAsync(ClsMTipoEvento mTipoEvento)
+        private async Task DeleteAsync(ClsMEvento mEvento)
         {
             var result = await sweetAlertService.FireAsync(new SweetAlertOptions
             {
                 Title = "Confirmacion",
-                Text = $"¿Realmente desea eliminar el tipo de evento {mTipoEvento.Nombre}",
+                Text = $"¿Realmente desea eliminar el evento #{mEvento.IdEvento}",
                 Icon = SweetAlertIcon.Question,
                 ShowCancelButton = true,
                 CancelButtonText = "No",
@@ -55,7 +55,7 @@ namespace LocalWeb.Pages.Eventos.Impacto
             {
                 return;
             }
-            var responseHttp = await Repository.DeleteAsync<ClsMImpacto>($"/api/TipoEvento/{mTipoEvento.IdTipoEvento}");
+            var responseHttp = await Repository.DeleteAsync<ClsMTipoEvento>($"/api/Evento/{mEvento.IdEvento}");
             if (responseHttp.Error)
             {
                 if (responseHttp.HttpResponseMessage.StatusCode != HttpStatusCode.NotFound)

@@ -16,5 +16,8 @@ namespace LocalShared.Entities.Elementos
         [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
         public string? Nombre { get; set; }
         public bool Estado { get; set; }
+
+        public ICollection<ClsMCantidadElemento> CantidadElementos { get; set; }
+        public int CantidadElementosNumber => CantidadElementos == null || CantidadElementos.Count == 0 ? 0 : CantidadElementos.Count;
     }
 }
