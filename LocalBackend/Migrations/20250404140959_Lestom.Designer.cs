@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250327143320_correcion nombre campo")]
-    partial class correcionnombrecampo
+    [Migration("20250404140959_Lestom")]
+    partial class Lestom
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -234,7 +234,7 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Estado")
+                    b.Property<bool?>("Estado")
                         .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
@@ -605,7 +605,7 @@ namespace LocalBackend.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("LocalShared.Entities.Elementos.ClsMElemento", "Elemento")
-                        .WithMany()
+                        .WithMany("CantidadElementos")
                         .HasForeignKey("ElementoId")
                         .OnDelete(DeleteBehavior.Restrict);
 
@@ -774,6 +774,11 @@ namespace LocalBackend.Migrations
             modelBuilder.Entity("LocalShared.Entities.Dispositivos.ClsMTipoDispositivo", b =>
                 {
                     b.Navigation("mDispositivos");
+                });
+
+            modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMElemento", b =>
+                {
+                    b.Navigation("CantidadElementos");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMTipoElemento", b =>

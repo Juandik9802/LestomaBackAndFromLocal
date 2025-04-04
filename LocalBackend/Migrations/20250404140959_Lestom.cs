@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LocalBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class db : Migration
+    public partial class Lestom : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -194,7 +194,7 @@ namespace LocalBackend.Migrations
                     IdElemento = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TipoElementoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Estado = table.Column<bool>(type: "bit", nullable: false)
+                    Estado = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -231,17 +231,17 @@ namespace LocalBackend.Migrations
                 name: "Dispositivo",
                 columns: table => new
                 {
-                    IdDispisitivo = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdDispositivo = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     AsignacionSistemaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TipoDispositivoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    MarcaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MarcaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     SN = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dispositivo", x => x.IdDispisitivo);
+                    table.PrimaryKey("PK_Dispositivo", x => x.IdDispositivo);
                     table.ForeignKey(
                         name: "FK_Dispositivo_AsignacionSistema_AsignacionSistemaId",
                         column: x => x.AsignacionSistemaId,
@@ -327,19 +327,19 @@ namespace LocalBackend.Migrations
                 name: "LogsEstado",
                 columns: table => new
                 {
-                    IdLogsEstados = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdLogsEstado = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DispositivoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     EstadoDipositivoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LogsEstado", x => x.IdLogsEstados);
+                    table.PrimaryKey("PK_LogsEstado", x => x.IdLogsEstado);
                     table.ForeignKey(
                         name: "FK_LogsEstado_Dispositivo_DispositivoId",
                         column: x => x.DispositivoId,
                         principalTable: "Dispositivo",
-                        principalColumn: "IdDispisitivo",
+                        principalColumn: "IdDispositivo",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_LogsEstado_EstadosDispositivo_EstadoDipositivoId",
@@ -366,7 +366,7 @@ namespace LocalBackend.Migrations
                         name: "FK_Medicion_Dispositivo_DispositivoId",
                         column: x => x.DispositivoId,
                         principalTable: "Dispositivo",
-                        principalColumn: "IdDispisitivo",
+                        principalColumn: "IdDispositivo",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Medicion_UnidadMedida_UnidadMedidaId",
@@ -393,7 +393,7 @@ namespace LocalBackend.Migrations
                         name: "FK_PuntoOptimo_Dispositivo_DispositivoId",
                         column: x => x.DispositivoId,
                         principalTable: "Dispositivo",
-                        principalColumn: "IdDispisitivo",
+                        principalColumn: "IdDispositivo",
                         onDelete: ReferentialAction.Restrict);
                 });
 

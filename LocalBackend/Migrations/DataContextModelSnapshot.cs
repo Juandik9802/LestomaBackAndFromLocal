@@ -231,7 +231,7 @@ namespace LocalBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Estado")
+                    b.Property<bool?>("Estado")
                         .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
