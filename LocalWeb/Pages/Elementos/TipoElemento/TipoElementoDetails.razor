@@ -1,0 +1,47 @@
+﻿@page "/TipoElemento/details/{TipoElementoId:guid}"
+
+@if (tipoElemento is null)
+{
+    <Loading />
+}
+else
+{
+    <h3>@tipoElemento.Nombre</h3>
+    <div class="mb-2">
+        <a class="btn btn-primary btn-sm" href="/Elemento/create/@tipoElemento.IdTipoElemento">Nuevo elemento</a>
+        <a class="btn btn-success btn-sm" href="/TipoElemento">Regresar</a>
+    </div>
+
+    <h4>Elemento</h4>
+    <GenericList MyList="tipoElemento.Elementos!.ToList()">
+        <Body>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Elementos</th>
+                        <th>Cantidad</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var elemento in tipoElemento.Elementos!)
+                    {
+                        <tr>
+                            <td>
+                                @elemento.Nombre
+                            </td>
+                            <td>
+                                @elemento.CantidadElementosNumber
+                            </td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" href="/Elemento/edit/@elemento.IdElemento">Editar</a>
+                                <a class="btn btn-info btn-sm" href="/Elemento/details/@elemento.IdElemento">Detalles</a>
+                                <button class="btn btn-danger btn-sm" @onclick=@(() => DeleteAsync(elemento))>Borrar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </Body>
+    </GenericList>
+}

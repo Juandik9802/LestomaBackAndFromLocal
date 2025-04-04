@@ -1,17 +1,21 @@
 using LocalBackend.Data;
 using LocalBackend.Repositories.implementation;
 using LocalBackend.Repositories.implementation.Dispositivo;
+using LocalBackend.Repositories.implementation.Elementos;
 using LocalBackend.Repositories.implementation.Eventos;
 using LocalBackend.Repositories.implementation.Medicion;
 using LocalBackend.Repositories.Interfaces;
 using LocalBackend.Repositories.Interfaces.Dispositivos;
+using LocalBackend.Repositories.Interfaces.Elementos;
 using LocalBackend.Repositories.Interfaces.Eventos;
 using LocalBackend.Repositories.Interfaces.Mediciones;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Dispositivo;
+using LocalBackend.Repositories.UnitsOfWork.implementation.Elemento;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Eventos;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Elemento;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Mediciones;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +56,12 @@ builder.Services.AddScoped<IMarcaUnitOfWork, MarcaUnitOfWork>();
 
 builder.Services.AddScoped<IEstadosDispositivoRepository, EstadosDispositivoRepository>();
 builder.Services.AddScoped<IEstadosDispositivoUnitOfWork, EstadosDispositivosUnitOfWork>();
+
+builder.Services.AddScoped<ITipoElementosRepository, TipoElementoRepository>();
+builder.Services.AddScoped<ITipoElementoUnitOfWork, TipoElementoUnitOfWork>();
+
+builder.Services.AddScoped<IElementoRepository, ElementoRepository>();
+builder.Services.AddScoped<IElementoUnitOfWork, ElementoUnitOfWork>();
 
 builder.Services.AddCors(options =>
 {

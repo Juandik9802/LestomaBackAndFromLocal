@@ -1,9 +1,10 @@
 ﻿using LocalShared.Entities.Medicion;
+using LocalShared.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace LocalShared.Entities.Eventos
 {
-    public class ClsMTipoEvento
+    public class ClsMTipoEvento:IEntityWithName
     {
         [Key]
         [Display(Name = "Identificador unico del Tipo de evento")]

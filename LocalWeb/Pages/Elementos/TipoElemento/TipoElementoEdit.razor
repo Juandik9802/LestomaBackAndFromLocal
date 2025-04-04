@@ -1,0 +1,12 @@
+﻿@page "/TipoElemento/edit/{Id:guid}"
+
+<h3>Editar</h3>
+
+@if (tipoElemento is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="TipoElementoForm" Label="Tipo de elemento" Model="tipoElemento" OnValidSudmit="EditAsync" ReturnAction="Return" />
+}

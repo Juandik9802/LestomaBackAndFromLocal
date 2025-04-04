@@ -1,0 +1,5 @@
+﻿@page "/TipoEvento/create/{Id:guid}"
+
+<h3>Registrar Tipo de Medicion </h3>
+
+<FormWithName @ref="TipoEventoForm" Label="Tipo de evento" Model="TipoEvento" OnValidSudmit="CreateAsync" ReturnAction="Return" />

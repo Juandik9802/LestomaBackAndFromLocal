@@ -4,7 +4,6 @@ using LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Elemento;
 using LocalShare.Responses;
 using LocalShared.Entities.Elementos;
-using LocalShared.Entities.Eventos;
 
 namespace LocalBackend.Repositories.UnitsOfWork.implementation.Elemento
 {
@@ -16,6 +15,7 @@ namespace LocalBackend.Repositories.UnitsOfWork.implementation.Elemento
         {
             _tipoElementosRepository = tipoElementosRepository;
         }
+
         public override async Task<ActionResponse<IEnumerable<ClsMTipoElemento>>> GetAsync() => await _tipoElementosRepository.GetAsync();
         public override async Task<ActionResponse<ClsMTipoElemento>> GetAsync(Guid id) => await _tipoElementosRepository.GetAsync(id);
     }

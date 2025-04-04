@@ -1,0 +1,12 @@
+﻿@page "/Elemento/create/{Id:guid}"
+
+<h3>Registrar Tipo de Medicion </h3>
+
+@if (MElemento is null)
+{
+    <Loading/>
+}
+else
+{    
+    <FormWithName @ref="ElementoForm" Label="Elemento:" Model="MElemento" OnValidSudmit="CreateAsync" ReturnAction="Return" />
+}

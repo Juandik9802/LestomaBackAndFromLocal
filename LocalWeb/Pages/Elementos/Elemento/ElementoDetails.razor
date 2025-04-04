@@ -1,12 +1,12 @@
-﻿@page "/UnidadMedida/details/{UnidadMedidaId:guid}"
+﻿@page "/Elemento/details/{Id:guid}"
 
-@if (UnidadMedida is null)
+@if (ClsMElemento is null)
 {
     <Loading />
 }
 else
 {
-    <h3>@UnidadMedida.Nombre</h3>
+    <h3>@ClsMElemento.Nombre</h3>
     <div class="mb-2">
         @* <a class="btn btn-primary" href="/UnidadMedida/create/@UnidadMedida.IdUnidadMedida">Nueva Unidad de Medida</a> *@
         <a class="btn btn-success" href="/TipoMedicion">Regresar</a>
@@ -14,13 +14,13 @@ else
 
     <h4>Mediciones</h4>
 
-    @if (UnidadMedida.MMediciones == null || !UnidadMedida.MMediciones.Any())
+    @if (ClsMElemento.CantidadElementos == null || !ClsMElemento.CantidadElementos.Any())
     {
         <p>No hay mediciones registradas.</p>
     }
     else
     {
-        <GenericList MyList="UnidadMedida.MMediciones.ToList()">
+        <GenericList MyList="ClsMElemento.CantidadElementos.ToList()">
             <Body>
                 <table class="table table-striped">
                     <thead>
@@ -31,19 +31,19 @@ else
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var Mediciones in UnidadMedida.MMediciones)
+                        @foreach (var cantidadElemento in ClsMElemento.CantidadElementos)
                         {
                             <tr>
                                 <td>
-                                    @Mediciones.valor
+                                    @ClsMElemento.Nombre
                                 </td>
                                 <td>
-                                    @Mediciones.Fecha
+                                    @cantidadElemento.Cantidad
                                 </td>
                                 <td>
-                                    @* <a class="btn btn-warning btn-sm" href="/UnidadMedida/edit/@Mediciones.IdMedicion}">Editar</a>
-                                    <a class="btn btn-info btn-sm" href="/UnidadMedida/details/@Mediciones.IdUnidadMedida">Detalles</a> *@
-                                    <button class="btn btn-danger btn-sm" @onclick="() => DeleteAsync(Mediciones)">Borrar</button>
+                                    <a class="btn btn-warning btn-sm" href="/CantidadElemento/edit/@cantidadElemento.IdCatidadElemento}">Editar</a>
+                                    @* <a class="btn btn-info btn-sm" href="/CantidadElemento/detai/@Mediciones.IdUnidadMedida">Detalles</a>  *@
+                                    @* <button class="btn btn-danger btn-sm" @onclick="() => DeleteAsync(cantidadElemento)">Borrar</button> *@
                                 </td>
                             </tr>
                         }
