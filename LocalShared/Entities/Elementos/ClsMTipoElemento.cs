@@ -1,4 +1,5 @@
-﻿using LocalShared.Interfaces;
+﻿using LocalShared.Entities.Sistemas;
+using LocalShared.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,10 @@ namespace LocalShared.Entities.Elementos
         public ICollection<ClsMElemento>? Elementos { get; set; }
 
         public int ElementosNumber => Elementos == null || Elementos.Count == 0 ? 0 : Elementos.Count;
+
+        public ICollection<ClsMAsignacionMedio>? asignacionMedios { get; set; }
+
+        public int asignacionMediosNumber => asignacionMedios == null || asignacionMedios.Count == 0 ? 0 : asignacionMedios.Count;
 
     }
 }

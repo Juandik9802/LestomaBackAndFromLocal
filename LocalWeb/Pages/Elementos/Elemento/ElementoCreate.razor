@@ -1,6 +1,6 @@
 ﻿@page "/Elemento/create/{Id:guid}"
 
-<h3>Registrar Tipo de Medicion </h3>
+<h3>Registrar</h3>
 
 @if (MElemento is null)
 {
@@ -8,5 +8,5 @@
 }
 else
 {    
-    <FormWithName @ref="ElementoForm" Label="Elemento:" Model="MElemento" OnValidSudmit="CreateAsync" ReturnAction="Return" />
+    <FormWithName @ref="ElementoForm" Label="Elemento" Model="MElemento" OnValidSudmit="CreateAsync" ReturnAction="Return" />
 }

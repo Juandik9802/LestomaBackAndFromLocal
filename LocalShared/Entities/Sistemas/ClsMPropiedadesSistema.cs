@@ -19,5 +19,7 @@ namespace LocalShared.Entities.Sistemas
         public Guid? UnidadMedidaId { get; set; }
         public ClsMUnidadMedida UnidadMedida { get; set; }
         public int CantidadAtributo { get; set; }
+        public Guid asignacionMedioId { get; set; }
+        public ClsMAsignacionMedio AsignacionMedio { get; set; }
     }
 }

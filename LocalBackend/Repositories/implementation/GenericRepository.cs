@@ -1,5 +1,4 @@
-﻿
-using LocalBackend.Data;
+﻿using LocalBackend.Data;
 using LocalBackend.Repositories.Interfaces;
 using LocalShare.Responses;
 using Microsoft.EntityFrameworkCore;

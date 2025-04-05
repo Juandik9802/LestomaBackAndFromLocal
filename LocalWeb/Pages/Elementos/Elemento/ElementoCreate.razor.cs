@@ -42,7 +42,7 @@ namespace LocalWeb.Pages.Elementos.Elemento
         private void Return()
         {
             ElementoForm!.FormPostedSuccessfully = true;
-            navigationManager.NavigateTo($"/Elemento/details/{MElemento.TipoElementoId}");
+            navigationManager.NavigateTo($"/Elemento/details/{MElemento.IdElemento}");
         }
     }
 }

@@ -47,24 +47,24 @@ namespace LocalBackend.Data
         {
             base.OnModelCreating(modelBuilder);
             //Auditoria
-            modelBuilder.Entity<LocalShared.Entities.Auditoria.ClsMAuditoria>().HasIndex(x => x.Fecha).IsUnique();
+            modelBuilder.Entity<ClsMAuditoria>().HasIndex(x => x.Fecha).IsUnique();
             //Dispositivo
-            modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMDispositivo>().HasIndex(x => x.SN).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMEstadosDispositivo>().HasIndex(x => x.Nombre).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMMarca>().HasIndex(x => x.Nombre).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Dispositivos.ClsMTipoDispositivo>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMDispositivo>().HasIndex(x => x.SN).IsUnique();
+            modelBuilder.Entity<ClsMEstadosDispositivo>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMMarca>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMTipoDispositivo>().HasIndex(x => x.Nombre).IsUnique();
             //Elemento
-            modelBuilder.Entity<LocalShared.Entities.Elementos.ClsMElemento>().HasIndex(x => x.Nombre).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Elementos.ClsMTipoElemento>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMElemento>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMTipoElemento>().HasIndex(x => x.Nombre).IsUnique();
             //Eventos
-            modelBuilder.Entity<LocalShared.Entities.Eventos.ClsMImpacto>().HasIndex(x => x.Nombre).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Eventos.ClsMTipoEvento>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMImpacto>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMTipoEvento>().HasIndex(x => x.Nombre).IsUnique();
             //Medicion
-            modelBuilder.Entity<LocalShared.Entities.Medicion.ClsMTipoMedicion>().HasIndex(x => x.Nombre).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Medicion.ClsMUnidadMedida>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMTipoMedicion>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMUnidadMedida>().HasIndex(x => x.Nombre).IsUnique();
             //Sistema
-            modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMSistema>().HasIndex(x => x.Nombre).IsUnique();
-            modelBuilder.Entity<LocalShared.Entities.Sistemas.ClsMMedio>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMSistema>().HasIndex(x => x.Nombre).IsUnique();
+            modelBuilder.Entity<ClsMMedio>().HasIndex(x => x.Nombre).IsUnique();
             DisableCascadingDelete(modelBuilder);
             modelBuilder.Entity<ClsMUnidadMedida>()
                 .HasMany(u => u.MMediciones)

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LocalBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class Lestom : Migration
+    public partial class data : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -168,7 +168,7 @@ namespace LocalBackend.Migrations
                 {
                     IdAsignacionMedio = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MedioId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    TipoElementoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    TipoElementoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -304,11 +304,18 @@ namespace LocalBackend.Migrations
                     Nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Valor = table.Column<float>(type: "real", nullable: false),
                     UnidadMedidaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CantidadAtributo = table.Column<int>(type: "int", nullable: false)
+                    CantidadAtributo = table.Column<int>(type: "int", nullable: false),
+                    asignacionMedioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PropiedadesSistema", x => x.IdPropiedadSistema);
+                    table.ForeignKey(
+                        name: "FK_PropiedadesSistema_AsignacionMedio_asignacionMedioId",
+                        column: x => x.asignacionMedioId,
+                        principalTable: "AsignacionMedio",
+                        principalColumn: "IdAsignacionMedio",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PropiedadesSistema_AsignacionSistema_AsignacionSistemaId",
                         column: x => x.AsignacionSistemaId,
@@ -584,6 +591,11 @@ namespace LocalBackend.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_PropiedadesSistema_asignacionMedioId",
+                table: "PropiedadesSistema",
+                column: "asignacionMedioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PropiedadesSistema_AsignacionSistemaId",
                 table: "PropiedadesSistema",
                 column: "AsignacionSistemaId");
@@ -650,9 +662,6 @@ namespace LocalBackend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AsignacionMedio");
-
-            migrationBuilder.DropTable(
                 name: "Auditoria");
 
             migrationBuilder.DropTable(
@@ -671,9 +680,6 @@ namespace LocalBackend.Migrations
                 name: "PuntoOptimo");
 
             migrationBuilder.DropTable(
-                name: "Medio");
-
-            migrationBuilder.DropTable(
                 name: "Elemento");
 
             migrationBuilder.DropTable(
@@ -689,7 +695,7 @@ namespace LocalBackend.Migrations
                 name: "Dispositivo");
 
             migrationBuilder.DropTable(
-                name: "TipoElemento");
+                name: "AsignacionMedio");
 
             migrationBuilder.DropTable(
                 name: "UnidadMedida");
@@ -705,6 +711,12 @@ namespace LocalBackend.Migrations
 
             migrationBuilder.DropTable(
                 name: "TipoDispositivo");
+
+            migrationBuilder.DropTable(
+                name: "Medio");
+
+            migrationBuilder.DropTable(
+                name: "TipoElemento");
 
             migrationBuilder.DropTable(
                 name: "TipoMedicion");

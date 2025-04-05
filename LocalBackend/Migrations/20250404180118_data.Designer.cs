@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250404140959_Lestom")]
-    partial class Lestom
+    [Migration("20250404180118_data")]
+    partial class data
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -440,7 +440,7 @@ namespace LocalBackend.Migrations
                     b.Property<Guid?>("MedioId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TipoElementoId")
+                    b.Property<Guid?>("TipoElementoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdAsignacionMedio");
@@ -518,11 +518,16 @@ namespace LocalBackend.Migrations
                     b.Property<float>("Valor")
                         .HasColumnType("real");
 
+                    b.Property<Guid>("asignacionMedioId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("IdPropiedadSistema");
 
                     b.HasIndex("AsignacionSistemaId");
 
                     b.HasIndex("UnidadMedidaId");
+
+                    b.HasIndex("asignacionMedioId");
 
                     b.ToTable("PropiedadesSistema");
                 });
@@ -716,10 +721,9 @@ namespace LocalBackend.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("LocalShared.Entities.Elementos.ClsMTipoElemento", "TipoElemento")
-                        .WithMany()
+                        .WithMany("asignacionMedios")
                         .HasForeignKey("TipoElementoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Medio");
 
@@ -748,6 +752,14 @@ namespace LocalBackend.Migrations
                         .HasForeignKey("UnidadMedidaId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("LocalShared.Entities.Sistemas.ClsMAsignacionMedio", "AsignacionMedio")
+                        .WithMany("propiedadesSistemas")
+                        .HasForeignKey("asignacionMedioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AsignacionMedio");
 
                     b.Navigation("AsignacionSistema");
 
@@ -784,6 +796,8 @@ namespace LocalBackend.Migrations
             modelBuilder.Entity("LocalShared.Entities.Elementos.ClsMTipoElemento", b =>
                 {
                     b.Navigation("Elementos");
+
+                    b.Navigation("asignacionMedios");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Eventos.ClsMImpacto", b =>
@@ -804,6 +818,11 @@ namespace LocalBackend.Migrations
             modelBuilder.Entity("LocalShared.Entities.Medicion.ClsMUnidadMedida", b =>
                 {
                     b.Navigation("MMediciones");
+                });
+
+            modelBuilder.Entity("LocalShared.Entities.Sistemas.ClsMAsignacionMedio", b =>
+                {
+                    b.Navigation("propiedadesSistemas");
                 });
 
             modelBuilder.Entity("LocalShared.Entities.Sistemas.ClsMMedio", b =>

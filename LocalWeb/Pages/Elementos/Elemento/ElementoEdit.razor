@@ -1,5 +1,12 @@
-﻿<h3>ElementoEdit</h3>
+﻿@page "/Elemento/edit/{Id:guid}"
 
-@code {
+<h3>Editar </h3>
 
+@if (mElemento is null)
+{
+    <Loading/>
+}
+else
+{
+    <FormWithName @ref="ElementoForm" Label="Elemento" Model="mElemento" OnValidSudmit="SaveAsync" ReturnAction="Return" />
 }
