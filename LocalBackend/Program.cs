@@ -4,20 +4,28 @@ using LocalBackend.Repositories.implementation.Dispositivo;
 using LocalBackend.Repositories.implementation.Elementos;
 using LocalBackend.Repositories.implementation.Eventos;
 using LocalBackend.Repositories.implementation.Medicion;
+using LocalBackend.Repositories.implementation.Medios;
+using LocalBackend.Repositories.implementation.Sistema;
 using LocalBackend.Repositories.Interfaces;
 using LocalBackend.Repositories.Interfaces.Dispositivos;
 using LocalBackend.Repositories.Interfaces.Elementos;
 using LocalBackend.Repositories.Interfaces.Eventos;
 using LocalBackend.Repositories.Interfaces.Mediciones;
+using LocalBackend.Repositories.Interfaces.Medio;
+using LocalBackend.Repositories.Interfaces.Sistema;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Dispositivo;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Elemento;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Eventos;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones;
+using LocalBackend.Repositories.UnitsOfWork.implementation.Medio;
+using LocalBackend.Repositories.UnitsOfWork.implementation.Sistema;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Elemento;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Mediciones;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Medio;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Sistema;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -62,6 +70,12 @@ builder.Services.AddScoped<ITipoElementoUnitOfWork, TipoElementoUnitOfWork>();
 
 builder.Services.AddScoped<IElementoRepository, ElementoRepository>();
 builder.Services.AddScoped<IElementoUnitOfWork, ElementoUnitOfWork>();
+
+builder.Services.AddScoped<IMedioRepository, MedioRepository>();
+builder.Services.AddScoped<IMedioUnitOfWork, MedioUnitOfWork>();
+
+builder.Services.AddScoped<ISistemaRepository, SistemaRepository>();
+builder.Services.AddScoped<ISistemaUnitOfWork, SistemaUnitOfwork>();
 
 builder.Services.AddCors(options =>
 {

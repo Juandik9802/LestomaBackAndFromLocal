@@ -19,6 +19,7 @@ namespace LocalShared.Entities.Sistemas
         public ClsMSistema? Sistema { get; set; }
 
         public DateTime Fecha { get; set; }
-        public bool Estado { get; set; }    
+        public bool Estado { get; set; }
+        public ICollection<ClsMPropiedadesSistema> propiedadesSistemas { get; set; }
     }
 }

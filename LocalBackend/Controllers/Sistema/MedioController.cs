@@ -1,5 +1,5 @@
 ﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces;
-using LocalBackend.Repositories.UnitsOfWork.Interfaces.Sistema;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Medio;
 using LocalShared.Entities.Sistemas;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,19 +7,19 @@ namespace LocalBackend.Controllers.Sistema
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SistemaController : GenericController<ClsMSistema>
+    public class MedioController : GenericController<ClsMMedio>
     {
-        private readonly ISistemaUnitOfWork _sistemaUnitOfWork;
+        private readonly IMedioUnitOfWork _medioUnitOfWork;
 
-        public SistemaController(IGenericUnitOfWork<ClsMSistema> unitOfWork, ISistemaUnitOfWork sistemaUnitOfWork) : base(unitOfWork)
+        public MedioController(IGenericUnitOfWork<ClsMMedio> unitOfWork, IMedioUnitOfWork medioUnitOfWork) : base(unitOfWork)
         {
-            _sistemaUnitOfWork = sistemaUnitOfWork;
+            _medioUnitOfWork = medioUnitOfWork;
         }
 
         [HttpGet]
         public override async Task<IActionResult> GetAsync()
         {
-            var responce = await _sistemaUnitOfWork.GetAsync();
+            var responce = await _medioUnitOfWork.GetAsync();
             if (responce.WasSuccess)
             {
                 return Ok(responce.Result);
@@ -30,7 +30,7 @@ namespace LocalBackend.Controllers.Sistema
         [HttpGet("{id}")]
         public override async Task<IActionResult> GetAsync(Guid Id)
         {
-            var responce = await _sistemaUnitOfWork.GetAsync(Id);
+            var responce = await _medioUnitOfWork.GetAsync(Id);
             if (responce.WasSuccess)
             {
                 return Ok(responce.Result);
