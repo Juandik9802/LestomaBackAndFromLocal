@@ -1,6 +1,9 @@
 ﻿using LocalBackend.Data;
+using LocalBackend.Helpers;
 using LocalBackend.Repositories.Interfaces.Mediciones;
 using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Eventos;
 using LocalShared.Entities.Medicion;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +47,37 @@ namespace LocalBackend.Repositories.implementation.Medicion
             {
                 WasSuccess = true,
                 Result = unidadMedida
+            };
+        }
+
+        public override async Task<ActionResponse<IEnumerable<ClsMUnidadMedida>>> GetAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.UnidadMedida
+                .Include(c => c.MMediciones)
+                .Where(x => x.TipoMedicion!.IdTipoMedicion == pagination.Id)
+                .AsQueryable();
+
+            return new ActionResponse<IEnumerable<ClsMUnidadMedida>>
+            {
+                WasSuccess = true,
+                Result = await queryable
+                    .OrderBy(x => x.Nombre)
+                    .Paginate(pagination)
+                    .ToListAsync()
+            };
+        }
+
+        public async override Task<ActionResponse<int>> GetTotalPagesAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.UnidadMedida
+                .Where(x => x.TipoMedicion!.IdTipoMedicion == pagination.Id)
+                .AsQueryable();
+            double count = await queryable.CountAsync();
+            int totalPages = (int)Math.Ceiling(count / pagination.RecordsNumber);
+            return new ActionResponse<int>
+            {
+                WasSuccess = true,
+                Result = totalPages
             };
         }
     }

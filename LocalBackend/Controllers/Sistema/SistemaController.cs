@@ -1,5 +1,6 @@
 ﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Sistema;
+using LocalShared.DTOs;
 using LocalShared.Entities.Sistemas;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,13 +17,24 @@ namespace LocalBackend.Controllers.Sistema
             _sistemaUnitOfWork = sistemaUnitOfWork;
         }
 
-        [HttpGet]
+        [HttpGet("full")]
         public override async Task<IActionResult> GetAsync()
         {
             var responce = await _sistemaUnitOfWork.GetAsync();
             if (responce.WasSuccess)
             {
                 return Ok(responce.Result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet]
+        public override async Task<IActionResult> GetAsync(PaginationDTO pagination)
+        {
+            var response = await _sistemaUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
             }
             return BadRequest();
         }

@@ -1,6 +1,8 @@
 ﻿using LocalBackend.Data;
+using LocalBackend.Helpers;
 using LocalBackend.Repositories.Interfaces.Dispositivos;
 using LocalShare.Responses;
+using LocalShared.DTOs;
 using LocalShared.Entities.Dispositivos;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,6 +48,22 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
             {
                 WasSuccess = true,
                 Result = Marca
+            };
+        }
+
+        public override async Task<ActionResponse<IEnumerable<ClsMEstadosDispositivo>>> GetAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.EstadosDispositivo
+                .Include(c => c.LogsEstados)
+                .AsQueryable();
+
+            return new ActionResponse<IEnumerable<ClsMEstadosDispositivo>>
+            {
+                WasSuccess = true,
+                Result = await queryable
+                    .OrderBy(x => x.Nombre)
+                    .Paginate(pagination)
+                    .ToListAsync()
             };
         }
     }

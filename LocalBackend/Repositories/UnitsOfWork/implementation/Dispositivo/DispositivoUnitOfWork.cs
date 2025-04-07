@@ -3,6 +3,7 @@ using LocalBackend.Repositories.Interfaces.Dispositivos;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
 using LocalShare.Responses;
+using LocalShared.DTOs;
 using LocalShared.Entities.Dispositivos;
 using LocalShared.Entities.Eventos;
 
@@ -19,6 +20,7 @@ namespace LocalBackend.Repositories.UnitsOfWork.implementation.Dispositivo
 
         public override async Task<ActionResponse<IEnumerable<ClsMDispositivo>>> GetAsync() => await _dispositivosRepository.GetAsync();
         public override async Task<ActionResponse<ClsMDispositivo>> GetAsync(Guid id) => await _dispositivosRepository.GetAsync(id);
-
+        public override async Task<ActionResponse<IEnumerable<ClsMDispositivo>>> GetAsync(PaginationDTO pagination) => await _dispositivosRepository.GetAsync(pagination);
+        public override async Task<ActionResponse<int>> GetTotalPagesAsync(PaginationDTO pagination) => await _dispositivosRepository.GetTotalPagesAsync(pagination);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Dispositivos;
 using LocalShared.Entities.Sistemas;
 
 namespace LocalBackend.Repositories.Interfaces.Medio
@@ -7,5 +9,6 @@ namespace LocalBackend.Repositories.Interfaces.Medio
     {
         Task<ActionResponse<ClsMMedio>> GetAsync(Guid id);
         Task<ActionResponse<IEnumerable<ClsMMedio>>> GetAsync();
+        Task<ActionResponse<IEnumerable<ClsMMedio>>> GetAsync(PaginationDTO pagination);
     }
 }

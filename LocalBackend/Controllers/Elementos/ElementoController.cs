@@ -1,5 +1,6 @@
 ﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Elemento;
+using LocalShared.DTOs;
 using LocalShared.Entities.Elementos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,28 @@ namespace LocalBackend.Controllers.Elementos
         }
 
         [HttpGet]
+        public override async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+        {
+            var response = await _elementosUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("totalPages")]
+        public override async Task<IActionResult> GetPagesAsync([FromQuery] PaginationDTO pagination)
+        {
+            var response = await _elementosUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("full")]
         public override async Task<IActionResult> GetAsync()
         {
             var responce = await _elementosUnitOfWork.GetAsync();

@@ -1,8 +1,9 @@
 ﻿using LocalBackend.Data;
+using LocalBackend.Helpers;
 using LocalBackend.Repositories.Interfaces.Dispositivos;
 using LocalShare.Responses;
+using LocalShared.DTOs;
 using LocalShared.Entities.Dispositivos;
-using LocalShared.Entities.Eventos;
 using Microsoft.EntityFrameworkCore;
 
 namespace LocalBackend.Repositories.implementation.Dispositivo
@@ -47,6 +48,22 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
             {
                 WasSuccess = true,
                 Result = Impacto
+            };
+        }
+
+        public override async Task<ActionResponse<IEnumerable<ClsMTipoDispositivo>>> GetAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.TipoDispositivo
+                .Include(c => c.mDispositivos)
+                .AsQueryable();
+
+            return new ActionResponse<IEnumerable<ClsMTipoDispositivo>>
+            {
+                WasSuccess = true,
+                Result = await queryable
+                    .OrderBy(x => x.Nombre)
+                    .Paginate(pagination)
+                    .ToListAsync()
             };
         }
     }

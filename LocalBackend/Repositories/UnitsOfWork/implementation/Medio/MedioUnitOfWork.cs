@@ -3,6 +3,8 @@ using LocalBackend.Repositories.Interfaces.Medio;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Medio;
 using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Elementos;
 using LocalShared.Entities.Sistemas;
 
 namespace LocalBackend.Repositories.UnitsOfWork.implementation.Medio
@@ -17,7 +19,7 @@ namespace LocalBackend.Repositories.UnitsOfWork.implementation.Medio
         }
 
         public override async Task<ActionResponse<ClsMMedio>> GetAsync(Guid Id) => await _medioRepository.GetAsync(Id);
-
         public override async Task<ActionResponse<IEnumerable<ClsMMedio>>> GetAsync() => await _medioRepository.GetAsync();
+        public override async Task<ActionResponse<IEnumerable<ClsMMedio>>> GetAsync(PaginationDTO pagination) => await _medioRepository.GetAsync(pagination);
     }
 }

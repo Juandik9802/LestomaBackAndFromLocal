@@ -1,6 +1,9 @@
 ﻿using LocalBackend.Data;
+using LocalBackend.Helpers;
 using LocalBackend.Repositories.Interfaces.Sistema;
 using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Dispositivos;
 using LocalShared.Entities.Sistemas;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,6 +48,22 @@ namespace LocalBackend.Repositories.implementation.Sistema
             {
                 WasSuccess = true,
                 Result = sistema
+            };
+        }
+
+        public override async Task<ActionResponse<IEnumerable<ClsMSistema>>> GetAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.Sistema
+                .Include(c => c.AsignacionSistemas)
+                .AsQueryable();
+
+            return new ActionResponse<IEnumerable<ClsMSistema>>
+            {
+                WasSuccess = true,
+                Result = await queryable
+                    .OrderBy(x => x.Nombre)
+                    .Paginate(pagination)
+                    .ToListAsync()
             };
         }
     }

@@ -1,6 +1,9 @@
 ﻿using LocalBackend.Data;
+using LocalBackend.Helpers;
 using LocalBackend.Repositories.Interfaces.Elementos;
 using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Dispositivos;
 using LocalShared.Entities.Elementos;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,6 +49,22 @@ namespace LocalBackend.Repositories.implementation.Elementos
             {
                 WasSuccess = true,
                 Result = tipoElemento
+            };
+        }
+
+        public override async Task<ActionResponse<IEnumerable<ClsMTipoElemento>>> GetAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.TipoElemento
+                .Include(c => c.Elementos)
+                .AsQueryable();
+
+            return new ActionResponse<IEnumerable<ClsMTipoElemento>>
+            {
+                WasSuccess = true,
+                Result = await queryable
+                    .OrderBy(x => x.Nombre)
+                    .Paginate(pagination)
+                    .ToListAsync()
             };
         }
     }

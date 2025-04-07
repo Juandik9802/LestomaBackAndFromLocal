@@ -3,6 +3,8 @@ using LocalBackend.Repositories.Interfaces.Elementos;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Elemento;
 using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Dispositivos;
 using LocalShared.Entities.Elementos;
 
 namespace LocalBackend.Repositories.UnitsOfWork.implementation.Elemento
@@ -18,5 +20,7 @@ namespace LocalBackend.Repositories.UnitsOfWork.implementation.Elemento
 
         public override async Task<ActionResponse<IEnumerable<ClsMTipoElemento>>> GetAsync() => await _tipoElementosRepository.GetAsync();
         public override async Task<ActionResponse<ClsMTipoElemento>> GetAsync(Guid id) => await _tipoElementosRepository.GetAsync(id);
+        public override async Task<ActionResponse<IEnumerable<ClsMTipoElemento>>> GetAsync(PaginationDTO pagination) => await _tipoElementosRepository.GetAsync(pagination);
+
     }
 }

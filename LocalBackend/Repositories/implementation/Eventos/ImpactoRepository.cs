@@ -1,6 +1,9 @@
 ﻿using LocalBackend.Data;
+using LocalBackend.Helpers;
 using LocalBackend.Repositories.Interfaces.Eventos;
 using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Dispositivos;
 using LocalShared.Entities.Eventos;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,5 +51,22 @@ namespace LocalBackend.Repositories.implementation.Eventos
                 Result = Impacto
             };
         }
+
+        public override async Task<ActionResponse<IEnumerable<ClsMImpacto>>> GetAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.Impacto
+                .Include(c => c.tipoEventos)
+                .AsQueryable();
+
+            return new ActionResponse<IEnumerable<ClsMImpacto>>
+            {
+                WasSuccess = true,
+                Result = await queryable
+                    .OrderBy(x => x.Nombre)
+                    .Paginate(pagination)
+                    .ToListAsync()
+            };
+        }
+
     }
 }

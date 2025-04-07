@@ -1,5 +1,6 @@
 ﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
+using LocalShared.DTOs;
 using LocalShared.Entities.Dispositivos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace LocalBackend.Controllers.Dispositivos
             _dispositivoUnitOfWork = dispositivoUnitOfWork;
         }
 
-        [HttpGet]
+        [HttpGet("full")]
         public override async Task<IActionResult> GetAsync()
         {
             var responce = await _dispositivoUnitOfWork.GetAsync();
@@ -26,6 +27,29 @@ namespace LocalBackend.Controllers.Dispositivos
             }
             return BadRequest();
         }
+
+        [HttpGet]
+        public override async Task<IActionResult> GetAsync([FromQuery] PaginationDTO pagination)
+        {
+            var response = await _dispositivoUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("totalPages")]
+        public override async Task<IActionResult> GetPagesAsync([FromQuery] PaginationDTO pagination)
+        {
+            var response = await _dispositivoUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
+            }
+            return BadRequest();
+        }
+
 
         [HttpGet("{id}")]
         public override async Task<IActionResult> GetAsync(Guid Id)

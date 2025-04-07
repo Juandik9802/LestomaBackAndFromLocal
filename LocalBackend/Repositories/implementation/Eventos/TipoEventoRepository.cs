@@ -1,6 +1,9 @@
 ﻿using LocalBackend.Data;
+using LocalBackend.Helpers;
 using LocalBackend.Repositories.Interfaces.Eventos;
 using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Dispositivos;
 using LocalShared.Entities.Eventos;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +47,37 @@ namespace LocalBackend.Repositories.implementation.Eventos
             {
                 WasSuccess = true,
                 Result = tipoMedicion
+            };
+        }
+
+        public override async Task<ActionResponse<IEnumerable<ClsMTipoEvento>>> GetAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.TipoEvento
+                .Include(c => c.Impacto)
+                .Where(x => x.Impacto!.IdImpacto == pagination.Id)
+                .AsQueryable();
+
+            return new ActionResponse<IEnumerable<ClsMTipoEvento>>
+            {
+                WasSuccess = true,
+                Result = await queryable
+                    .OrderBy(x => x.Nombre)
+                    .Paginate(pagination)
+                    .ToListAsync()
+            };
+        }
+
+        public async override Task<ActionResponse<int>> GetTotalPagesAsync(PaginationDTO pagination)
+        {
+            var queryable = _context.TipoEvento
+                .Where(x => x.Impacto!.IdImpacto == pagination.Id)
+                .AsQueryable();
+            double count = await queryable.CountAsync();
+            int totalPages = (int)Math.Ceiling(count / pagination.RecordsNumber);
+            return new ActionResponse<int>
+            {
+                WasSuccess = true,
+                Result = totalPages
             };
         }
     }

@@ -4,6 +4,8 @@ using LocalBackend.Repositories.Interfaces.Eventos;
 using LocalBackend.Repositories.UnitsOfWork.implementation.Mediciones;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using LocalShare.Responses;
+using LocalShared.DTOs;
+using LocalShared.Entities.Elementos;
 using LocalShared.Entities.Eventos;
 
 namespace LocalBackend.Repositories.UnitsOfWork.implementation.Eventos
@@ -18,7 +20,8 @@ namespace LocalBackend.Repositories.UnitsOfWork.implementation.Eventos
         }
 
         public override async Task<ActionResponse<ClsMTipoEvento>> GetAsync(Guid id) => await _tipoEventosRepository.GetAsync(id);
-
         public override async Task<ActionResponse<IEnumerable<ClsMTipoEvento>>> GetAsync() => await _tipoEventosRepository.GetAsync();
+        public override async Task<ActionResponse<IEnumerable<ClsMTipoEvento>>> GetAsync(PaginationDTO pagination) => await _tipoEventosRepository.GetAsync(pagination);
+        public override async Task<ActionResponse<int>> GetTotalPagesAsync(PaginationDTO pagination) => await _tipoEventosRepository.GetTotalPagesAsync(pagination);
     }
 }

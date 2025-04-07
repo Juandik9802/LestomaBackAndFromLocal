@@ -1,4 +1,5 @@
 ﻿using LocalShare.Responses;
+using LocalShared.DTOs;
 
 namespace LocalBackend.Repositories.Interfaces
 {
@@ -7,6 +8,10 @@ namespace LocalBackend.Repositories.Interfaces
         Task<ActionResponse<T>> GetAsync(Guid id);
 
         Task<ActionResponse<IEnumerable<T>>> GetAsync();
+
+        Task<ActionResponse<IEnumerable<T>>> GetAsync(PaginationDTO pagination);
+
+        Task<ActionResponse<int>> GetTotalPagesAsync(PaginationDTO pagination);
 
         Task<ActionResponse<T>> AddAsync(T item);
 

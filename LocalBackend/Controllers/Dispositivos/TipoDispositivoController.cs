@@ -1,5 +1,6 @@
 ﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Dispositivos;
+using LocalShared.DTOs;
 using LocalShared.Entities.Dispositivos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,17 @@ namespace LocalBackend.Controllers.Dispositivos
         }
 
         [HttpGet]
+        public override async Task<IActionResult> GetAsync(PaginationDTO pagination)
+        {
+            var response = await _dispositivoUnitOfWork.GetAsync(pagination);
+            if (response.WasSuccess)
+            {
+                return Ok(response.Result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("full")]
         public override async Task<IActionResult> GetAsync()
         {
             var responce = await _dispositivoUnitOfWork.GetAsync();
