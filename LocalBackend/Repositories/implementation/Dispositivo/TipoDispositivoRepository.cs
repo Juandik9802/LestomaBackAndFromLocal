@@ -19,8 +19,8 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
         public override async Task<ActionResponse<ClsMTipoDispositivo>> GetAsync(Guid id)
         {
             var Impacto = await _context.TipoDispositivo
-                .Include(c => c.mDispositivos!)
-                .ThenInclude(s => s.AsignacionSistemaId)
+                .Include(c => c.Dispositivos!)
+                .ThenInclude(s => s.IdAsignacionSistemaNavigation)
                 .FirstOrDefaultAsync(c => c.IdTipoDispositivo == id);
             if (Impacto == null)
             {
@@ -41,7 +41,7 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
         public override async Task<ActionResponse<IEnumerable<ClsMTipoDispositivo>>> GetAsync()
         {
             var Impacto = await _context.TipoDispositivo
-                .Include(c => c.mDispositivos)
+                .Include(c => c.Dispositivos)
                 .ToListAsync();
             return new ActionResponse<IEnumerable<ClsMTipoDispositivo>>
             {

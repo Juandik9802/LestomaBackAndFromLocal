@@ -1,5 +1,8 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.implementation;
+﻿using AutoMapper;
+using LocalBackend.Repositories.UnitsOfWork.implementation;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+using LocalShared.DTOs.Eventos;
+using LocalShared.Entities.Auditoria;
 using LocalShared.Entities.Eventos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,11 +10,10 @@ namespace LocalBackend.Controllers.Eventos
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ImpactoController : GenericController<ClsMImpacto>
+    public class ImpactoController : GenericController<ClsMImpacto,ImpactoDTO>
     {
         private readonly IImpactoUnitOfWork _impactoUnitOfWork;
-
-        public ImpactoController(IGenericUnitOfWork<ClsMImpacto> unitOfWork, IImpactoUnitOfWork impactoUnitOfWork) : base(unitOfWork)
+        public ImpactoController(IGenericUnitOfWork<ClsMImpacto> unitOfWork, IImpactoUnitOfWork impactoUnitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
             _impactoUnitOfWork = impactoUnitOfWork;
         }

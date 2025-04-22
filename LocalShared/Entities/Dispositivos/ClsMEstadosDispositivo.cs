@@ -1,23 +1,33 @@
 ﻿using LocalShared.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace LocalShared.Entities.Dispositivos
+namespace LocalShared.Entities.Dispositivos;
+
+
+[Table("EstadosDispositivo")]
+[Index("Nombre", Name = "IX_EstadosDispositivo_Nombre", IsUnique = true)]
+public partial class ClsMEstadosDispositivo
 {
-    public class ClsMEstadosDispositivo
-    {
-        [Key]
-        [Display(Name = "Identificador unico")]
-        public Guid IdEstadoDispositivo { get; set; }
-        public Guid IdTipoDispositivo { get; set; }
+    [Key]
+    public Guid IdEstadoDispositivo { get; set; } = Guid.NewGuid();
 
-        [Display(Name = "")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string? Nombre { get; set; }
-    }
+    public Guid IdTipoDispositivo { get; set; }
+
+    [StringLength(100)]
+    public string Nombre { get; set; } = null!;
+
+    [ForeignKey("IdTipoDispositivo")]
+    [InverseProperty("EstadosDispositivos")]
+    public virtual ClsMTipoDispositivo IdTipoDispositivoNavigation { get; set; } = null!;
+
+    [InverseProperty("IdEstadoDispositivoNavigation")]
+    public virtual ICollection<ClsMLogsEstado> LogsEstados { get; set; } = new List<ClsMLogsEstado>();
 }

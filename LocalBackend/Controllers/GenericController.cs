@@ -1,24 +1,30 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+﻿using AutoMapper;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LocalBackend.Controllers
 {
-    public class GenericController<T> : Controller where T : class
+    public class GenericController<TEntity, TDto> : Controller where TEntity : class
     {
-        private readonly IGenericUnitOfWork<T> _unitOfWork;
+        private readonly IGenericUnitOfWork<TEntity> _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public GenericController(IGenericUnitOfWork<T> unitOfWork)
+        public GenericController(IGenericUnitOfWork<TEntity> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public virtual async Task<IActionResult> GetAsync()
         {
             var action = await _unitOfWork.GetAsync();
+
             if (action.WasSuccess)
-            {
-                return Ok(action.Result);
+            {   
+
+                var dtos = _mapper.Map<IEnumerable<TDto>>(action.Result);
+                return Ok(dtos);
             }
             return BadRequest();
         }
@@ -29,29 +35,34 @@ namespace LocalBackend.Controllers
             var action = await _unitOfWork.GetAsync(id);
             if (action.WasSuccess)
             {
-                return Ok(action.Result);
+                var dto = _mapper.Map<TDto>(action.Result);
+                return Ok(dto);
             }
             return NotFound();
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> PostAsync(T model)
+        public virtual async Task<IActionResult> PostAsync([FromBody] TDto dto)
         {
-            var action = await _unitOfWork.AddAsync(model);
+            var entity = _mapper.Map<TEntity>(dto);
+            var action = await _unitOfWork.AddAsync(entity);
             if (action.WasSuccess)
             {
-                return Ok(action.Result);
+                var resultDto = _mapper.Map<TDto>(action.Result);
+                return Ok(resultDto);
             }
             return BadRequest(action.Message);
         }
 
         [HttpPut]
-        public virtual async Task<IActionResult> PutAsync(T model)
+        public virtual async Task<IActionResult> PutAsync([FromBody] TDto dto)
         {
-            var action = await _unitOfWork.UpdateAsync(model);
+            var entity = _mapper.Map<TEntity>(dto);
+            var action = await _unitOfWork.UpdateAsync(entity);
             if (action.WasSuccess)
             {
-                return Ok(action.Result);
+                var resultDto = _mapper.Map<TDto>(action.Result);
+                return Ok(resultDto);
             }
             return BadRequest(action.Message);
         }

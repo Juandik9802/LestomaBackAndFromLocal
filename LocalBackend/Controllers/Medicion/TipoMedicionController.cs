@@ -1,5 +1,7 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+﻿using AutoMapper;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
 using LocalBackend.Repositories.UnitsOfWork.Interfaces.Mediciones;
+using LocalShared.DTOs.Medicion;
 using LocalShared.Entities.Medicion;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,11 +9,11 @@ namespace LocalBackend.Controllers.Medicion
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TipoMedicionController : GenericController<ClsMTipoMedicion>
+    public class TipoMedicionController : GenericController<ClsMTipoMedicion,TipoMedicionDTO>
     {
         private readonly ITipoMedicionUnitOfWork _tipoMedicionUnitOfWork;
 
-        public TipoMedicionController(IGenericUnitOfWork<ClsMTipoMedicion> unitOfWork, ITipoMedicionUnitOfWork tipoMedicionUnitOfWork) : base(unitOfWork)
+        public TipoMedicionController(IGenericUnitOfWork<ClsMTipoMedicion> unitOfWork, ITipoMedicionUnitOfWork tipoMedicionUnitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
             _tipoMedicionUnitOfWork = tipoMedicionUnitOfWork;
         }

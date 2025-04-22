@@ -18,7 +18,7 @@ namespace LocalBackend.Repositories.implementation.Medicion
         public override async Task<ActionResponse<ClsMUnidadMedida>> GetAsync(Guid Id)
         {
             var unidadMedida = await _context.UnidadMedida
-                .Include(s => s.MMediciones)
+                .Include(s => s.Medicions)
                 .FirstOrDefaultAsync(s => s.IdUnidadMedida == Id); // Usa FirstOrDefaultAsync, no ToListAsync
             if (unidadMedida == null)
             {
@@ -38,7 +38,7 @@ namespace LocalBackend.Repositories.implementation.Medicion
         public override async Task<ActionResponse<IEnumerable<ClsMUnidadMedida>>> GetAsync()
         {
             var unidadMedida = await _context.UnidadMedida
-                .Include(s => s.MMediciones) // Corregido: Usar MMediciones en lugar de Medicion
+                .Include(s => s.Medicions) // Corregido: Usar MMediciones en lugar de Medicion
                 .ToListAsync();
             return new ActionResponse<IEnumerable<ClsMUnidadMedida>>
             {

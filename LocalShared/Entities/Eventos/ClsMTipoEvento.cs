@@ -1,25 +1,34 @@
 ﻿using LocalShared.Entities.Medicion;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LocalShared.Entities.Eventos
+namespace LocalShared.Entities.Eventos;
+
+
+
+[Table("TipoEvento")]
+public partial class ClsMTipoEvento
 {
-    public class ClsMTipoEvento
-    {
-        [Key]
-        [Display(Name = "Identificador unico del Tipo de evento")]
-        public Guid IdTipoEvento { get; set; }
+    [Key]
+    [Display(Name = "Identificador unico del Tipo de evento")]
+    public Guid IdTipoEvento { get; set; } = Guid.NewGuid();
 
-        [Display(Name = "Tipo de dispositivo")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [MaxLength(50, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string? Nombre { get; set; }
+    [StringLength(50)]
+    [Display(Name = "Tipo de dispositivo")]
+    [Required(ErrorMessage = "El campo {0} es obligatorio")]
+    [MaxLength(50, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
+    public string Nombre { get; set; } = null!;
 
-        public Guid ImpactoId { get; set; }
-        public ClsMImpacto? Impacto { get; set; }
+    public Guid IdImpacto { get; set; }
 
-        public ICollection<ClsMEvento>? eventos { get; set; } // Propiedad de navegación
+    [InverseProperty("IdTipoEventoNavigation")]
+    public virtual ICollection<ClsMEvento> Eventos { get; set; } = new List<ClsMEvento>();
 
-        [Display(Name = "Mediciones")]
-        public int eventosNumber => eventos == null || eventos.Count == 0 ? 0 : eventos.Count;
-    }
+    [ForeignKey("IdImpacto")]
+    [InverseProperty("TipoEventos")]
+    public virtual ClsMImpacto IdImpactoNavigation { get; set; } = null!;
+
+
 }
+
+

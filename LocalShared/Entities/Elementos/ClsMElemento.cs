@@ -1,20 +1,35 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LocalShared.Entities.Eventos;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
-namespace LocalShared.Entities.Elementos
+namespace LocalShared.Entities.Elementos;
+
+
+[Table("Elemento")]
+[Index("IdTipoElemento", Name = "IX_Elemento_IdTipoElemento")]
+[Index("Nombre", Name = "IX_Elemento_Nombre", IsUnique = true)]
+public partial class ClsMElemento
 {
-    public class ClsMElemento
-    {
-        [Key]
-        [Display(Name ="Identificador del elemento")]
-        public Guid IdElemento { get; set; }        
+    [Key]
+    public Guid IdElemento { get; set; } = Guid.NewGuid();
 
-        public Guid IdTipoElemento { get; set; }
-        public ClsMTipoElemento TipoElementos { get; set; }
+    public Guid IdTipoElemento { get; set; }
 
-        [Display(Name = "Nombre del elemento")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string? Nombre { get; set; }
-        public bool Estado { get; set; }
-    }
+    [StringLength(100)]
+    public string Nombre { get; set; } = null!;
+
+    public bool Estado { get; set; }
+
+    [InverseProperty("IdElementoNavigation")]
+    public virtual ICollection<ClsMCantidadElemento> CantidadElementos { get; set; } = new List<ClsMCantidadElemento>();
+
+    [InverseProperty("IdElementoNavigation")]
+    public virtual ICollection<ClsMEvento> Eventos { get; set; } = new List<ClsMEvento>();
+
+    [ForeignKey("IdTipoElemento")]
+    [InverseProperty("Elementos")]
+    public virtual ClsMTipoElemento IdTipoElementoNavigation { get; set; } = null!;
 }
+

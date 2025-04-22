@@ -1,5 +1,7 @@
-﻿using LocalShared.Entities.Eventos;
+﻿using LocalShared.Entities.Elementos;
+using LocalShared.Entities.Eventos;
 using LocalShared.Entities.Medicion;
+using LocalShared.Entities.Sistemas;
 
 namespace LocalBackend.Data
 {
@@ -33,7 +35,7 @@ namespace LocalBackend.Data
                 {
                     IdImpacto = Guid.Parse("eac06e63-7a9d-4fad-9bc0-b33425351ae1"),
                     Nombre = "Positivo",
-                    tipoEventos =
+                    TipoEventos =
                     [
                         new ClsMTipoEvento()
                         {
@@ -57,7 +59,7 @@ namespace LocalBackend.Data
                 {
                     IdImpacto = Guid.Parse("f6915a14-11da-43c1-944b-d2b05ff3c40c"),
                     Nombre = "Negativo",
-                    tipoEventos =
+                    TipoEventos =
                     [
                         new ClsMTipoEvento()
                         {
@@ -80,25 +82,126 @@ namespace LocalBackend.Data
                 {
                     IdImpacto = Guid.Parse("0b7a1f1e-c64b-4147-9fee-706ede41fb54"),
                     Nombre = "Sin Impacto",
-                    tipoEventos =
+                    TipoEventos =
                     [
                         new ClsMTipoEvento()
                         {
                             IdTipoEvento = Guid.Parse("229e7683-c75e-404c-a599-c148e187da25"),
                             Nombre = "Fumigación",
-                            eventos =
+                            /*Eventos =
                             [
                                 new ClsMEvento()
                                 {
-                                    IdEvento= Guid.NewGuid(),
-                                    FechaEvento= DateTime.UtcNow
-                                },
-                                new ClsMEvento()
-                                {
-                                    IdEvento= Guid.NewGuid(),
-                                    FechaEvento= DateTime.UtcNow
+                                    IdEvento = Guid.NewGuid(),
+                                    FechaEvento = DateTime.UtcNow,
+                                    Cantidad = 2,
+                                    IdAsignacionSistemaNavigation = new ClsMAsignacionSistema
+                                    {
+                                        IdAsignacionSistema = Guid.NewGuid(),
+                                        Fecha = DateTime.Now,
+                                        Estado = false,
+                                        IdSistemaNavigation = new ClsMSistema
+                                        {
+                                            IdSistema = Guid.NewGuid(),
+                                            Nombre = "NewSistema"
+                                        },
+                                        IdUpaNavigation = new ClsMUpa
+                                        {
+                                            IdUpa = Guid.NewGuid(),
+                                            Nombre = "NewUpa",
+                                            Ubicacion = "NewUbi"
+                                        }
+
+                                    },
+                                    IdAtributoSistemaNavigation = new ClsMPropiedadSistema
+                                    {
+                                        IdPropiedadSistema = Guid.NewGuid(),
+                                        Nombre = "propiedadSistema",
+                                        Valor = 12.5f,
+                                        IdAsignacionMedioNavigation = new ClsMAsignacionMedio
+                                        {
+                                            IdAsignacionMedio = Guid.NewGuid(),
+
+                                            IdMedioNavigation = new ClsMMedio
+                                            {
+                                                IdMedio = Guid.NewGuid(),
+                                                Nombre = "Medio"
+                                            },
+                                            IdTipoElementoNavigation = new ClsMTipoElemento
+                                            {
+                                                IdTipoElemento = Guid.NewGuid(),
+                                                Nombre = "TipoElemento1"
+                                            },
+
+                                        },
+                                        IdAsignacionSistemaNavigation = new ClsMAsignacionSistema
+                                        {
+                                            IdAsignacionSistema = Guid.NewGuid(),
+
+                                            IdSistemaNavigation = new ClsMSistema
+                                            {
+                                                IdSistema = Guid.NewGuid(),
+                                                Nombre = "sistema"
+                                            },
+                                            IdUpaNavigation = new ClsMUpa
+                                            {
+                                                IdUpa = Guid.NewGuid(),
+                                                Nombre = "NewUpa",
+                                                Ubicacion = "NewUbi"
+                                            },
+                                            Estado = false,
+                                            Fecha = DateTime.Now
+                                        },
+                                        IdUnidadMedidaNavigation = new ClsMUnidadMedida
+                                        {
+                                            IdUnidadMedida = Guid.NewGuid(),
+                                            Nombre = "unidadmedida",
+                                            Simbolo = "#",
+                                            IdTipoMedicionNavigation = new ClsMTipoMedicion
+                                            {
+                                                IdTipoMedicion = Guid.NewGuid(),
+                                                Nombre = "tipomedicion"
+                                            }
+
+                                        }
+                                    }
+                                    ,
+                                    IdElementoNavigation = new ClsMElemento
+                                    {
+                                        IdElemento = Guid.NewGuid(),
+                                        Nombre = "elemento",
+
+                                        IdTipoElementoNavigation = new ClsMTipoElemento
+                                        {
+                                            Nombre = "tipoelemento"
+                                        },
+
+                                    },
+                                    IdTipoEventoNavigation = new ClsMTipoEvento { 
+                                        IdTipoEvento = Guid.Parse("229e7683-c75e-404c-a599-c148e187da25"),
+                                        Nombre = "Fumigación",
+                                        IdImpactoNavigation = new ClsMImpacto
+                                        {
+                                            IdImpacto = Guid.NewGuid(),
+                                            Nombre = "Sin Impacto",
+                                          
+                                        }
+                                    },
+                                    IdUnidadMedidaNavigation = new ClsMUnidadMedida
+                                    {
+                                        IdUnidadMedida = Guid.NewGuid(),
+                                        Nombre = "unidadmedida",
+                                        Simbolo = "#",
+                                        IdTipoMedicionNavigation = new ClsMTipoMedicion
+                                        {
+                                            IdTipoMedicion = Guid.NewGuid(),
+                                            Nombre = "tipomedicion"
+                                        }
+
+                                    },
+                                    
                                 }
-                            ]
+                            ]*/
                         },
                         new ClsMTipoEvento()
                         {
@@ -171,7 +274,7 @@ namespace LocalBackend.Data
                 {
                     IdTipoMedicion = Guid.Parse("e6e6a11f-f6b7-4d78-818b-6979681bd083"),
                     Nombre = "Longitud (Distancia)",
-                    unidadMedidas = new List<ClsMUnidadMedida>()
+                    UnidadMedida = new List<ClsMUnidadMedida>()
                     {
                         new ClsMUnidadMedida()
                         {
@@ -221,7 +324,7 @@ namespace LocalBackend.Data
                 {
                     IdTipoMedicion = Guid.Parse("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"),
                     Nombre = "Masa/Peso",
-                    unidadMedidas = new List<ClsMUnidadMedida>()
+                    UnidadMedida = new List<ClsMUnidadMedida>()
                         {
                             new ClsMUnidadMedida()
                             {
@@ -265,7 +368,7 @@ namespace LocalBackend.Data
                 {
                     IdTipoMedicion = Guid.Parse("b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e"),
                     Nombre = "Tiempo",
-                    unidadMedidas = new List<ClsMUnidadMedida>()
+                    UnidadMedida = new List<ClsMUnidadMedida>()
                     {
                         new ClsMUnidadMedida()
                         {

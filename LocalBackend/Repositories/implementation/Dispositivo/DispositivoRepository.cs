@@ -19,8 +19,11 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
         public override async Task<ActionResponse<ClsMDispositivo>> GetAsync(Guid id)
         {
             var dispositivo = await _context.Dispositivo
+                .Include(c => c.IdMarcaNavigation)
+                .Include(c => c.IdTipoDispositivoNavigation)
+                .Include(c => c.IdAsignacionSistemaNavigation)
                 .Include(c => c.LogsEstados!)
-                .FirstOrDefaultAsync(c => c.IdDispisitivo == id);
+                .FirstOrDefaultAsync(c => c.IdDispositivo == id);
             if (dispositivo == null)
             {
                 return new ActionResponse<ClsMDispositivo>
@@ -40,6 +43,9 @@ namespace LocalBackend.Repositories.implementation.Dispositivo
         public override async Task<ActionResponse<IEnumerable<ClsMDispositivo>>> GetAsync()
         {
             var dispositivo = await _context.Dispositivo
+                .Include(c => c.IdMarcaNavigation)
+                .Include(c => c.IdTipoDispositivoNavigation)    
+                .Include(c => c.IdAsignacionSistemaNavigation)
                 .Include(c => c.LogsEstados)
                 .ToListAsync();
             return new ActionResponse<IEnumerable<ClsMDispositivo>>

@@ -1,27 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LocalShared.Entities.Usuarios;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
-namespace LocalShared.Entities.Auditoria
+namespace LocalShared.Entities.Auditoria;
+[Index("Fecha", Name = "IX_Auditoria_Fecha", IsUnique = true)]
+public partial class ClsMAuditoria
 {
-    public class ClsMAuditoria
-    {
-        [Key]
-        [Display(Name = "Identificador")]
-        public Guid IdAuditoria { get; set; }
+    [Key]
+    public Guid IdAuditoria { get; set; } = Guid.NewGuid();
 
-        [Display(Name = "Identificador del usuario")]
-        [Required]
-        public Guid IdUsuario { get; set; }
+    public Guid IdUsuario { get; set; }
 
-        [Display(Name = "Accion realizada")]
-        [Required]
-        public string? Accion { get; set; }
+    public string Accion { get; set; } = null!;
 
-        [Display(Name = "Tabla involucrada")]
-        [Required]
-        public string? Tabla { get; set; }
+    public string Tabla { get; set; } = null!;
 
-        [Display(Name = "Fecha en la que se produce la accion")]
-        [Required]
-        public DateTime Fecha { get; set; }
-    }
+    public DateTime Fecha { get; set; }
+
+    [ForeignKey("IdUsuario")]
+    [InverseProperty("Auditoria")]
+    public virtual ClsMUsuario IdUsuarioNavigation { get; set; } = null!;
 }

@@ -1,18 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LocalShared.Entities.Dispositivos
+namespace LocalShared.Entities.Dispositivos;
+
+[Table("LogsEstado")]
+public partial class ClsMLogsEstado
 {
-    public class ClsMLogsEstado
-    {
-        [Key]
-        [Display(Name = "Identificador unico")]
-        public Guid IdLogsEstados { get; set; }
-        public Guid IdDispositivo { get; set; }
-        public Guid IdEstadoDsipositivo { get; set; }
+    [Key]
+    public Guid IdLogsEstados { get; set; } = Guid.NewGuid();
 
-        [Display(Name = "Fecha y hora de la modificacion de estados")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime MyProperty { get; set; }
-    }
+    public Guid IdDispositivo { get; set; }
+
+    public Guid IdEstadoDispositivo { get; set; }
+
+    public DateTime Fecha { get; set; }
+
+    [ForeignKey("IdDispositivo")]
+    [InverseProperty("LogsEstados")]
+    public virtual ClsMDispositivo IdDispositivoNavigation { get; set; } = null!;
+
+    [ForeignKey("IdEstadoDispositivo")]
+    [InverseProperty("LogsEstados")]
+    public virtual ClsMEstadosDispositivo IdEstadoDispositivoNavigation { get; set; } = null!;
 }

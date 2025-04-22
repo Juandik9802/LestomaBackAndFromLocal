@@ -18,8 +18,8 @@ namespace LocalBackend.Repositories.implementation.Eventos
         public override async Task<ActionResponse<ClsMImpacto>> GetAsync(Guid id)
         {
             var Impacto = await _context.Impacto
-                .Include(c => c.tipoEventos!)
-                .ThenInclude(s => s.eventos)
+                .Include(c => c.TipoEventos!)
+                .ThenInclude(s => s.Eventos)
                 .FirstOrDefaultAsync(c => c.IdImpacto == id);
             if (Impacto == null)
             {
@@ -40,7 +40,7 @@ namespace LocalBackend.Repositories.implementation.Eventos
         public override async Task<ActionResponse<IEnumerable<ClsMImpacto>>> GetAsync()
         {
             var Impacto = await _context.Impacto
-                .Include(c => c.tipoEventos)
+                .Include(c => c.TipoEventos)
                 .ToListAsync();
             return new ActionResponse<IEnumerable<ClsMImpacto>>
             {

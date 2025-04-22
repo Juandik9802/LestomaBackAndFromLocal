@@ -1,4 +1,6 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+﻿using AutoMapper;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+using LocalShared.DTOs.Sistemas;
 using LocalShared.Entities.Sistemas;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,9 +8,9 @@ namespace LocalBackend.Controllers.Sistema
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PropiedadSistemaController : GenericController<ClsMPropiedadesSistema>
+    public class PropiedadSistemaController : GenericController<ClsMPropiedadSistema,PropiedadesSistemaDTO>
     {
-        public PropiedadSistemaController(IGenericUnitOfWork<ClsMPropiedadesSistema> unitOfWork) : base(unitOfWork)
+        public PropiedadSistemaController(IGenericUnitOfWork<ClsMPropiedadSistema> unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
         }
     }

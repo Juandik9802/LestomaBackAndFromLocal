@@ -1,23 +1,25 @@
 ﻿using LocalShared.Entities.Medicion;
 using LocalShared.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
-namespace LocalShared.Entities.Eventos
+namespace LocalShared.Entities.Eventos;
+
+[Table("Impacto")]
+[Index("Nombre", Name = "IX_Impacto_Nombre", IsUnique = true)]
+public partial class ClsMImpacto
 {
-    public class ClsMImpacto:IEntityWithName
-    {
-        [Key]
-        public Guid IdImpacto { get; set; }
+    [Key]
+    public Guid IdImpacto { get; set; } = Guid.NewGuid();
 
-        [Display(Name = "Tipo de dispositivo")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string? Nombre { get; set; }
+    [StringLength(100)]
+    public string Nombre { get; set; } = null!;
 
-        public ICollection<ClsMTipoEvento>? tipoEventos { get; set; }
-
-        [Display(Name = "Tipos de eventos")]
-        public int TipoEventosNumber => tipoEventos == null || tipoEventos.Count == 0 ? 0 : tipoEventos.Count;
-
-    }
+    [InverseProperty("IdImpactoNavigation")]
+    public virtual ICollection<ClsMTipoEvento> TipoEventos { get; set; } = new List<ClsMTipoEvento>();
+    public int TipoEventosNumber => TipoEventos == null || TipoEventos.Count == 0 ? 0 : TipoEventos.Count;
 }
+
+

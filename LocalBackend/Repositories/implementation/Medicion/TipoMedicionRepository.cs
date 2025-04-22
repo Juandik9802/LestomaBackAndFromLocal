@@ -18,7 +18,7 @@ namespace LocalBackend.Repositories.implementation.Medicion
         public override async Task<ActionResponse<ClsMTipoMedicion>> GetAsync(Guid Id)
         {
             var TipoMedida = await _context.TipoMedicion
-                .Include(c => c.unidadMedidas)
+                .Include(c => c.UnidadMedida)
                 .FirstOrDefaultAsync(c => c.IdTipoMedicion == Id);
             if (TipoMedida == null)
             {
@@ -39,7 +39,7 @@ namespace LocalBackend.Repositories.implementation.Medicion
         public override async Task<ActionResponse<IEnumerable<ClsMTipoMedicion>>> GetAsync()
         {
             var TipoMedida = await _context.TipoMedicion
-                .Include(c => c.unidadMedidas)
+                .Include(c => c.UnidadMedida)
                 .ToListAsync();
             return new ActionResponse<IEnumerable<ClsMTipoMedicion>>
             {

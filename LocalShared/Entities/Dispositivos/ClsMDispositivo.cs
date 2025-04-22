@@ -1,32 +1,60 @@
-﻿using LocalShared.Entities.Sistemas;
+﻿using LocalShared.Entities.Medicion;
+using LocalShared.Entities.Sistemas;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
+namespace LocalShared.Entities.Dispositivos;
 
-namespace LocalShared.Entities.Dispositivos
+[Table("Dispositivo")]
+[Index("IdAsignacionSistema", Name = "IX_Dispositivo_AsignacionSistemaId")]
+[Index("IdMarca", Name = "IX_Dispositivo_MarcaId")]
+[Index("IdTipoDispositivo", Name = "IX_Dispositivo_TipoDispositivoId")]
+public partial class ClsMDispositivo
 {
-    public class ClsMDispositivo
-    {
-        [Key]
-        [Display(Name = "Identificador unico")]
-        public Guid IdDispisitivo { get; set; }
+    [Key]
+    public Guid IdDispositivo { get; set; } = Guid.NewGuid();
 
-        [Display(Name = "Nombre del dispositivo")]
-        [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
-        public string? Nombre { get; set; }
-        public Guid? AsignacionSistemaId { get; set; }
-        public ClsMAsignacionSistema? AsignacionSistema { get; set; }
-        public Guid? TipoDispositivoId { get; set; }
-        public ClsMTipoDispositivo? TipoDispositivo { get; set; }
+    [StringLength(100)]
+    [Display(Name = "Nombre del dispositivo")]
+    [Required(ErrorMessage = "El campo {0} es obligatorio")]
+    [MaxLength(100, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
+    public string Nombre { get; set; } = null!;
 
-        [Required]
-        public Guid? MarcaId { get; set; }
-        public ClsMMarca? Marca { get; set; }
-        public string? SN { get; set; }
-        public string? Descripcion { get; set; }
+    public Guid? IdAsignacionSistema { get; set; }
 
-        public ICollection<ClsMLogsEstado>? LogsEstados { get; set; }
+    public Guid? IdTipoDispositivo { get; set; }
 
-        [Display(Name = "Unidades de medida")]
-        public int LogsEstadosNumber => LogsEstados == null || LogsEstados.Count == 0 ? 0 : LogsEstados.Count;
-    }
+    public Guid IdMarca { get; set; }
+
+    [Column("SN")]
+    public string? Sn { get; set; }
+
+    public string? Descripcion { get; set; }
+
+    [ForeignKey("IdAsignacionSistema")]
+    [InverseProperty("Dispositivos")]
+    public virtual ClsMAsignacionSistema? IdAsignacionSistemaNavigation { get; set; }
+
+    [ForeignKey("IdMarca")]
+    [InverseProperty("Dispositivos")]
+    public virtual ClsMMarca IdMarcaNavigation { get; set; } = null!;
+
+    [ForeignKey("IdTipoDispositivo")]
+    [InverseProperty("Dispositivos")]
+    public virtual ClsMTipoDispositivo? IdTipoDispositivoNavigation { get; set; }
+
+    [InverseProperty("IdDispositivoNavigation")]
+    public virtual ICollection<ClsMLogsEstado> LogsEstados { get; set; } = new List<ClsMLogsEstado>();
+
+    [InverseProperty("IdDispositivoNavigation")]
+    public virtual ICollection<ClsMMedicion> Medicions { get; set; } = new List<ClsMMedicion>();
+
+    [InverseProperty("IdDispositivoNavigation")]
+    public virtual ICollection<ClsMPuntoOptimo> PuntoOptimos { get; set; } = new List<ClsMPuntoOptimo>();
+    [Display(Name = "Unidades de medida")]
+    public int LogsEstadosNumber => LogsEstados == null || LogsEstados.Count == 0 ? 0 : LogsEstados.Count;
 }
+
+
+

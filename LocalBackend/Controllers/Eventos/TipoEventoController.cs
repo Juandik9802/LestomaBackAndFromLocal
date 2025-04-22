@@ -1,4 +1,6 @@
-﻿using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+﻿using AutoMapper;
+using LocalBackend.Repositories.UnitsOfWork.Interfaces.Eventos;
+using LocalShared.DTOs.Eventos;
 using LocalShared.Entities.Eventos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +8,11 @@ namespace LocalBackend.Controllers.Eventos
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TipoEventoController : GenericController<ClsMTipoEvento>
+    public class TipoEventoController : GenericController<ClsMTipoEvento,TipoEventoDTO>
     {
         private readonly ITipoEventoUnitOfWork _tipoEventoUnitOfWork;
 
-        public TipoEventoController(IGenericUnitOfWork<ClsMTipoEvento> unitOfWork, ITipoEventoUnitOfWork tipoEventoUnitOfWork) : base(unitOfWork)
+        public TipoEventoController(IGenericUnitOfWork<ClsMTipoEvento> unitOfWork, ITipoEventoUnitOfWork tipoEventoUnitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
             _tipoEventoUnitOfWork = tipoEventoUnitOfWork;
         }

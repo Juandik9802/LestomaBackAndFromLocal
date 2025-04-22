@@ -2,6 +2,7 @@
 using LocalBackend.Data;
 using LocalBackend.Repositories.Interfaces;
 using LocalShare.Responses;
+using LocalShared.Entities.Elementos;
 using Microsoft.EntityFrameworkCore;
 
 namespace LocalBackend.Repositories.implementation
@@ -18,9 +19,9 @@ namespace LocalBackend.Repositories.implementation
 
         public virtual async Task<ActionResponse<T>> AddAsync(T entity)
         {
-            _context.Add(entity);
             try
             {
+                var action = await _context.AddAsync(entity);
                 await _context.SaveChangesAsync();
                 return new ActionResponse<T>
                 {
