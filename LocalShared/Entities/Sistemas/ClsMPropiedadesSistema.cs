@@ -12,7 +12,7 @@ namespace LocalShared.Entities.Sistemas;
         [Key]
         public Guid IdPropiedadSistema { get; set; } = Guid.NewGuid();
 
-    public Guid IdAsignacionSistema { get; set; }
+        public Guid IdAsignacionSistema { get; set; }
 
         public Guid IdAsignacionMedio { get; set; }
 
